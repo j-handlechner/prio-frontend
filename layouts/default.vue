@@ -1,15 +1,17 @@
 <template>
-  <ul class="mt-8 ">
-    <li>
-      <NuxtLink to="/">Home</NuxtLink>
-    </li>
+  <div>
+    <ul class="mt-8 ">
+      <li>
+        <NuxtLink to="/">Home</NuxtLink>
+      </li>
 
-    <li>
-      <NuxtLink to="/library">Library</NuxtLink>
-    </li>
-  </ul>
+      <li>
+        <NuxtLink to="/library">Library</NuxtLink>
+      </li>
+    </ul>
 
-  <slot></slot>
+    <slot></slot>
+  </div>
 </template>
 
 <style scoped lang="scss">
