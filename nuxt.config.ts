@@ -10,5 +10,9 @@ export default defineNuxtConfig({
   ],
   app: {
     pageTransition: { name: "page", mode: "out-in"},
+  },
+  routeRules: {
+    // Product page generated on-demand, revalidates in background
+    '/library/**': {ssr: false},
   }
 })
