@@ -11,3 +11,7 @@ h1 {
 strong a {
   font-weight: 500;
 }
+
+@mixin mobile() {
+  @media screen and (max-width: 768px) { @content; }
+}

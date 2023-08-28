@@ -77,7 +77,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1.25rem;
 
-
     &:last-child {
       margin-bottom: 20vh;
     }
