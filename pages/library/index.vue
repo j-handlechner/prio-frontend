@@ -19,6 +19,12 @@
         </div>
       </NuxtLink>
 
+      <NuxtLink to="/library/datepicker">
+        <div class="card">
+          Date Picker
+        </div>
+      </NuxtLink>
+
       <NuxtLink to="/library/slider">
         <div class="card">
           Slider

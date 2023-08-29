@@ -15,3 +15,9 @@ strong a {
 @mixin mobile() {
   @media screen and (max-width: 768px) { @content; }
 }
+
+.library-wrapper {
+  max-width: 35vw;
+  margin-left: auto;
+  margin-right: auto;
+}

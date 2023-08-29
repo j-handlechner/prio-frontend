@@ -1,7 +1,8 @@
 <template>
   <div>
-    <n-input type="text" size="large" placeholder="Large Input" />
-    <n-button>naive-ui</n-button>
+    <div class="library-wrapper">
+      <n-input type="text" size="large" placeholder="Large Input" />
+    </div>
   </div>
 </template>
 

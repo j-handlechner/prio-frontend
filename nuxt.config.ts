@@ -14,5 +14,6 @@ export default defineNuxtConfig({
   routeRules: {
     // Product page generated on-demand, revalidates in background
     '/library/**': {ssr: false},
+    '/': {ssr: false} // just for development
   }
 })
