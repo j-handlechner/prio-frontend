@@ -19,7 +19,29 @@ const themeOverrides = {
     "primaryColorHover": "#000000FF",
     "primaryColorPressed": "#000000FF",
     "primaryColorSuppl": "#000000FF",
-    "borderRadius": 0
+    "borderRadius": "0",
+    "textColorDisabled": "rgba(0, 0, 0, 1)",
+    "placeholderColor": "rgba(0, 0, 0, 1)",
+    "textColor3": "rgba(0, 0, 0, 1)",
+    "textColor2": "rgba(0, 0, 0, 1)",
+    "textColor1": "rgba(0, 0, 0, 1)",
+    "opacity1": "1",
+    "opacity2": "1",
+    "opacity3": "1",
+    "opacity4": "1",
+    "opacity5": "1",
+    "borderColor": "rgba(0, 0, 0, 1)",
+    "heightHuge": "4rem",
+    "heightLarge": "3.5rem",
+    "heightMedium": "3rem",
+    "heightSmall": "2rem",
+    "fontFamily": "Helvetica",
+    "fontWeight": "400"
+  },
+  "DatePicker": {
+    "iconColor": "rgba(255, 255, 255, 1)",
+    "iconColorDisabled": "rgba(255, 255, 255, 1)",
+    "calendarRightPaddingYearrange": "0"
   }
 }
 </script>
