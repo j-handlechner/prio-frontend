@@ -7,7 +7,7 @@
 
     <h2>Components</h2>
     <div class="gridwrapper">
-      <NuxtLink to="/library/chart">
+      <NuxtLink to="/library/button">
         <div class="card">
           Button
         </div>
@@ -34,6 +34,12 @@
       <NuxtLink to="/library/chart">
         <div class="card">
           Chart
+        </div>
+      </NuxtLink>
+
+      <NuxtLink to="/library/select">
+        <div class="card">
+          Select
         </div>
       </NuxtLink>
     </div>

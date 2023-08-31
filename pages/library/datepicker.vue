@@ -8,7 +8,7 @@
 import { NDatePicker } from 'naive-ui'
 </script>
 
-<style>
+<style scoped>
 .n-date-panel-actions {
   display: none!important;
 }
