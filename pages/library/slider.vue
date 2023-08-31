@@ -13,8 +13,7 @@
 
 <script setup>
 import { ref } from "vue";
-import SliderThumb from "./sliderThumb.vue";
-import { NSlider } from 'naive-ui'
+import SliderThumb from "./utils/sliderThumb.vue";
 
 const value = ref(50)
 </script>

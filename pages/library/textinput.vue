@@ -5,8 +5,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { NButton, NInput } from 'naive-ui'
-
-</script>

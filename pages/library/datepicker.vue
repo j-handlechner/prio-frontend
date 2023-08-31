@@ -4,10 +4,6 @@
   </div>
 </template>
 
-<script setup>
-import { NDatePicker } from 'naive-ui'
-</script>
-
 <style scoped>
 .n-date-panel-actions {
   display: none!important;
