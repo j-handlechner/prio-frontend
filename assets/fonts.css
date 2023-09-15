@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Cirka";
+    font-weight: 400;
+    src: url("/fonts/PPCirka-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Cirka";
+    font-weight: 200;
+    src: url("/fonts/PPCirka-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Cirka";
+    font-weight: 600;
+    src: url("/fonts/PPCirka-Bold.otf") format("opentype");
+}

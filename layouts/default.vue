@@ -7,7 +7,11 @@
       </li>
 
       <li>
-        <NuxtLink to="/library">Library</NuxtLink>
+        <NuxtLink to="/libraryPrimevue">LibraryPrimevue</NuxtLink>
+      </li>
+
+      <li>
+        <NuxtLink to="/survey">survey</NuxtLink>
       </li>
     </ul>
 
