@@ -42,6 +42,12 @@
           Select
         </div>
       </NuxtLink>
+
+      <NuxtLink to="/libraryPrimevue/selectbutton">
+        <div class="card">
+          Selectbutton
+        </div>
+      </NuxtLink>
     </div>
 
     <h2>Custom Utility Classes</h2>

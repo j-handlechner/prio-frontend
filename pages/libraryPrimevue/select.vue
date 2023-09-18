@@ -1,43 +1,55 @@
 <template>
-  <div class="library-wrapper">
-    <n-tree-select
-        :value="value"
-        :options="optionsNew"
-        default-value="Drive My Car"
-        @update:value="handleUpdateValue"
-    />
-
-    <p>current value: {{ currentValue }}</p>
-  </div>
+  <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="select" :pt="{
+    root: {
+      style: {
+        borderRadius: 0,
+        borderColor: 'black',
+        fontFamily: 'Cirka',
+        fontWeight: 200,
+        fontSize: '1.25rem'
+      }
+    }
+  }" />
 </template>
 
 <script setup>
-const currentValue = ref(null)
+import TreeSelect from 'primevue/treeselect';
 
-const optionsNew = [
+const selectedValue = ref(null)
+
+const nodes = ref([
   {
-    label: "Option 1",
-    key: "op1",
+    key: "opt1",
+    label: "hello1",
+    data: "hello1value"
   },
   {
-    label: "Option 2",
-    key: "op2"
-  },
-  {
-    label: "Option 3",
-    key: "op3",
-  },
-  {
-    label: "Option 4",
-    key: "op4"
+    key: "opt2",
+    label: "hello2",
+    data: "hello2value"
   }
-]
+])
+</script>
 
-const handleUpdateValue = (value, option) => {
-  console.log(value, option);
-  console.log("option: ", option)
-  console.log("option.label: ", option.label)
-  currentValue.value = option.label
+<style scoped lang="scss">
+  .select {
+    width: 100%;
+  }
+</style>
+
+<style lang="scss">
+.p-treenode-label {
+  font-family: "Cirka" !important;
+  font-weight: 200 !important;
+  font-size: 1.25rem;
 }
 
-</script>
+.p-treenode-content {
+  border-radius: 0 !important;
+}
+
+.p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {
+  color: black;
+  background-color: #f1f1f1;
+}
+</style>

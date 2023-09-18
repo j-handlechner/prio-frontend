@@ -1,6 +1,6 @@
 <template>
   <div class="library-wrapper">
-    <Slider @change="updateValue" class="testi" v-model="value" :pt="{
+    <Slider @change="updateValue" class="testi" v-model="value" max="100" :pt="{
       range: {
         style: {
           backgroundColor: 'black'
@@ -26,10 +26,11 @@
 import Slider from 'primevue/slider';
 
 const props = defineProps({
-  name: String
+  name: String,
+  initialValue: Number
 })
 
-const value = ref(50)
+const value = ref(props.initialValue)
 
 const emit = defineEmits(["value-updated"])
 

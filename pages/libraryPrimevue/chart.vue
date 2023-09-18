@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <p>computed property left up: {{ valueLeftUp }}</p>
+    <p>percentage left top: {{ percentageLeftTop }}</p>
+    <p>percentage left bottom: {{ 100 - percentageLeftTop }}</p>
+    <p>percentage right top: {{ percentageRightTop }}</p>
+    <p>percentage right bottom: {{ 100 - percentageRightTop }}</p>
+
+  <p>valueleftup: {{valueLeftUp}}</p>
+  <p>valueleftdown: {{valueLeftDown}}</p>
+  <p>valuerightup: {{valueRightUp}}</p>
+  <p>valuerightdown: {{valueRightDown}}</p>
     <div class="library-wrapper">
       <div class="prio-chart__wrapper">
         <div class="prio-chart__column" ref="columnLeft"
@@ -56,7 +63,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -65,7 +71,8 @@
     topleft: Number,
     topright: Number,
     bottomleft: Number,
-    bottomright: Number
+    bottomright: Number,
+    totalvalue: Number
   })
 
   const blockLeftUp = ref(null)
@@ -80,10 +87,43 @@
   // const valueRightUp = ref(props.topright)
   // const valueRightDown = ref(props.bottomright)
 
-  const valueLeftUp = computed(() => props.topleft) // get these values from props
-  const valueLeftDown = computed(() => props.bottomleft)
-  const valueRightUp = computed(() => props.topright)
-  const valueRightDown = computed(() => props.bottomright)
+
+  // von den props muss man sich von ihnen den gesamtanteil vom totalvalue ausrechnen - dann kann man von gleichmäßiger initialverteilung mit input-verteilung beginnen
+  // bei dem element, wo der slider hochgefahren wird zB +1 -> alle anderen verlieren 0.3333
+  // d.h. aufbau von der funktion: basiswert (total/4) + inputstunden - (summe aller anderen inputstunden) / 3
+
+
+  // const valueLeftUp = computed(() => props.topleft) // get these values from props
+  // const valueLeftDown = computed(() => props.bottomleft)
+  // const valueRightUp = computed(() => props.topright)
+  // const valueRightDown = computed(() => props.bottomright)
+
+  function sumWithoutItself(itself) {
+    return props.bottomleft + props.topright + props.bottomright + props.topleft - itself
+  }
+
+
+  //todo: wenn oberer wert voll ist, ist alles ok, wenn unterer wert voll ist, overflowt es ganz komisch (linke hälfte)
+  // todo die formeln hier passen noch ned ganz
+  // const valueLeftUp = computed(() => props.totalvalue / 4 + props.topleft * 0.75 - (sumWithoutItself(props.topleft)) / 3 ) // get these values from props
+  // const valueLeftDown = computed(() => props.totalvalue / 4 + props.bottomleft * 0.75 - (sumWithoutItself(props.bottomleft)) / 3 )
+  // const valueRightUp = computed(() => props.totalvalue / 4 + props.topright * 0.75  - (sumWithoutItself(props.topright)) / 3 )
+  // const valueRightDown = computed(() => props.totalvalue / 4 + props.bottomright * 0.75 - (sumWithoutItself(props.bottomright)) / 3 )
+
+  function getPositiveOrZero(expression) {
+    if(expression < 0)
+      return 0
+
+    return expression
+  }
+
+  const baseValue = props.totalvalue / 4
+
+  const valueLeftUp = computed(() => baseValue + (props.topleft - baseValue) - (props.bottomleft - baseValue) * 0.3333 - (props.topright - baseValue) * 0.3333 - (props.bottomright - baseValue) * 0.3333);  // get these values from props
+  const valueLeftDown = computed(() => baseValue + (props.bottomleft - baseValue) - (props.topleft - baseValue) * 0.3333 - (props.topright - baseValue) * 0.3333 - (props.bottomright - baseValue) * 0.3333);
+  const valueRightUp = computed(() => baseValue + (props.topright - baseValue) - (props.bottomright - baseValue) * 0.3333 - (props.bottomleft - baseValue) * 0.3333 - (props.topleft - baseValue) * 0.3333);
+  const valueRightDown = computed(() => baseValue + (props.bottomright - baseValue) - (props.topright - baseValue) * 0.3333 - (props.bottomleft - baseValue) * 0.3333 - (props.topleft - baseValue) * 0.3333);
+
 
   const total = computed(() => valueLeftUp.value + valueLeftDown.value + valueRightUp.value + valueRightDown.value)
   const leftTotal = computed(() => valueLeftUp.value + valueLeftDown.value)
@@ -120,8 +160,8 @@
 
 <style scoped lang="scss">
 .library-wrapper {
-  width: 50vw;
-  height: 75vh;
+  width: 100%;
+  height: 100%;
   border: 0.75px solid black;
 }
 
@@ -129,12 +169,16 @@
   width: 100%;
   height: 100%;
   display: flex;
+
+  --minheight: 75px;
 }
+
+
 
 .prio-chart__column {
   height: 100%;
   transition: 2s all ease;
-
+  min-width: var(--minheight);
 }
 
 .prio-chart__block {
@@ -143,6 +187,13 @@
   position: relative;
 
   transition: 2s all ease;
+
+
+
+  min-height: var(--minheight);
+  min-width: var(--minheight);
+
+  max-height: calc(100% - var(--minheight));
 }
 
 .prio-chart__corner {

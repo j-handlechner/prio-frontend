@@ -1,13 +1,15 @@
 <template>
   <div class="outerwrapper">
     <div :style="{display: 'flex', flexDirection: 'column'}">
-      <Slider @value-updated="doSomethingWithNewValue" name="topleft"/>
-      <Slider @value-updated="doSomethingWithNewValue" name="bottomleft"/>
-      <Slider @value-updated="doSomethingWithNewValue" name="topright"/>
-      <Slider @value-updated="doSomethingWithNewValue" name="bottomright"/>
+      <Slider @value-updated="doSomethingWithNewValue" name="topleft" initial-value="0" />
+      <Slider @value-updated="doSomethingWithNewValue" name="bottomleft" initial-value="0"/>
+      <Slider @value-updated="doSomethingWithNewValue" name="topright" initial-value="0"/>
+      <Slider @value-updated="doSomethingWithNewValue" name="bottomright" initial-value="0"/>
     </div>
 
-    <Chart :topleft="topleftvalue" :topright="toprightvalue" :bottomleft="bottomleftvalue" :bottomright="bottomrightvalue"></Chart>
+    <div class="chartwrapper">
+      <Chart :topleft="topleftvalue" :topright="toprightvalue" :bottomleft="bottomleftvalue" :bottomright="bottomrightvalue" :totalvalue="200"></Chart>
+    </div>
   </div>
 </template>
 
@@ -17,10 +19,10 @@ import Slider from './slider.vue'
 
   const data = ref({})
 
-    const topleftvalue = ref(25)
-    const toprightvalue = ref(25)
-    const bottomleftvalue = ref(25)
-    const bottomrightvalue = ref(25)
+    const topleftvalue = ref(0)
+    const toprightvalue = ref(0)
+    const bottomleftvalue = ref(0)
+    const bottomrightvalue = ref(0)
 
   const doSomethingWithNewValue = (newVal) => {
     console.log("parent received value: ", newVal)
@@ -60,12 +62,16 @@ import Slider from './slider.vue'
 <style scoped lang="scss">
 .outerwrapper {
   width: 80vw;
-  height: 75vh;
+  height: 40vh;
   display: flex;
   gap: 10vw;
   margin: 0 auto;
   justify-content: space-between;
 }
 
+.chartwrapper {
+  width: 50%;
+  height: 100%;
+}
 
 </style>
