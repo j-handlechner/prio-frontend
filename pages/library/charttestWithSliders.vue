@@ -17,6 +17,8 @@
 import Chart from './chart.vue'
 import Slider from './slider.vue'
 
+  const priochartData = usePriochartVars()
+
   const data = ref({})
 
     const topleftvalue = ref(0)
@@ -62,7 +64,7 @@ import Slider from './slider.vue'
 <style scoped lang="scss">
 .outerwrapper {
   width: 80vw;
-  height: 40vh;
+  height: 80vh;
   display: flex;
   gap: 10vw;
   margin: 0 auto;
