@@ -1,13 +1,4 @@
 <template>
-    <p>percentage left top: {{ percentageLeftTop }}</p>
-    <p>percentage left bottom: {{ 100 - percentageLeftTop }}</p>
-    <p>percentage right top: {{ percentageRightTop }}</p>
-    <p>percentage right bottom: {{ 100 - percentageRightTop }}</p>
-
-  <p>valueleftup: {{valueLeftUp}}</p>
-  <p>valueleftdown: {{valueLeftDown}}</p>
-  <p>valuerightup: {{valueRightUp}}</p>
-  <p>valuerightdown: {{valueRightDown}}</p>
     <div class="library-wrapper">
       <div class="prio-chart__wrapper">
         <div class="prio-chart__column" ref="columnLeft"
@@ -82,33 +73,9 @@
   const columnLeft = ref(null)
   const columnRight = ref(null)
 
-  // const valueLeftUp = ref(props.topleft) // get these values from props
-  // const valueLeftDown = ref(props.bottomleft)
-  // const valueRightUp = ref(props.topright)
-  // const valueRightDown = ref(props.bottomright)
-
-
-  // von den props muss man sich von ihnen den gesamtanteil vom totalvalue ausrechnen - dann kann man von gleichmäßiger initialverteilung mit input-verteilung beginnen
-  // bei dem element, wo der slider hochgefahren wird zB +1 -> alle anderen verlieren 0.3333
-  // d.h. aufbau von der funktion: basiswert (total/4) + inputstunden - (summe aller anderen inputstunden) / 3
-
-
-  // const valueLeftUp = computed(() => props.topleft) // get these values from props
-  // const valueLeftDown = computed(() => props.bottomleft)
-  // const valueRightUp = computed(() => props.topright)
-  // const valueRightDown = computed(() => props.bottomright)
-
   function sumWithoutItself(itself) {
     return props.bottomleft + props.topright + props.bottomright + props.topleft - itself
   }
-
-
-  //todo: wenn oberer wert voll ist, ist alles ok, wenn unterer wert voll ist, overflowt es ganz komisch (linke hälfte)
-  // todo die formeln hier passen noch ned ganz
-  // const valueLeftUp = computed(() => props.totalvalue / 4 + props.topleft * 0.75 - (sumWithoutItself(props.topleft)) / 3 ) // get these values from props
-  // const valueLeftDown = computed(() => props.totalvalue / 4 + props.bottomleft * 0.75 - (sumWithoutItself(props.bottomleft)) / 3 )
-  // const valueRightUp = computed(() => props.totalvalue / 4 + props.topright * 0.75  - (sumWithoutItself(props.topright)) / 3 )
-  // const valueRightDown = computed(() => props.totalvalue / 4 + props.bottomright * 0.75 - (sumWithoutItself(props.bottomright)) / 3 )
 
   function getPositiveOrZero(expression) {
     if(expression < 0)
@@ -133,29 +100,6 @@
 
   const percentageLeftTop = computed(() => (valueLeftUp.value * 100) / leftTotal.value)
   const percentageRightTop = computed(() => (valueRightUp.value * 100) / rightTotal.value)
-
-  // const percentageLeftTop = ref(20)
-  // const percentageRightTop = ref(50)
-
-  function doShit() {
-    // calculate the widths of the columns
-    // const total = valueLeftUp.value + valueLeftDown.value + valueRightDown.value + valueRightUp.value
-    //
-    // const leftTotal = valueLeftUp.value + valueLeftDown.value
-    // const rightTotal = valueRightUp.value + valueRightDown.value
-
-    // percentageLeft.value = (leftTotal / total) * 100
-
-    // percentageLeftTop.value = (valueLeftUp.value / leftTotal) * 100
-    // percentageRightTop.value = (valueRightUp.value / rightTotal) * 100
-  }
-  onMounted(() => {
-    doShit()
-  })
-</script>
-
-<script>
-  console.log("helloooooo from chart")
 </script>
 
 <style scoped lang="scss">
@@ -173,8 +117,6 @@
   --minheight: 75px;
 }
 
-
-
 .prio-chart__column {
   height: 100%;
   transition: 2s all ease;
@@ -187,8 +129,6 @@
   position: relative;
 
   transition: 2s all ease;
-
-
 
   min-height: var(--minheight);
   min-width: var(--minheight);

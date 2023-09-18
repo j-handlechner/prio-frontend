@@ -7,7 +7,7 @@
       </li>
 
       <li>
-        <NuxtLink to="/libraryPrimevue">LibraryPrimevue</NuxtLink>
+        <NuxtLink to="/library">Library</NuxtLink>
       </li>
 
       <li>

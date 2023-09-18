@@ -7,52 +7,58 @@
 
     <h2>Components</h2>
     <div class="gridwrapper">
-      <NuxtLink to="/library/button">
+      <NuxtLink to="/libraryPrimevue/button">
         <div class="card">
           Button
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/textinput">
+      <NuxtLink to="/libraryPrimevue/textinput">
         <div class="card">
           Text Input
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/datepicker">
+      <NuxtLink to="/libraryPrimevue/datepicker">
         <div class="card">
           Date Picker
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/slider">
+      <NuxtLink to="/libraryPrimevue/slider">
         <div class="card">
           Slider
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/chart">
+      <NuxtLink to="/libraryPrimevue/chart">
         <div class="card">
           Chart
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/select">
+      <NuxtLink to="/libraryPrimevue/select">
         <div class="card">
           Select
+        </div>
+      </NuxtLink>
+
+      <NuxtLink to="/libraryPrimevue/selectbutton">
+        <div class="card">
+          Selectbutton
         </div>
       </NuxtLink>
     </div>
 
     <h2>Custom Utility Classes</h2>
     <div class="gridwrapper">
-      <NuxtLink to="/library/chart">
+      <NuxtLink to="/libraryPrimevue/chart">
         <div class="card">
           Textreveal
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/library/textinput">
+      <NuxtLink to="/libraryPrimevue/textinput">
         <div class="card">
           ...
         </div>

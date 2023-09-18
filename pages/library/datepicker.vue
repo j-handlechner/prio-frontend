@@ -1,12 +1,25 @@
 <template>
   <div class="library-wrapper">
-    <n-date-picker v-model:value="timestamp" size="large" type="date" />
+    <Calendar
+        v-model="date"
+              />
+    <p>current date: {{ date }}</p>
   </div>
 </template>
 
-<style scoped>
-.n-date-panel-actions {
-  display: none!important;
-}
+<script setup>
+  import Calendar from 'primevue/calendar'
+  const date = ref(null)
+</script>
 
+<style lang="scss">
+span.p-calendar {
+  display: block;
+
+  input {
+    width: 100% !important;
+    border-radius: 0px;
+    border: 1px solid black;
+  }
+}
 </style>
