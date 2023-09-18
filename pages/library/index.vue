@@ -5,62 +5,78 @@
 
     <p class="mt-8">Something to remember: if possible, we use an component library that we style to our preferences. In our case, we use <strong><a href="https://www.naiveui.com/en-US/light">Naive UI</a></strong></p>
 
+    <h2>Areas</h2>
+    <div class="gridwrapper">
+      <NuxtLink to="/library/areas/personalinfo">
+        <div class="card">
+          Personal Info
+        </div>
+      </NuxtLink>
+
+      <NuxtLink to="/library/areas/timeasleep">
+        <div class="card">
+          Time asleep
+        </div>
+      </NuxtLink>
+
+      <NuxtLink to="/library/areas/timesplit">
+        <div class="card">
+          Time split (with sliders)
+        </div>
+      </NuxtLink>
+    </div>
+
+
     <h2>Components</h2>
     <div class="gridwrapper">
-      <NuxtLink to="/libraryPrimevue/button">
+      <NuxtLink to="/library/button">
         <div class="card">
           Button
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/textinput">
+      <NuxtLink to="/library/textinput">
         <div class="card">
           Text Input
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/datepicker">
+      <NuxtLink to="/library/datepicker">
         <div class="card">
           Date Picker
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/slider">
+      <NuxtLink to="/library/slider">
         <div class="card">
           Slider
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/chart">
-        <div class="card">
-          Chart
-        </div>
-      </NuxtLink>
-
-      <NuxtLink to="/libraryPrimevue/select">
+      <NuxtLink to="/library/select">
         <div class="card">
           Select
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/selectbutton">
+      <NuxtLink to="/library/selectbutton">
         <div class="card">
           Selectbutton
         </div>
       </NuxtLink>
     </div>
 
-    <h2>Custom Utility Classes</h2>
+    <h2>PRIO Specific Components</h2>
     <div class="gridwrapper">
-      <NuxtLink to="/libraryPrimevue/chart">
+      <NuxtLink to="/library/charttestWithSliders">
         <div class="card">
-          Textreveal
+          Charttest with Sliders
         </div>
       </NuxtLink>
 
-      <NuxtLink to="/libraryPrimevue/textinput">
+      <NuxtLink to="/library/chart">
         <div class="card">
-          ...
+          Chart (tightly linked to sliders)
         </div>
       </NuxtLink>
     </div>
@@ -109,12 +125,14 @@
         background-color: #242424;
         border: 1px solid #242424;
 
-        min-height: 15vh;
+        min-height: 10vh;
         display: flex;
         justify-content: center;
         align-items: center;
 
         border-radius: 0.25rem;
+
+        text-align: center;
       }
 
       &:hover {
