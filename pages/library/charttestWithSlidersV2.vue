@@ -13,7 +13,7 @@
     </div>
 
     <div class="chartwrapper">
-<!--      <Chart :topleft="topleftvalue" :topright="toprightvalue" :bottomleft="bottomleftvalue" :bottomright="bottomrightvalue" :totalvalue="200"></Chart>-->
+      <Chart :topleft="priochartDataTopLeft" :topright="priochartDataBottomLeft" :bottomleft="priochartDataTopRight" :bottomright="priochartDataBottomRight" :totalvalue="200"></Chart>
 
       priochartDataTopleft {{ priochartDataTopLeft }}
       priochartDataBottomLeft {{ priochartDataBottomLeft }}

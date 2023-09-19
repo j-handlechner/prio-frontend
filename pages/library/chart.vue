@@ -1,5 +1,20 @@
 <template>
-    <div class="library-wrapper">
+  <p>percentageLeft {{ percentageLeft }}</p>
+  <p>percentageRight {{ 100 - percentageLeft }}</p>
+  <p>percentageLeftTop {{ percentageLeftTop }}</p>
+  <p>percentageRightTop {{ percentageRightTop }}</p>
+  <p>percentageLeftBottom {{ 100 - percentageLeftTop }}</p>
+  <p>percentageRightBottom {{ 100 - percentageRightTop }}</p>
+
+  <p>valueleftup {{ valueLeftUp }}</p>
+  <p>valueLeftDown {{ valueLeftDown }}</p>
+  <p>valuerightup {{ valueRightUp }}</p>
+  <p>valueRightDown {{ valueRightDown }}</p>
+
+  <p>topleft {{ props.topleft }}</p>
+  <p>topright {{ props.topright }}</p>
+  <p>bottomleft {{props.bottomleft}}</p>
+  <p>bottomright {{ props.bottomright }}</p>
       <div class="prio-chart__wrapper">
         <div class="prio-chart__column" ref="columnLeft"
              :style="{
@@ -9,6 +24,7 @@
                :style="{
                 height: `${percentageLeftTop}%`
               }">
+            <p class="prio-chart__percentage">{{ (percentageToTotalLeftTop).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -19,6 +35,7 @@
                :style="{
                 height: `${100 - percentageLeftTop}%`
               }">
+            <p class="prio-chart__percentage">{{(percentageToTotalLeftBottom).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -35,6 +52,7 @@
                :style="{
                 height: `${percentageRightTop}%`
               }">
+            <p class="prio-chart__percentage">{{ (percentageToTotalRightTop).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -45,7 +63,7 @@
                :style="{
                 height: `${100 - percentageRightTop}%`
               }">
-
+            <p class="prio-chart__percentage">{{ (percentageToTotalRightBottom).toFixed(0) }}%</p>
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
@@ -53,7 +71,6 @@
           </div>
         </div>
       </div>
-    </div>
 </template>
 
 <script setup>
@@ -100,13 +117,20 @@
 
   const percentageLeftTop = computed(() => (valueLeftUp.value * 100) / leftTotal.value)
   const percentageRightTop = computed(() => (valueRightUp.value * 100) / rightTotal.value)
+
+  const percentageToTotalLeftTop = computed(() => (valueLeftUp.value * 100) / total.value)
+  const percentageToTotalLeftBottom = computed(() => (valueLeftDown.value * 100) / total.value)
+  const percentageToTotalRightTop = computed(() => (valueRightUp.value * 100) / total.value)
+  const percentageToTotalRightBottom = computed(() => (valueRightDown.value * 100) / total.value)
 </script>
 
 <style scoped lang="scss">
+$primary: black;
+$secondary: white;
 .library-wrapper {
   width: 100%;
   height: 100%;
-  border: 0.75px solid black;
+  border: 0.75px solid $secondary;
 }
 
 .prio-chart__wrapper {
@@ -125,10 +149,11 @@
 
 .prio-chart__block {
   width: 100%;
-  border: 0.75px solid black;
+  border: 0.75px solid $secondary;
   position: relative;
+  background: $primary;
 
-  transition: 2s all ease;
+  transition: 3s all cubic-bezier(0.65, 0, 0.35, 1);
 
   min-height: var(--minheight);
   min-width: var(--minheight);
@@ -144,32 +169,43 @@
   position: absolute;
 
   &.top-left {
-    border-top: var(--dimension) solid black;
+    border-top: var(--dimension) solid $secondary;
     border-right: var(--dimension) solid transparent;
     top: 0;
     left: 0;
   }
 
   &.top-right {
-    border-top: var(--dimension) solid black;
+    border-top: var(--dimension) solid $secondary;
     border-left: var(--dimension) solid transparent;
     top: 0;
     right: 0;
   }
 
   &.bottom-left {
-    border-bottom: var(--dimension) solid black;
+    border-bottom: var(--dimension) solid $secondary;
     border-right: var(--dimension) solid transparent;
     bottom: 0;
     left: 0;
   }
 
   &.bottom-right {
-    border-bottom: var(--dimension) solid black;
+    border-bottom: var(--dimension) solid $secondary;
     border-left: var(--dimension) solid transparent;
     bottom: 0;
     right: 0;
   }
+}
 
+.prio-chart__percentage {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-right: 1rem;
+  padding-bottom: 0rem;
+  color: white;
+  font-size: 4rem;
+  font-family: "Cirka";
+  font-weight: 200;
 }
 </style>
