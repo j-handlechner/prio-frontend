@@ -1,15 +1,21 @@
 <template>
   <div class="selectbuttonwrapper">
-    <Button>
+    <Button @buttonClicked="currentPersonalInfoStep > 0 && currentPersonalInfoStep--">
       <p>zurück</p>
     </Button>
 
-    <Button>
+    <Button @buttonClicked="currentPersonalInfoStep < 3 && currentPersonalInfoStep++">
       <p>weiter</p>
     </Button>
   </div>
 
 </template>
+
+<script setup>
+import {usePersonalInfoSteps} from "/composables/state";
+
+const currentPersonalInfoStep = usePersonalInfoSteps()
+</script>
 
 <style lang="scss" scoped>
 .selectbuttonwrapper {

@@ -57,8 +57,13 @@
 <script setup>
 
 import {useBirthdate} from "/composables/state";
+import {usePersonalInfoSteps} from "/composables/state";
+
 import SelectButton from "/components/selectbutton";
+
 const birthdate = useBirthdate()
+const currentPersonalInfoStep = usePersonalInfoSteps()
+const test = 2
 </script>
 
 <style lang="scss" scoped>
@@ -74,12 +79,15 @@ const birthdate = useBirthdate()
   min-height: 100%;
   overflow: hidden;
 
-  --heigtInputgroup: 25%;
+  //--heigtInputgroup: 25%;
+
 
   .inputgroup {
+    --heightInputgroup: calc(100% / (1 + v-bind('currentPersonalInfoStep')));
+
     padding: 2rem;
     border-bottom: black 1px solid;
-    height: var(--heigtInputgroup);
+    height: var(--heightInputgroup);
     transition: height 2s cubic-bezier(0.65, 0, 0.35, 1);
     width: 100%;
 

@@ -1,8 +1,19 @@
 <template>
   <div>
-      <button><slot></slot></button>
+      <button @click="() => buttonClicked()"><slot></slot></button>
   </div>
 </template>
+
+<script setup>
+const emit = defineEmits(["buttonClicked"])
+
+function buttonClicked() {
+  console.log('button (not component) clicked')
+  console.log('event buttonClicked emitted')
+  emit("buttonClicked", null)
+}
+
+</script>
 
 <style scoped lang="scss">
 @import "@/styles/mixins.scss";
