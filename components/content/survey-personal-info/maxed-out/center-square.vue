@@ -57,7 +57,7 @@
 <script setup>
 
 import {useBirthdate} from "/composables/state";
-
+import SelectButton from "/components/selectbutton";
 const birthdate = useBirthdate()
 </script>
 
