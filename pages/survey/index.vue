@@ -1,11 +1,42 @@
+<!-- maxed out survey layout usage -->
+
 <template>
   <div>
-    <NuxtLayout name="survey">
-      <h1>survey landing</h1>
-      <p>hello! this is the landingpage of /survey</p>
+    <NuxtLayout name="survey"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
+      <template #centersquare>
+        <CenterSquare />
+      </template>
+
+      <template #buttons>
+        <Button>
+          <Buttons />
+        </Button>
+      </template>
+
+      <template #contact>
+        <Contact />
+      </template>
+
+      <template #right-bar>
+        <RightBarContent />
+      </template>
+
+      <template #right-square>
+        <RightSquareContent />
+      </template>
+
     </NuxtLayout>
   </div>
 </template>
 
 <script setup>
+import CenterSquare from "/components/content/survey-welcome/center-square.vue";
+import Buttons from "/components/content/survey-welcome/buttons.vue";
+import RightSquareContent from "/components/content/survey-welcome/right-square-content.vue";
+import RightBarContent from "/components/content/survey-welcome/right-bar-content.vue";
+import Contact from "/components/content/survey-welcome/contact.vue";
+
+definePageMeta({
+  layout: false
+});
 </script>

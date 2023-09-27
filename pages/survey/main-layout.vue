@@ -18,16 +18,16 @@
           <div class="prio-chart__corner bottom-right"></div>
         </div>
         <div class="center-square has-corners">
-          <slot name="centersquare" />
-
+          <h1>Teil mal dein Leben durch vier!</h1>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
           <div class="prio-chart__corner top-right"></div>
           <div class="prio-chart__corner top-left"></div>
           <div class="prio-chart__corner bottom-right"></div>
           <div class="prio-chart__corner bottom-left"></div>
         </div>
         <div class="center-right-bar has-corners">
-          <slot name="right-bar" />
-
+          <p class="identificationnum">01 *</p>
+          <p class="text-bottom">identifikationsnummer</p>
           <div class="prio-chart__corner top-right"></div>
           <div class="prio-chart__corner top-left"></div>
           <div class="prio-chart__corner bottom-right"></div>
@@ -41,7 +41,8 @@
         </div>
         <div class="left">
           <div class="buttons-wrapper has-corners">
-            <slot name="buttons" />
+            <button><p>teilnehmen</p> <p>→</p>
+            </button>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -50,7 +51,11 @@
           </div>
 
           <div class="contactinfo has-corners">
-            <slot name="contact" />
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+            <div>
+              <a>@someone</a>
+              <a>@something</a>
+            </div>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -58,8 +63,8 @@
         </div>
         <div class="right has-corners">
           <div class="right-square-content">
-            <slot name="right-square" />
-
+            <p>Um mehr informationen zu erhalten, schiebe die Visualisierung nach oben</p>
+            <p>→</p>
           </div>
 
           <div class="prio-chart__corner top-right"></div>
@@ -72,6 +77,12 @@
     </div>
   </div>
 </template>
+
+<script setup>
+definePageMeta({
+  layout: false,
+});
+</script>
 
 <style lang="scss" scoped>
 $side-spacing: 4vw;
