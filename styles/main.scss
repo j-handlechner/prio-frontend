@@ -57,3 +57,7 @@ strong a {
     right: 0;
   }
 }
+
+body {
+  overscroll-behavior-y: none;
+}
