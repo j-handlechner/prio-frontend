@@ -23,6 +23,11 @@
         <RightSquareContent />
       </template>
 
+
+        <template #layoutright>
+          <ShowBirthdate />
+        </template>
+
     </NuxtLayout>
   </div>
 </template>

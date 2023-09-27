@@ -1,13 +1,24 @@
 <template>
   <div>
     <label for="calendar"><slot name="label"></slot></label>
-    <Calendar id="calendar" v-model="date" />
+    <Calendar id="calendar"
+              :modelValue="pickedDate"
+              @update:modelValue="newValue => updateModelValue(newValue)"/>
   </div>
 </template>
 
 <script setup>
   import Calendar from 'primevue/calendar'
   const date = ref(null)
+
+  const pickedDate = ref(null)
+  const props = defineProps(["modelValue"])
+  const emit = defineEmits(["updateModelValue"])
+
+  function updateModelValue(newValue) {
+    pickedDate.value = newValue
+    emit("updateModelValue", newValue)
+  }
 </script>
 
 <style lang="scss" scoped>

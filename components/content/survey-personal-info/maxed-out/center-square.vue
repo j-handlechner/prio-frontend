@@ -1,7 +1,7 @@
 <template>
   <div class="outerwrapper">
     <div class="inputgroup has-corners">
-      <Datepicker>
+      <Datepicker @updateModelValue="newValue => birthdate = newValue">
         <template #label>
           Geburtsdatum
         </template>
@@ -54,6 +54,13 @@
   </div>
 </template>
 
+<script setup>
+
+import {useBirthdate} from "/composables/state";
+
+const birthdate = useBirthdate()
+</script>
+
 <style lang="scss" scoped>
 
 .has-corners {
@@ -78,8 +85,3 @@
   }
 }
 </style>
-<script setup lang="ts">
-import Datepicker from "/components/datepicker.vue";
-import Select from "/components/select.vue";
-import SelectButton from "/components/selectbutton.vue";
-</script>

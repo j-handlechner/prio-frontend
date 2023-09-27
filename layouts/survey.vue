@@ -68,6 +68,7 @@
       </div>
     </div>
     <div class="layout__right">
+      <slot name="layoutright" />
 
     </div>
   </div>
