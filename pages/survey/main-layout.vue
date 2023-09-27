@@ -1,3 +1,5 @@
+<!-- this is all static, if you're searching the actual layout for survey, find it in /layouts/survey.vue -->
+
 <template>
   <div class="layout-wrapper">
     <div class="layout__left">
