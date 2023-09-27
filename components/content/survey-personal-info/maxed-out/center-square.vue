@@ -69,8 +69,10 @@ const birthdate = useBirthdate()
 
 .outerwrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   min-height: 100%;
+  overflow: hidden;
 
   --heigtInputgroup: 25%;
 
@@ -78,6 +80,12 @@ const birthdate = useBirthdate()
     padding: 2rem;
     border-bottom: black 1px solid;
     height: var(--heigtInputgroup);
+    transition: height 2s cubic-bezier(0.65, 0, 0.35, 1);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     &:last-child {
       border: none;
