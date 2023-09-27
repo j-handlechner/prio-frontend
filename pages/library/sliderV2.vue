@@ -27,7 +27,7 @@
 <script setup>
 import Slider from 'primevue/slider';
 
-const props = defineProps(["name", "initial-value", "modelValue", "max"])
+const props = defineProps(["name", "initialValue", "modelValue", "max"])
 
 const value = ref(props.initialValue || 0)
 const emit = defineEmits(["value-updated", "updateModelValue"])

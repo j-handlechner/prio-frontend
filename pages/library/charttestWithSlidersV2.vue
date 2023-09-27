@@ -2,13 +2,13 @@
   <div class="outerwrapper">
     <div :style="{display: 'flex', flexDirection: 'column'}">
       <Slider :modelValue="priochartDataTopLeft"
-              @updateModelValue="newValue => priochartDataTopLeft = newValue" />
+              @updateModelValue="newValue => priochartDataTopLeft = newValue" initialValue="0" />
       <Slider :modelValue="priochartDataBottomLeft"
-              @updateModelValue="newValue => priochartDataBottomLeft = newValue" />
+              @updateModelValue="newValue => priochartDataBottomLeft = newValue" initialValue="0" />
       <Slider :modelValue="priochartDataTopRight"
-              @updateModelValue="newValue => priochartDataTopRight = newValue" />
+              @updateModelValue="newValue => priochartDataTopRight = newValue" initialValue="0" />
       <Slider :modelValue="priochartDataBottomRight"
-              @updateModelValue="newValue => priochartDataBottomRight = newValue" />
+              @updateModelValue="newValue => priochartDataBottomRight = newValue" initialValue="0" />
 
     </div>
 

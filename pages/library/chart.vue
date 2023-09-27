@@ -1,4 +1,8 @@
 <template>
+  <p>NEWpercentageTopLeft {{NEWpercentageTopLeft}}</p>
+  <p>NEWpercentageBottomLeft {{NEWpercentageBottomLeft}}</p>
+  <p>NEWpercentageTopRight {{NEWpercentageTopRight}}</p>
+  <p>NEWpercentageBottomRight {{NEWpercentageBottomRight}}</p>
   <p>percentageLeft {{ percentageLeft }}</p>
   <p>percentageRight {{ 100 - percentageLeft }}</p>
   <p>percentageLeftTop {{ percentageLeftTop }}</p>
@@ -24,7 +28,7 @@
                :style="{
                 height: `${percentageLeftTop}%`
               }">
-            <p class="prio-chart__percentage">{{ (percentageToTotalLeftTop).toFixed(0) }}%</p>
+            <p class="prio-chart__percentage">{{ (0).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -35,7 +39,7 @@
                :style="{
                 height: `${100 - percentageLeftTop}%`
               }">
-            <p class="prio-chart__percentage">{{(percentageToTotalLeftBottom).toFixed(0) }}%</p>
+            <p class="prio-chart__percentage">{{(0).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -52,7 +56,7 @@
                :style="{
                 height: `${percentageRightTop}%`
               }">
-            <p class="prio-chart__percentage">{{ (percentageToTotalRightTop).toFixed(0) }}%</p>
+            <p class="prio-chart__percentage">{{ (0).toFixed(0) }}%</p>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -63,7 +67,7 @@
                :style="{
                 height: `${100 - percentageRightTop}%`
               }">
-            <p class="prio-chart__percentage">{{ (percentageToTotalRightBottom).toFixed(0) }}%</p>
+            <p class="prio-chart__percentage">{{ (0).toFixed(0) }}%</p>
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
@@ -117,11 +121,6 @@
 
   const percentageLeftTop = computed(() => (valueLeftUp.value * 100) / leftTotal.value)
   const percentageRightTop = computed(() => (valueRightUp.value * 100) / rightTotal.value)
-
-  const percentageToTotalLeftTop = computed(() => (valueLeftUp.value * 100) / total.value)
-  const percentageToTotalLeftBottom = computed(() => (valueLeftDown.value * 100) / total.value)
-  const percentageToTotalRightTop = computed(() => (valueRightUp.value * 100) / total.value)
-  const percentageToTotalRightBottom = computed(() => (valueRightDown.value * 100) / total.value)
 </script>
 
 <style scoped lang="scss">
