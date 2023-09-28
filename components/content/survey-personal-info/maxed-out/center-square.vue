@@ -14,11 +14,11 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <Select name="gender">
+      <GenderSelect name="gender">
         <template #label>
           Geschlecht
         </template>
-      </Select>
+      </GenderSelect>
 
       <div class="prio-chart__corner bottom-right"></div>
       <div class="prio-chart__corner bottom-left"></div>
