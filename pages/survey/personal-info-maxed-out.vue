@@ -1,4 +1,4 @@
-<!-- maxed out survey layout usage -->
+<!-- maxed out step 1 (todo: add transitions/animations to show input after input) -->
 
 <template>
   <div>
@@ -8,9 +8,7 @@
       </template>
 
       <template #buttons>
-        <Button>
           <Buttons />
-        </Button>
       </template>
 
       <template #contact>
@@ -25,13 +23,18 @@
         <RightSquareContent />
       </template>
 
+
+        <template #layoutright>
+          <ShowBirthdate />
+        </template>
+
     </NuxtLayout>
   </div>
 </template>
 
 <script setup>
-import CenterSquare from "/components/content/survey-welcome/center-square.vue";
-import Buttons from "/components/content/survey-welcome/buttons.vue";
+import CenterSquare from "/components/content/survey-personal-info/maxed-out/center-square.vue";
+import Buttons from "/components/content/survey-personal-info/maxed-out/buttons.vue";
 import RightSquareContent from "/components/content/survey-welcome/right-square-content.vue";
 import RightBarContent from "/components/content/survey-welcome/right-bar-content.vue";
 import Contact from "/components/content/survey-welcome/contact.vue";

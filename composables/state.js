@@ -21,3 +21,7 @@ export const usePriochartTopLeft = () => useState("priochartTopLeft", () => 0)
 export const usePriochartBottomLeft = () => useState("priochartBottomLeft", () => 0)
 export const usePriochartTopRight = () => useState("priochartTopRight", () => 0)
 export const usePriochartBottomRight = () => useState("priochartBottomRight", () => 0)
+
+export const useBirthdate = () => useState("birthdate", () => null)
+
+export const usePersonalInfoSteps = () => useState("personalinfostep", () => 0)

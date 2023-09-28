@@ -1,8 +1,7 @@
 <template>
   <div class="library-wrapper">
-    <Calendar
-        v-model="date"
-              />
+    <label for="calendar"><slot name="label"></slot></label>
+    <Calendar id="calendar" v-model="date" />
     <p>current date: {{ date }}</p>
   </div>
 </template>
