@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "survey_results",
+  "info": {
+    "singularName": "survey-result",
+    "pluralName": "survey-results",
+    "displayName": "SurveyResult",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "Work": {
+      "type": "decimal"
+    },
+    "Various": {
+      "type": "decimal"
+    },
+    "Others": {
+      "type": "decimal"
+    },
+    "Self": {
+      "type": "decimal"
+    }
+  }
+}

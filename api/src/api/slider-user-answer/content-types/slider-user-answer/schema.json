@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "slider_user_answers",
+  "info": {
+    "singularName": "slider-user-answer",
+    "pluralName": "slider-user-answers",
+    "displayName": "SliderUserAnswer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slider_question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::slider-question.slider-question"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "answer": {
+      "type": "biginteger"
+    }
+  }
+}

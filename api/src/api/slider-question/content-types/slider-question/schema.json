@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "slider_questions",
+  "info": {
+    "singularName": "slider-question",
+    "pluralName": "slider-questions",
+    "displayName": "SliderQuestion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "QuestionText": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "from": {
+      "type": "biginteger"
+    },
+    "to": {
+      "type": "biginteger"
+    }
+  }
+}

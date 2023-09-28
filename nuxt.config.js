@@ -1,3 +1,7 @@
+import sliderQuestion from "./api/src/api/slider-question/controllers/slider-question";
+import sliderUserAnswer from "./api/src/api/slider-user-answer/controllers/slider-user-answer";
+import surveyResult from "./api/src/api/survey-result/controllers/survey-result";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/strapi', '@nuxtjs/tailwindcss'],
@@ -6,7 +10,8 @@ export default defineNuxtConfig({
     prefix: '/api',
     version: 'v4',
     cookie: {},
-    cookieName: 'strapi_jwt'
+    cookieName: 'strapi_jwt',
+    entities: [sliderQuestion, sliderUserAnswer, surveyResult]
   },
   devtools: { enabled: true },
   css: [
