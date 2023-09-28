@@ -12,7 +12,7 @@
 <!--        }-->
 <!--      }-->
 <!--    }" />-->
-      <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-14rem" :pt="{
+      <Dropdown v-model="selectedValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
         root: {
           style: {
             borderRadius: 0,
@@ -30,20 +30,29 @@
 <script setup>
 import TreeSelect from 'primevue/treeselect';
 import Dropdown from 'primevue/dropdown';
-
-const selectedCity = ref();
-const cities = ref([
-  { name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
-]);
+import { countries } from './countries.js';
 
 const props = defineProps({
   name: String
 })
+
 const selectedValue = ref(null)
+let selectOptions = ref([]);
+
+const genderOptions = [
+  { name: 'Weiblich', value: 'weiblich' },
+  { name: 'Männlich', value: 'männlich' },
+  { name: 'Nicht-binär/nicht-konform', value: 'nicht-binär' },
+  { name: 'Keine Angabe', value: 'keine' }
+]
+
+watchEffect(() => {
+  if (props.name == 'gender') {
+    selectOptions.value = genderOptions;
+  } else if (props.name == 'nationality') {
+    selectOptions.value = countries;
+  }
+});
 
 const nodes = ref([
   {
