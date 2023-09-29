@@ -16,7 +16,7 @@
       <div class="inputgroup has-corners">
         <Slider @updateModelValue="(newValue) => priochartBottomLeft = newValue" initialValue="0">
           <template #label>
-            {{ questions[1].attributes.QuestionText }}
+            {{ questions.fetchedData[1]?.attributes.QuestionText }}
           </template>
         </Slider>
   
@@ -29,7 +29,7 @@
       <div class="inputgroup has-corners">
         <Slider @updateModelValue="(newValue) => priochartTopRight = newValue" initialValue="0">
           <template #label>
-            {{ questions[2].attributes.QuestionText }}
+            {{ questions.fetchedData[2]?.attributes.QuestionText }}
           </template>
         </Slider>
   
@@ -42,7 +42,7 @@
       <div class="inputgroup has-corners">
         <Slider @updateModelValue="(newValue) => priochartBottomRight = newValue" initialValue="0">
           <template #label>
-            {{ questions[3].attributes.QuestionText }}
+            {{ questions.fetchedData[3]?.attributes.QuestionText }}
           </template>
         </Slider>
   
