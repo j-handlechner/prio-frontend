@@ -30,7 +30,7 @@
 <script setup>
 import TreeSelect from 'primevue/treeselect';
 import Dropdown from 'primevue/dropdown';
-import { countries } from './countries.js';
+import { countries, countriesGerman } from './countries.js';
 
 const props = defineProps({
   name: String
@@ -46,11 +46,24 @@ const genderOptions = [
   { name: 'Keine Angabe', value: 'keine' }
 ]
 
+countriesGerman.sort((a, b) => {
+  let nameA = a.name.toLowerCase(),
+      nameB = b.name.toLowerCase();
+
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+});
+
 watchEffect(() => {
   if (props.name == 'gender') {
     selectOptions.value = genderOptions;
   } else if (props.name == 'nationality') {
-    selectOptions.value = countries;
+    selectOptions.value = countriesGerman;
   }
 });
 
