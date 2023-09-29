@@ -15,9 +15,10 @@
 </template>
 
 <script setup>
-const visible = ref(false);
 import Dialog from 'primevue/dialog';
+import { usePriochartTopLeft, usePriochartBottomLeft, usePriochartTopRight, usePriochartBottomRight } from "/composables/state";
 
+const visible = ref(false);
 const priochartDataTopLeft = usePriochartTopLeft()
 const priochartDataBottomLeft = usePriochartBottomLeft()
 const priochartDataTopRight = usePriochartTopRight()

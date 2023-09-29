@@ -25,7 +25,11 @@
   
   
           <template #layoutright>
-            <ShowBirthdate />
+            <div>
+              <ShowSliderData />
+              <HoursPerWeekAlarm />
+            </div>
+
           </template>
   
       </NuxtLayout>
@@ -38,7 +42,10 @@
   import RightSquareContent from "/components/content/survey-welcome/right-square-content.vue";
   import RightBarContent from "/components/content/survey-welcome/right-bar-content.vue";
   import Contact from "/components/content/survey-welcome/contact.vue";
-  
+  import ShowSliderData from "/components/ShowSliderData.vue";
+
+  import HoursPerWeekAlarm from "/pages/library/hoursPerWeekAlarm.vue";
+
   definePageMeta({
     layout: false
   });

@@ -1,7 +1,7 @@
 <template>
     <div v-if="dataFetched" class="outerwrapper">
       <div class="inputgroup has-corners">
-        <Slider @change="updateValue" v-model="value" max="100">
+        <Slider @updateModelValue="newValue => priochartTopLeft = newValue" initialValue="0">
           <template #label>
             {{ questions[0].attributes.QuestionText }}
           </template>
@@ -14,7 +14,7 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @change="updateValue" v-model="value" max="100">
+        <Slider @updateModelValue="(newValue) => priochartBottomLeft = newValue" initialValue="0">
           <template #label>
             {{ questions[1].attributes.QuestionText }}
           </template>
@@ -27,7 +27,7 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @change="updateValue" v-model="value" max="100">
+        <Slider @updateModelValue="(newValue) => priochartTopRight = newValue" initialValue="0">
           <template #label>
             {{ questions[2].attributes.QuestionText }}
           </template>
@@ -40,7 +40,7 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @change="updateValue" v-model="value" max="100">
+        <Slider @updateModelValue="(newValue) => priochartBottomRight = newValue" initialValue="0">
           <template #label>
             {{ questions[3].attributes.QuestionText }}
           </template>
@@ -66,6 +66,13 @@
   import { onBeforeMount } from 'vue';
   import Slider from "/components/slider";
   import { useSlidersSteps } from "/composables/state";
+
+  import { usePriochartTopLeft, usePriochartBottomLeft, usePriochartTopRight, usePriochartBottomRight } from "/composables/state";
+
+  const priochartTopLeft = usePriochartTopLeft()
+  const priochartTopRight = usePriochartTopRight()
+  const priochartBottomLeft = usePriochartBottomLeft()
+  const priochartBottomRight = usePriochartBottomRight()
 
   const { find } = useStrapi();
   const questions = ref(null); // state is always const

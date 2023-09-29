@@ -1,6 +1,6 @@
 <template>
   <div class="library-wrapper">
-    <Slider :disabled="isDisabled" :max="max"
+    <Slider :disabled="isDisabled" :max="100"
             :modelValue="value"
             @update:modelValue="newValue => updateModelValue(newValue)"
             :pt="{
@@ -53,13 +53,9 @@ function updateModelValue(newValue) {
   } else {
     let tooMuch = (priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value) - 200
     value.value = tooMuch > 0 ? value.value - tooMuch : value.value
-    previousValue = value.value
+    // previousValue = value.value
     emit("updateModelValue", value.value)
   }
-
-  // if(priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value > 200) {
-  //   isDisabled.value = true
-  // }
 }
 
 function updateValue(newValue) {
