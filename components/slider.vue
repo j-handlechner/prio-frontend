@@ -1,5 +1,8 @@
 <template>
   <div class="library-wrapper">
+    <label>
+      <slot name="label"></slot>
+    </label>
     <Slider :disabled="isDisabled" :max="100"
             :modelValue="value"
             @update:modelValue="newValue => updateModelValue(newValue)"

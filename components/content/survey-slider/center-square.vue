@@ -3,7 +3,7 @@
       <div class="inputgroup has-corners">
         <Slider @updateModelValue="newValue => priochartTopLeft = newValue" initialValue="0">
           <template #label>
-            {{ questions[0].attributes.QuestionText }}
+           {{ questions.fetchedData[0].attributes.QuestionText }}
           </template>
         </Slider>
   
@@ -75,7 +75,9 @@
   const priochartBottomRight = usePriochartBottomRight()
 
   const { find } = useStrapi();
-  const questions = ref(null); // state is always const
+  const questions = reactive({fetchedData: null}); // state is always const
+
+  setInterval(() => console.log("questionsstate: ", questions))
   const dataFetched = ref(false)
   const currentSlidersStep = useSlidersSteps()
 
@@ -84,7 +86,7 @@
     const { data } = await find('slider-questions');
 
     // questions state can only be accessed by <state>.value = .... (<state> is a constant variable)
-    questions.value = data; // Initialize the value here or use a default value
+    questions.fetchedData = data; // Initialize the value here or use a default value
     console.log(data);
     dataFetched.value = true;
     // if something in the template should change based on this value, either make it a computed property or just also declare it as state
