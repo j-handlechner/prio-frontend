@@ -1,10 +1,10 @@
 <template>
     <div class="selectbuttonwrapper">
-      <Button @buttonClicked="currentPersonalInfoStep > 0 && currentPersonalInfoStep--">
+      <Button @buttonClicked="currentSlidersStep > 0 && currentSlidersStep--">
         <p>zurück</p>
       </Button>
   
-      <Button @buttonClicked="currentPersonalInfoStep < 3 && currentPersonalInfoStep++">
+      <Button @buttonClicked="currentSlidersStep < 3 && currentSlidersStep++">
         <p>weiter</p>
       </Button>
     </div>
@@ -12,9 +12,10 @@
   </template>
   
   <script setup>
-  import {usePersonalInfoSteps} from "/composables/state";
-  
-  const currentPersonalInfoStep = usePersonalInfoSteps()
+  // import {usePersonalInfoSteps} from "/composables/state";
+  import { useSlidersSteps } from "/composables/state"; // -> because using another state variable in this step (see centersquarefile)
+
+  const currentSlidersStep = useSlidersSteps()
   </script>
   
   <style lang="scss" scoped>

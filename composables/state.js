@@ -25,3 +25,4 @@ export const usePriochartBottomRight = () => useState("priochartBottomRight", ()
 export const useBirthdate = () => useState("birthdate", () => null)
 
 export const usePersonalInfoSteps = () => useState("personalinfostep", () => 0)
+export const useSlidersSteps = () => useState("slidersSteps", () => 0)

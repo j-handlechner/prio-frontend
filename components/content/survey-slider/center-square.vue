@@ -52,35 +52,45 @@
         <div class="prio-chart__corner top-left"></div>
       </div>
     </div>
+    <div v-else>
+      loading...
+    </div>
   </template>
   
   
   <script setup>
   
-  import {useBirthdate} from "/composables/state";
-  import {usePersonalInfoSteps} from "/composables/state";
-  import { onBeforeMount } from 'vue'; 
-  
+  // import {useBirthdate} from "/composables/state";
+  // import {usePersonalInfoSteps} from "/composables/state"; // -> this should only be used in the personalinfo step
+
+  import { onBeforeMount } from 'vue';
   import Slider from "/components/slider";
+  import { useSlidersSteps } from "/composables/state";
 
   const { find } = useStrapi();
-  let questions = ref(null);
-  let dataFetched = false; 
+  const questions = ref(null); // state is always const
+  const dataFetched = ref(false)
+  const currentSlidersStep = useSlidersSteps()
 
   onBeforeMount(async () => {
   try {
     const { data } = await find('slider-questions');
-    questions = data; // Initialize the value here or use a default value
+
+    // questions state can only be accessed by <state>.value = .... (<state> is a constant variable)
+    questions.value = data; // Initialize the value here or use a default value
     console.log(data);
-    dataFetched = true;
+    dataFetched.value = true;
+    // if something in the template should change based on this value, either make it a computed property or just also declare it as state
+    // -> why? if the fetching takes some time (even if this is in the beforeMount hook), the template could be rendered with dataFetched=false
+    // since this is just a normal variable, the template will not update based on a value change
+    // -> updates only for computed properties or state
   } catch (err) {
     console.error('Error fetching questions:', err);
   }
 });
 
   
-  const birthdate = useBirthdate()
-  const currentPersonalInfoStep = usePersonalInfoSteps()
+  // const birthdate = useBirthdate()
   const test = 2
 
   // Define the updateValue method
@@ -107,7 +117,7 @@
   
   
     .inputgroup {
-      --heightInputgroup: calc(100% / (1 + v-bind('currentPersonalInfoStep')));
+      --heightInputgroup: calc(100% / (1 + v-bind('currentSlidersStep')));
   
       // padding: 2rem 4rem;
       border-bottom: black 1px solid;
