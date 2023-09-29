@@ -77,7 +77,6 @@
   const { find } = useStrapi();
   const questions = reactive({fetchedData: null}); // state is always const
 
-  setInterval(() => console.log("questionsstate: ", questions))
   const dataFetched = ref(false)
   const currentSlidersStep = useSlidersSteps()
 
