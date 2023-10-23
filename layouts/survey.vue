@@ -18,7 +18,7 @@
           <div class="prio-chart__corner bottom-right"></div>
         </div>
         <div class="center-square has-corners">
-          <slot name="centersquare" />
+            <slot name="centersquare" />
 
           <div class="prio-chart__corner top-right"></div>
           <div class="prio-chart__corner top-left"></div>

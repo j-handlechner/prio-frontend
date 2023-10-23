@@ -4,20 +4,23 @@
   <div>
     <NuxtLayout name="survey"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
       <template #centersquare>
-        <WelcomeCenterSquare v-if="currentViewName == 'welcome'"/>
-        <PersonalCenterSquare v-if="currentViewName == 'personal'" />
-        <SleepCenterSquare v-if="currentViewName == 'sleep'" />
-        <SlidersCenterSquare v-if="currentViewName == 'sliders'" />
+          <Transition mode="out-in">
+            <WelcomeCenterSquare v-if="currentViewName == 'welcome'"/>
+            <PersonalCenterSquare v-else-if="currentViewName == 'personal'" />
+            <SleepCenterSquare v-else-if="currentViewName == 'sleep'" />
+            <SlidersCenterSquare v-else-if="currentViewName == 'sliders'" />
+            <div v-else>nothing to show</div>
+          </Transition>
       </template>
 
       <template #buttons>
-        <ButtonWrapper @buttonclicked="() => handleButtonClick()" v-if="currentViewName == 'welcome'">
-          <WelcomeButtons />
-        </ButtonWrapper>
+            <ButtonWrapper @buttonclicked="() => handleButtonClick()" v-if="currentViewName == 'welcome'">
+              <WelcomeButtons />
+            </ButtonWrapper>
 
-        <PersonalButtons v-if="currentViewName == 'personal'"/>
-        <SleepButtons v-if="currentViewName == 'sleep'" />
-        <SlidersButtons v-if="currentViewName == 'sliders'" />
+            <PersonalButtons v-if="currentViewName == 'personal'"/>
+            <SleepButtons v-if="currentViewName == 'sleep'" />
+            <SlidersButtons v-if="currentViewName == 'sliders'" />
       </template>
 
       <template #contact>
@@ -98,3 +101,15 @@ const handleButtonClick = () => {
 }
 
 </script>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
