@@ -1,10 +1,10 @@
 <template>
   <div class="selectbuttonwrapper">
-    <Button @buttonclicked="currentPersonalInfoStep > 0 && currentPersonalInfoStep--">
+    <Button @buttonclicked="currentViewName = 'personal'">
       <p>zurück</p>
     </Button>
 
-    <Button @buttonclicked="currentPersonalInfoStep < 3 ? currentPersonalInfoStep++ : currentViewName = 'sleep'">
+    <Button @buttonclicked="currentViewName = 'sliders'">
       <p>weiter</p>
     </Button>
   </div>

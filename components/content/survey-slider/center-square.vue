@@ -1,7 +1,8 @@
 <template>
     <div v-if="dataFetched" class="outerwrapper">
       <div class="inputgroup has-corners">
-        <Slider @updateModelValue="newValue => priochartTopLeft = newValue" initialValue="0">
+          <Slider :modelValue="priochartDataTopLeft"
+                  @updateModelValue="newValue => priochartDataTopLeft = newValue" initialValue="0">
           <template #label>
            {{ questions.fetchedData[0].attributes.QuestionText }}
           </template>
@@ -14,7 +15,8 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @updateModelValue="(newValue) => priochartBottomLeft = newValue" initialValue="0">
+        <Slider :modelValue="priochartDataBottomLeft"
+                @updateModelValue="newValue => priochartDataBottomLeft = newValue" initialValue="0">
           <template #label>
             {{ questions.fetchedData[1]?.attributes.QuestionText }}
           </template>
@@ -27,7 +29,8 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @updateModelValue="(newValue) => priochartTopRight = newValue" initialValue="0">
+        <Slider :modelValue="priochartDataTopRight"
+                @updateModelValue="newValue => priochartDataTopRight = newValue" initialValue="0" >
           <template #label>
             {{ questions.fetchedData[2]?.attributes.QuestionText }}
           </template>
@@ -40,7 +43,8 @@
       </div>
   
       <div class="inputgroup has-corners">
-        <Slider @updateModelValue="(newValue) => priochartBottomRight = newValue" initialValue="0">
+        <Slider :modelValue="priochartDataBottomRight"
+                @updateModelValue="newValue => priochartDataBottomRight = newValue" initialValue="0">
           <template #label>
             {{ questions.fetchedData[3]?.attributes.QuestionText }}
           </template>
@@ -55,24 +59,27 @@
     <div v-else>
       loading...
     </div>
+
+    <HoursPerWeekAlarm />
   </template>
   
   
   <script setup>
-  
-  // import {useBirthdate} from "/composables/state";
-  // import {usePersonalInfoSteps} from "/composables/state"; // -> this should only be used in the personalinfo step
-
   import { onBeforeMount } from 'vue';
-  import Slider from "/components/slider";
   import { useSlidersSteps } from "/composables/state";
 
   import { usePriochartTopLeft, usePriochartBottomLeft, usePriochartTopRight, usePriochartBottomRight } from "/composables/state";
+  import HoursPerWeekAlarm from "/components/hoursPerWeekAlarm.vue";
 
   const priochartTopLeft = usePriochartTopLeft()
   const priochartTopRight = usePriochartTopRight()
   const priochartBottomLeft = usePriochartBottomLeft()
   const priochartBottomRight = usePriochartBottomRight()
+
+  const priochartDataTopLeft = usePriochartTopLeft()
+  const priochartDataBottomLeft = usePriochartBottomLeft()
+  const priochartDataTopRight = usePriochartTopRight()
+  const priochartDataBottomRight = usePriochartBottomRight()
 
   const { find } = useStrapi();
   const questions = reactive({fetchedData: null}); // state is always const

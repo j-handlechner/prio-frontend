@@ -25,13 +25,14 @@
   
   
           <template #layoutright>
-            <div>
-              <ShowSliderData />
-              <HoursPerWeekAlarm />
-            </div>
-
+            <Chart
+                :topleft="priochartDataTopLeft"
+                :topright="priochartDataBottomLeft"
+                :bottomleft="priochartDataTopRight"
+                :bottomright="priochartDataBottomRight"
+                :totalvalue="200">
+            </Chart>
           </template>
-  
       </NuxtLayout>
     </div>
   </template>
@@ -42,9 +43,18 @@
   import RightSquareContent from "/components/content/survey-welcome/right-square-content.vue";
   import RightBarContent from "/components/content/survey-welcome/right-bar-content.vue";
   import Contact from "/components/content/survey-welcome/contact.vue";
-  import ShowSliderData from "/components/ShowSliderData.vue";
 
-  import HoursPerWeekAlarm from "/pages/library/hoursPerWeekAlarm.vue";
+  import Chart from "/components/prioChart"
+
+  import { usePriochartBottomLeft } from "/composables/state";
+  import { usePriochartTopLeft } from "/composables/state";
+  import { usePriochartTopRight } from "/composables/state";
+  import { usePriochartBottomRight } from "/composables/state";
+
+  const priochartDataTopLeft = usePriochartTopLeft()
+  const priochartDataBottomLeft = usePriochartBottomLeft()
+  const priochartDataTopRight = usePriochartTopRight()
+  const priochartDataBottomRight = usePriochartBottomRight()
 
   definePageMeta({
     layout: false

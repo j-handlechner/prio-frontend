@@ -68,8 +68,10 @@
       </div>
     </div>
     <div class="layout__right">
-      <slot name="layoutright" />
+      <div class="right__top">
+      </div>
 
+      <slot name="layoutright" />
     </div>
   </div>
 </template>
@@ -97,7 +99,13 @@ $right-bar-width: 12.5vw;
   grid-template-rows: 10vh 60vh 30vh;
 }
 
-.left__top {
+.layout__right {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10vh 1fr;
+}
+
+.left__top, .right__top {
   min-height: $side-spacing;
   display: flex;
   border-bottom: 1px solid black;
@@ -114,8 +122,8 @@ $right-bar-width: 12.5vw;
     border-left: 1px solid black;
     border-right: 1px solid black;
   }
-
 }
+
 .center-square {
   height: 100%;
   width: 100%;

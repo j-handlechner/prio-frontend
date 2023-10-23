@@ -5,12 +5,11 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["buttonClicked"])
+const emit = defineEmits(["buttonclicked"])
 
 function buttonClicked() {
   console.log('button (not component) clicked')
-  console.log('event buttonClicked emitted')
-  emit("buttonClicked", null)
+  emit("buttonclicked", 1)
 }
 
 </script>

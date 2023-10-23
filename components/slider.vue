@@ -29,6 +29,7 @@
 
 <script setup>
 import Slider from 'primevue/slider';
+import {useWeeklySleepHours} from "/composables/state";
 
 const props = defineProps(["name", "initialValue", "modelValue", "max"])
 
@@ -42,10 +43,12 @@ const priochartDataTopRight = usePriochartTopRight()
 const priochartDataBottomRight = usePriochartBottomRight()
 
 const isDisabled = ref(false)
+
+const weeklySleepHours = useWeeklySleepHours()
 let previousValue = 0
 
 function updateModelValue(newValue) {
-  if(priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value < 200) {
+  if(priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value < 24 * 7 - weeklySleepHours.value) {
     value.value = newValue
     previousValue = value.value
     emit("updateModelValue", value.value)
@@ -54,7 +57,7 @@ function updateModelValue(newValue) {
     previousValue = value.value
     emit("updateModelValue", value.value)
   } else {
-    let tooMuch = (priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value) - 200
+    let tooMuch = (priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value) - (24 * 7 - weeklySleepHours.value)
     value.value = tooMuch > 0 ? value.value - tooMuch : value.value
     // previousValue = value.value
     emit("updateModelValue", value.value)
