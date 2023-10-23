@@ -7,7 +7,7 @@
           <div class="prio-chart__block" ref="blockLeftUp"
                :style="{
                 height: `${percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageLeftTopVisualization) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageLeftTop) / 100}rem`
 
               }">
             <p class="prio-chart__percentage">{{ (percentageLeftTop).toFixed(0) }}%</p>
@@ -20,7 +20,7 @@
           <div class="prio-chart__block" ref="blockLeftDown"
                :style="{
                 height: `${100 - percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (100 - percentageLeftTopVisualization) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`
 
               }">
             <p class="prio-chart__percentage">{{(percentageLeftBottom).toFixed(0) }}%</p>
@@ -39,7 +39,7 @@
           <div class="prio-chart__block" ref="blockRightUp"
                :style="{
                 height: `${percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageRightTopVisualization) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`
               }">
             <p class="prio-chart__percentage">{{ (percentageRightTop).toFixed(0) }}%</p>
 
@@ -51,7 +51,7 @@
           <div class="prio-chart__block" ref="blockRightDown"
                :style="{
                 height: `${100 - percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (100 - percentageRightTopVisualization) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`
               }">
             <p class="prio-chart__percentage">{{ (percentageRightBottom).toFixed(0) }}%</p>
             <div class="prio-chart__corner top-right"></div>
@@ -140,7 +140,7 @@ $secondary: white;
 .prio-chart__column {
   height: 100%;
   transition: 2s all ease;
-  min-width: var(--minheight);
+  min-width: calc(var(--minheight) * 2.5);
 }
 
 .prio-chart__block {
@@ -152,7 +152,7 @@ $secondary: white;
   transition: 3s all cubic-bezier(0.65, 0, 0.35, 1);
 
   min-height: var(--minheight);
-  min-width: var(--minheight);
+  min-width: calc(var(--minheight) * 2.5);
 
   max-height: calc(100% - var(--minheight));
 }
