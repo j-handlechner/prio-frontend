@@ -1,14 +1,9 @@
 <template>
   <div class="card flex justify-content-center">
-    <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50vw' }">
+    <Dialog v-model:visible="visible" modal header="Keine Stunden mehr verfügbar!" :style="{ width: 'clamp(300px, 35vw, 35vw)' }">
       <p>
-        hey! you ran out of hours!
-        you only have {{ 24 * 7 - weeklySleep }} hours to spend (one week has {{ 24 * 7 }} hours, you sleep {{ weeklySleep }} hours of them)
+        Du kannst nur {{ 24 * 7 - weeklySleep }} Stunden verplanen (Eine ganze Woche hat {{ 24 * 7 }}h, du schläfst davon {{ weeklySleep }}h)
       </p>
-      <template #footer>
-        <Button label="No" icon="pi pi-times" @click="visible = false" text />
-        <Button label="Yes" icon="pi pi-check" @click="visible = false" autofocus />
-      </template>
     </Dialog>
   </div>
 </template>

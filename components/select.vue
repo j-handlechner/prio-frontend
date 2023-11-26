@@ -49,6 +49,19 @@ countriesGerman.sort((a, b) => {
   return 0;
 });
 
+// go through all elements again and add elements with order-property set
+let countriesToAddBack = []
+countriesGerman.forEach((element, index) => {
+  if(element.hasOwnProperty('prio')) {
+    countriesGerman.splice(index, 1);
+    countriesToAddBack.push(element)
+  }
+})
+
+countriesToAddBack.forEach((c) => {
+  countriesGerman.unshift(c)
+})
+
 watchEffect(() => {
   if (props.name == 'gender') {
     selectOptions.value = genderOptions;

@@ -32,8 +32,7 @@
       </template>
 
       <template #right-square>
-        {{ 7 * 24 - weeklySleepHours}}
-        <DefaultRightSquareContent />
+        <DefaultRightSquareContent v-if="currentViewName == 'end'"/>
       </template>
 
       <template #layoutright>

@@ -1,12 +1,13 @@
 <template>
-  <div class="library-wrapper">
+  <div class="slider-wrapper">
     <label>
       <slot name="label"></slot>
     </label>
-    <Slider :disabled="isDisabled" :max="100"
-            :modelValue="props.modelValue"
-            @update:modelValue="newValue => updateModelValue(newValue)"
-            :pt="{
+    <div class="slider-value-wrapper">
+      <Slider :disabled="isDisabled" :max="70"
+              :modelValue="props.modelValue"
+              @update:modelValue="newValue => updateModelValue(newValue)"
+              :pt="{
       range: {
         style: {
           backgroundColor: 'black'
@@ -23,7 +24,9 @@
          }
       }
     }"/>
-    <p>current value: {{ props.modelValue }}</p>
+      <p class="current-value">{{ props.modelValue }}h</p>
+    </div>
+
   </div>
 </template>
 
@@ -74,6 +77,33 @@ function updateValue(newValue) {
 }
 
 </script>
+
+<style lang="scss" scoped>
+.slider-wrapper {
+  margin: 0 3rem;
+
+
+  label {
+    line-height: 135%;
+    margin-bottom: .75rem;
+    display: block;
+  }
+}
+
+.slider-value-wrapper {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  grid-template-columns: 1fr auto;
+
+  .current-value {
+    font-size: 1rem;
+  }
+}
+
+
+</style>
 
 <style lang="scss">
   .p-slider .p-slider-handle:focus {

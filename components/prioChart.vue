@@ -10,7 +10,9 @@
                 fontSize: `${2.5 + 4.5 * (percentageLeftTop) / 100}rem`
 
               }">
-            <p class="prio-chart__percentage">{{ (percentageLeftTop).toFixed(0) }}%</p>
+            <Transition>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageLeftTop).toFixed(0) }}%</p>
+            </Transition>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -23,7 +25,9 @@
                 fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`
 
               }">
-            <p class="prio-chart__percentage">{{(percentageLeftBottom).toFixed(0) }}%</p>
+            <Transition>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{(percentageLeftBottom).toFixed(0) }}%</p>
+            </Transition>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -41,7 +45,9 @@
                 height: `${percentageRightTopVisualization}%`,
                 fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`
               }">
-            <p class="prio-chart__percentage">{{ (percentageRightTop).toFixed(0) }}%</p>
+            <Transition>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageRightTop).toFixed(0) }}%</p>
+            </Transition>
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
@@ -53,7 +59,9 @@
                 height: `${100 - percentageRightTopVisualization}%`,
                 fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`
               }">
-            <p class="prio-chart__percentage">{{ (percentageRightBottom).toFixed(0) }}%</p>
+            <Transition>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageRightBottom).toFixed(0) }}%</p>
+            </Transition>
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
@@ -64,6 +72,9 @@
 </template>
 
 <script setup>
+import {useCurrentViewName} from "/composables/state";
+const currentViewName = useCurrentViewName()
+
   const props = defineProps({
     data: Object,
     topleft: Number,

@@ -196,6 +196,9 @@ export const countries = [
   ];
 
 export const countriesGerman = [
+    { name: 'Österreich', code: 'AT', prio: true },
+    { name: 'Deutschland', code: 'DE', prio: true },
+    { name: 'Schweiz', code: 'CH', prio: true },
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Albanien', code: 'AL' },
     { name: 'Algerien', code: 'DZ' },
@@ -205,7 +208,6 @@ export const countriesGerman = [
     { name: 'Argentinien', code: 'AR' },
     { name: 'Armenien', code: 'AM' },
     { name: 'Australien', code: 'AU' },
-    { name: 'Österreich', code: 'AT' },
     { name: 'Aserbaidschan', code: 'AZ' },
     { name: 'Bahamas', code: 'BS' },
     { name: 'Bahrain', code: 'BH' },
@@ -259,7 +261,6 @@ export const countriesGerman = [
     { name: 'Gabun', code: 'GA' },
     { name: 'Gambia', code: 'GM' },
     { name: 'Georgien', code: 'GE' },
-    { name: 'Deutschland', code: 'DE' },
     { name: 'Ghana', code: 'GH' },
     { name: 'Griechenland', code: 'GR' },
     { name: 'Grenada', code: 'GD' },
@@ -363,7 +364,6 @@ export const countriesGerman = [
     { name: 'Sudan', code: 'SD' },
     { name: 'Suriname', code: 'SR' },
     { name: 'Schweden', code: 'SE' },
-    { name: 'Schweiz', code: 'CH' },
     { name: 'Syrien', code: 'SY' },
     { name: 'Taiwan', code: 'TW' },
     { name: 'Tadschikistan', code: 'TJ' },
