@@ -37,8 +37,7 @@ const nationality = useNationality()
       font-size: 3vw;
     }
     @media screen and (max-width: 950px) {
-      font-size: 8vw;
-    }
+      font-size: clamp(2rem, 8vw, 2.75rem);    }
 
     line-height: 125%;
   }

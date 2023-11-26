@@ -38,15 +38,14 @@
         font-size: 3vw;
       }
       @media screen and (max-width: 950px) {
-        font-size: 8vw;
-      }
+        font-size: clamp(2rem, 8vw, 2.75rem);      }
     }
   }
 
   .no-button {
     animation: minimizeButton;
     animation-duration: 0.75s;
-    animation-delay: 1s;
+    animation-delay: 0s;
     animation-timing-function: ease-in-out;
     overflow: hidden;
     animation-fill-mode: forwards;
@@ -56,7 +55,7 @@
   .yes-button {
     animation: maximizeButton;
     animation-duration: 0.75s;
-    animation-delay: 1s;
+    animation-delay: 0s;
     animation-timing-function: ease-in-out;
     overflow: hidden;
     animation-fill-mode: forwards;

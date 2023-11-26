@@ -298,7 +298,10 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
 }
 
 .p-slider-vertical {
-  height: 20vh;
+  height: 20dvh;
+  @media screen and (max-width: 950px) {
+    height: 30dvh;
+  }
 }
 </style>
 
@@ -348,6 +351,7 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
 
 .d-flex {
   display: flex;
+  row-gap: 1rem;
 }
 
 .flex-column {

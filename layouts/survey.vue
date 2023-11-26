@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="layout__right" :class="`${endslidervalue == 100 ? 'has-bottom-bar' : ''}`" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
+    <div class="layout__right" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
           <MobileViewSwitcher />
@@ -120,12 +120,19 @@ $right-bar-width: 12.5vw;
 
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 60vh 30vh;
+  @media screen and (max-width: 950px) {
+    grid-template-rows: 10vh 65vh 25vh;
+  }
 }
 
 .layout__right {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 1fr calc(v-bind('endslidervalue') * 0.01 * 20vh);
+
+  @media screen and (max-width: 950px) {
+    grid-template-rows: 10dvh 1fr calc(v-bind('endslidervalue') * 0.01 * 30dvh);
+  }
 
   transition: grid-template-rows 0s ease-in-out;
 
@@ -172,7 +179,7 @@ $right-bar-width: 12.5vw;
       font-size: 4vw;
     }
     @media screen and (max-width: 950px) {
-      font-size: 14vw;
+      font-size: min(14vw, 4rem);
     }
     line-height: 115%;
   }

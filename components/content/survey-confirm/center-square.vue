@@ -19,7 +19,7 @@
       font-size: 4vw;
     }
     @media screen and (max-width: 950px) {
-      font-size: 14vw;
+      font-size: min(14vw, 4rem);
     }
     line-height: 115%;
   }
