@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrapper">
-    <div class="layout__left" v-if="currentMobileView == 'Dateneingabe'">
+    <div class="layout__left" v-if="!isMobile() || currentMobileView == 'Dateneingabe'">
       <div class="left__top">
         <div class="logo-left-spacer has-corners">
           <MobileViewSwitcher />
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="layout__right" v-if="currentMobileView == 'Visualisierung'">
+    <div class="layout__right" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
           <MobileViewSwitcher />

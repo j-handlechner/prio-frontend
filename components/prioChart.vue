@@ -90,7 +90,7 @@
 
             <Transition>
               <p class="prio-chart__label" v-if="currentViewName == 'confirm'" :style="{
-                fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
+                fontSize: `${1 + 2 * (percentageRightBottom) / 100}rem`
               }">{{ 'label 4' }}</p>
             </Transition>
 
