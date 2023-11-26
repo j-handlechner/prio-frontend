@@ -47,6 +47,31 @@
             :bottomright="priochartDataBottomRight"
             :totalvalue="7 * 24 - weeklySleepHours">
         </Chart>
+
+        <div class="draggable">
+          <Slider
+            :max="100"
+            v-model="endslidervalue"
+            orientation="vertical"
+            :pt="{
+              range: {
+                style: {
+                  backgroundColor: 'red'
+                }
+              },
+              handle: {
+                style: {
+                  backgroundColor: 'white',
+                  borderRadius: 0,
+                  borderWidth: 1,
+                  rotate: '45deg',
+                  borderColor: 'white',
+                  scale: 2
+                 }
+              }
+            }"
+          />
+        </div>
       </template>
     </NuxtLayout>
   </div>
@@ -57,7 +82,12 @@ definePageMeta({
   layout: false
 })
 
-import { usePriochartBottomLeft, usePriochartTopLeft, usePriochartTopRight, usePriochartBottomRight } from "/composables/state";
+import {
+  usePriochartBottomLeft,
+  usePriochartTopLeft,
+  usePriochartTopRight,
+  usePriochartBottomRight
+} from "/composables/state";
 import { useCurrentViewName, usePersonalInfoSteps, useWeeklySleepHours } from "/composables/state"
 
 const currentViewName = useCurrentViewName()
@@ -109,6 +139,10 @@ const handleButtonClick = () => {
 import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";
 import EndNoButtons from "/components/content/survey-end/buttons-no.vue";
 
+import Slider from "primevue/slider";
+import { useEndSliderValue } from "/composables/state.js";
+
+const endslidervalue = useEndSliderValue()
 </script>
 
 <style scoped>
@@ -120,5 +154,19 @@ import EndNoButtons from "/components/content/survey-end/buttons-no.vue";
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.p-slider-vertical {
+  height: 20vh;
+}
+</style>
+
+<style scoped lang="scss">
+.draggable {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 2;
+
+  justify-self: center;
+  align-self: end;
 }
 </style>

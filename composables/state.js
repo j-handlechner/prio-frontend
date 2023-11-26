@@ -41,3 +41,5 @@ export const useCurrentViewName = () => useState("currentViewName", () => "welco
 
 export const useCurrentMobileView = () => useState("currentMobileView", () => "Dateneingabe");
 // can either be Dateninput or Visualisierung
+
+export const useEndSliderValue = () => useState("endSliderValue", () => 0);

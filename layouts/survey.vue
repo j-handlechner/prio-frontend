@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="layout__right" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
+    <div class="layout__right" :class="`${endslidervalue == 100 ? 'has-bottom-bar' : ''}`" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
           <MobileViewSwitcher />
@@ -92,6 +92,10 @@ watchEffect(() => {
 const isMobile = () => {
   return window.matchMedia("(max-width: 950px)").matches
 }
+
+import { useEndSliderValue } from "/composables/state.js";
+const endslidervalue = useEndSliderValue()
+
 </script>
 
 <style lang="scss" scoped>
@@ -120,7 +124,13 @@ $right-bar-width: 12.5vw;
 .layout__right {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10vh 1fr;
+  grid-template-rows: 10vh 1fr calc(v-bind('endslidervalue') * 0.01 * 20vh);
+
+  transition: grid-template-rows 0s ease-in-out;
+
+  &.has-bottom-bar {
+    grid-template-rows: 10vh 1fr 20vh;
+  }
 }
 
 .left__top, .right__top {

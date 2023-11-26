@@ -194,6 +194,8 @@ $secondary: white;
   display: flex;
 
   --minheight: 75px;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
 }
 
 .prio-chart__column {
