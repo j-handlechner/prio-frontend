@@ -1,0 +1,60 @@
+<template>
+  <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 3 && 'has-visible-border'">
+    <div class="selectbutton-wrapper">
+      <SelectButton id="selectbtn" v-model="currentMobileView" :options="mobileViewSwitcherOptions" :pt="{
+    root: {
+      style: {
+        borderRadius: 0,
+        borderColor: 'black',
+      }
+    },
+    button: ({ context }) => ({
+      style: {
+        backgroundColor: context.active ? 'black' : 'white',
+        borderRadius: 0,
+      }
+    }),
+    label: {
+      style: {
+        fontFamily: 'Helvetica',
+        fontWeight: 300,
+        fontSize: 'min(.875rem, 3vw)'
+      }
+    }
+  }"/>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import SelectButton from 'primevue/selectbutton';
+import { useCurrentMobileView } from "/composables/state.js";
+
+const currentMobileView = useCurrentMobileView();
+const mobileViewSwitcherOptions = ref(['Dateneingabe', 'Visualisierung']);
+
+</script>
+
+<style lang="scss" scoped>
+.selectbutton-wrapper {
+  display: block;
+  margin: auto 0;
+}
+
+.inputgroup, .selectbutton-wrapper {
+  height: 100%;
+}
+
+@media screen and (min-width: 950px) {
+  .inputgroup {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+</style>
+
+<style lang="scss">
+.p-selectbutton {
+  height: 100%;
+}
+</style>

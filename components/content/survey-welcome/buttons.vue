@@ -19,6 +19,9 @@ div {
     @media screen and (max-width: 1250px) {
       font-size: 3vw;
     }
+    @media screen and (max-width: 950px) {
+      font-size: 8vw;
+    }
     line-height: 125%;
   }
 

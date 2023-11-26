@@ -1,8 +1,9 @@
 <template>
   <div class="layout-wrapper">
-    <div class="layout__left">
+    <div class="layout__left" v-if="currentMobileView == 'Dateneingabe'">
       <div class="left__top">
         <div class="logo-left-spacer has-corners">
+          <MobileViewSwitcher />
           <div class="prio-chart__corner bottom-right"></div>
         </div>
         <div class="logo has-corners">
@@ -62,14 +63,36 @@
         </div>
       </div>
     </div>
-    <div class="layout__right">
+    <div class="layout__right" v-if="currentMobileView == 'Visualisierung'">
       <div class="right__top">
+        <div class="logo-right-spacer has-corners">
+          <MobileViewSwitcher />
+          <div class="prio-chart__corner bottom-right"></div>
+        </div>
+        <div class="logo-right has-corners">
+          prio
+          <div class="prio-chart__corner bottom-right"></div>
+          <div class="prio-chart__corner bottom-left"></div>
+        </div>
       </div>
 
       <slot name="layoutright" />
-    </div>
+    </div >
   </div>
 </template>
+
+<script setup>
+import {useCurrentMobileView} from "/composables/state.js";
+const currentMobileView = useCurrentMobileView();
+
+watchEffect(() => {
+  console.log("currentMobileview: ", currentMobileView.value)
+})
+
+const isMobile = () => {
+  return window.matchMedia("(max-width: 950px)").matches
+}
+</script>
 
 <style lang="scss" scoped>
 $side-spacing: 4vw;
@@ -82,7 +105,7 @@ $right-bar-width: 12.5vw;
 
 .layout__left, .layout__right {
   width: 50vw;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .layout__left {
@@ -105,11 +128,11 @@ $right-bar-width: 12.5vw;
   display: flex;
   border-bottom: 1px solid black;
 
-  .logo-left-spacer {
+  .logo-left-spacer, .logo-right-spacer {
     width: 100%;
   }
 
-  .logo {
+  .logo, .logo-right {
     min-width: $right-bar-width;
     text-align: center;
     text-transform: uppercase;
@@ -136,6 +159,9 @@ $right-bar-width: 12.5vw;
     font-size: 4.4rem;
     @media screen and (max-width: 1250px) {
       font-size: 4vw;
+    }
+    @media screen and (max-width: 950px) {
+      font-size: 14vw;
     }
     line-height: 115%;
   }
@@ -173,6 +199,11 @@ $right-bar-width: 12.5vw;
       padding: 1rem;
     }
   }
+
+  @media screen and (max-width: 950px) {
+    width: 100%;
+    flex-direction: row;
+  }
 }
 
 .left-spacing-bar {
@@ -188,12 +219,22 @@ $right-bar-width: 12.5vw;
   border-bottom: 1px solid black;
   display: grid;
   grid-template-columns: auto 1fr auto;
+
+  @media screen and (max-width: 950px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0px 1fr auto;
+  }
 }
 
 .left__bottom {
   display: flex;
   display: grid;
   grid-template-columns: auto 1fr 30vh;
+
+  @media screen and (max-width: 950px) {
+    grid-template-columns: 0px 1fr 0px;
+  }
+
   .left {
     display: flex;
     flex-direction: column;
@@ -274,6 +315,10 @@ $right-bar-width: 12.5vw;
 
     padding: 1rem;
 
+    @media screen and (max-width: 950px) {
+      display: none;
+    }
+
     .right-square-content {
       display: flex;
       justify-content: space-between;
@@ -345,4 +390,31 @@ $right-bar-width: 12.5vw;
   }
 }
 
+@media screen and (min-width: 950px) {
+  .logo-right {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    .prio-chart__corner {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .layout__left {
+    width: 100vw;
+  }
+
+  .layout__right {
+    width: 100vw;
+  }
+
+  .logo, .logo-right {
+    min-width: 40vw !important;
+  }
+}
 </style>

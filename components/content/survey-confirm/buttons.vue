@@ -29,7 +29,16 @@
       font-family: Cirka;
       font-size: 2.5rem;
       line-height: 125%;
+
+      @media screen and (max-width: 1250px) {
+        font-size: 3vw;
+      }
+      @media screen and (max-width: 950px) {
+        font-size: 8vw;
+      }
     }
+
+
   }
   </style>
   
@@ -41,6 +50,10 @@
       padding-bottom: calc(1.5rem + 0.625rem);
       width: 100%;
       justify-content: center;
+
+      @media screen and (max-width: 950px) {
+        padding: 1rem 0;
+      }
   
     }
   

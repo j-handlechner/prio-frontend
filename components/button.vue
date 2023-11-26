@@ -32,6 +32,11 @@ button {
   @media screen and (max-width: 1250px) {
     font-size: 3vw;
   }
+  @media screen and (max-width: 950px) {
+    font-size: 8vw;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 
   flex-grow: 1;
   width: 100%;

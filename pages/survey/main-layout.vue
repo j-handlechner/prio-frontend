@@ -107,6 +107,10 @@ $right-bar-width: 12.5vw;
 
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 60vh 30vh;
+
+  @media screen and (max-width: 950px) {
+    grid-template-rows: 10dvh 65dvh 25dvh;
+  }
 }
 
 .left__top {
@@ -141,6 +145,9 @@ $right-bar-width: 12.5vw;
     font-size: 4.4rem;
     @media screen and (max-width: 1250px) {
       font-size: 4vw;
+    }
+    @media screen and (max-width: 950px) {
+      font-size: 14vw;
     }
     line-height: 115%;
   }

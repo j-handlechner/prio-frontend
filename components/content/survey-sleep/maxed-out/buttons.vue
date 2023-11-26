@@ -31,6 +31,9 @@ const currentViewName = useCurrentViewName()
     @media screen and (max-width: 1250px) {
       font-size: 3vw;
     }
+    @media screen and (max-width: 950px) {
+      font-size: 8vw;
+    }
 
     line-height: 125%;
   }
@@ -45,6 +48,10 @@ const currentViewName = useCurrentViewName()
     padding-bottom: calc(1.5rem + 0.625rem);
     width: 100%;
     justify-content: center;
+
+    @media screen and (max-width: 950px) {
+      padding: 1rem 0;
+    }
 
   }
 

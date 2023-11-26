@@ -1,6 +1,6 @@
 <template>
   <div class="selectbutton-wrapper">
-    <label for="selectbtn">
+    <label for="selectbtn" v-if="showLabel">
       <slot name="label"></slot>
     </label>
 
@@ -25,7 +25,7 @@
       }
     }
   }"
-                  @update:modelValue="newValue => updateModelValue(newValue)"
+  @update:modelValue="newValue => updateModelValue(newValue)"
     />
   </div>
 
@@ -33,13 +33,18 @@
 
 <script setup>
 import SelectButton from 'primevue/selectbutton';
-const value = ref('Off');
-const options = ref(['Studierender', 'Erwerbstätig']);
+const value = ref(null);
+const defaultOptions = ref(['Studierender', 'Erwerbstätig']);
+const props = defineProps(['modelValue', 'showlabel', 'options'])
 
-const props = defineProps(['modelValue'])
+const showLabel = computed(() => props.showlabel !== undefined ? props.showlabel : true);
+const options = computed(() => props.options !== undefined ? props.options : defaultOptions.value);
+
+
 const emit = defineEmits(["updateModelValue"])
 
 function updateModelValue(newValue) {
+  console.log("emitting event")
   emit("updateModelValue", newValue)
 }
 </script>

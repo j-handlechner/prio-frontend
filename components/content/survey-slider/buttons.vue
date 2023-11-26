@@ -34,6 +34,9 @@
       @media screen and (max-width: 1250px) {
         font-size: 3vw;
       }
+      @media screen and (max-width: 950px) {
+        font-size: 8vw;
+      }
       line-height: 125%;
     }
   }
@@ -45,6 +48,11 @@
     button {
       padding-top: calc(1.5rem + 0.625rem);
       padding-bottom: calc(1.5rem + 0.625rem);
+
+      @media screen and (max-width: 950px) {
+        padding: 1rem 0;
+      }
+
       width: 100%;
       justify-content: center;
       padding-left: 0;

@@ -38,3 +38,6 @@ export const useCurrentViewName = () => useState("currentViewName", () => "welco
 // - personal
 // - sleep
 // - sliders
+
+export const useCurrentMobileView = () => useState("currentMobileView", () => "Dateneingabe");
+// can either be Dateninput or Visualisierung
