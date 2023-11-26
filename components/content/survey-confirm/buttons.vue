@@ -1,14 +1,11 @@
 <template>
     <div class="selectbuttonwrapper">
-      <Button @buttonclicked="currentViewName = 'sleep'">
-        <p>Zurück</p>
+      <Button @buttonclicked="currentViewName = 'end-no'">
+        <p>Nein</p>
       </Button>
   
-      <Button v-if="currentSlidersStep < 3" @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
-        <p>Weiter</p>
-      </Button>
-      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
-        <p>Ergebnis</p>
+      <Button @buttonclicked="currentViewName = 'end-yes'">
+        <p>Ja</p>
       </Button>
     </div>
   
@@ -31,9 +28,6 @@
       font-size: 2rem;
       font-family: Cirka;
       font-size: 2.5rem;
-      @media screen and (max-width: 1250px) {
-        font-size: 3vw;
-      }
       line-height: 125%;
     }
   }
@@ -47,8 +41,6 @@
       padding-bottom: calc(1.5rem + 0.625rem);
       width: 100%;
       justify-content: center;
-      padding-left: 0;
-      padding-right: 0;
   
     }
   

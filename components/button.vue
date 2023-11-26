@@ -29,11 +29,14 @@ function buttonClicked() {
 button {
   padding: 1.5rem 2rem;
   font-size: 1.5rem;
+  @media screen and (max-width: 1250px) {
+    font-size: 3vw;
+  }
+
   flex-grow: 1;
   width: 100%;
   transition: 0.35s ease-in-out;
   display: flex;
-  gap: 2rem;
   justify-content: start;
 
   @include cirkaLight();

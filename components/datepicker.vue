@@ -24,10 +24,10 @@ div {
   font-family: Cirka;
 
   align-items: center;
-  gap: 2rem;
   justify-content: space-between;
   label {
     font-size: 1rem;
+    padding-right: 1rem;
   }
 }
 

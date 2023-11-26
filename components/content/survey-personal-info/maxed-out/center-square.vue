@@ -3,7 +3,7 @@
     <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 0 && 'has-visible-border'">
       <Datepicker :model-value="birthdate" @updateModelValue="newValue => birthdate = newValue">
         <template #label>
-          Geburtsdatum
+          Geburts&shy;datum
         </template>
       </Datepicker>
 

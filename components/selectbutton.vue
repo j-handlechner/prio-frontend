@@ -49,13 +49,17 @@ function updateModelValue(newValue) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
 }
 
 label {
   font-size: 1rem;
   font-family: Cirka;
   min-width: 13ch;
+  @media screen and (max-width: 1250px) {
+    min-width: 0;
+    min-width: 10ch;
+  }
+  padding-right: 2rem;
 }
 </style>
 

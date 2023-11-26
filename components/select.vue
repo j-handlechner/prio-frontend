@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <label :for="props.name"><slot name="label"></slot></label>
       <Dropdown v-model="props.modelValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
         root: {
@@ -81,9 +81,8 @@ function updateModelValue(newValue) {
     width: 100%;
   }
 
-  div {
+  .wrapper {
     display: flex;
-    gap: 2rem;
     align-items: center;
     justify-content: space-between;
   }
@@ -109,6 +108,10 @@ label {
   font-family: Cirka;
   font-size: 1rem;
   min-width: 13ch;
+  @media screen and (max-width: 1250px) {
+    min-width: 0;
+    min-width: 10ch;
+  }
 }
 
 .p-dropdown .p-dropdown-label {

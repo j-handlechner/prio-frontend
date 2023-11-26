@@ -16,6 +16,10 @@
   h1 {
     font-family: Cirka;
     font-size: 4.4rem;
+    @media screen and (max-width: 1250px) {
+      font-size: 4vw;
+    }
+
     line-height: 115%;
   }
 

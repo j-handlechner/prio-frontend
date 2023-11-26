@@ -11,7 +11,16 @@
 
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageLeftTop).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageLeftTop).toFixed(0) }}%</p>
+            </Transition>
+
+            <Transition>
+              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+                 :style="{
+                fontSize: `${1 + 2 * (percentageLeftTop) / 100}rem`
+              }"
+
+              >{{ 'label 1' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -26,7 +35,15 @@
 
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{(percentageLeftBottom).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{(percentageLeftBottom).toFixed(0) }}%</p>
+            </Transition>
+
+            <Transition>
+              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+                 :style="{
+                fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
+              }"
+              >{{ 'label 2' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -46,7 +63,15 @@
                 fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageRightTop).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageRightTop).toFixed(0) }}%</p>
+            </Transition>
+
+            <Transition>
+              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+                 :style="{
+                fontSize: `${1 + 2 * (percentageRightTop) / 100}rem`
+              }"
+              >{{ 'label 3' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -60,8 +85,15 @@
                 fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'end'">{{ (percentageRightBottom).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageRightBottom).toFixed(0) }}%</p>
             </Transition>
+
+            <Transition>
+              <p class="prio-chart__label" v-if="currentViewName == 'confirm'" :style="{
+                fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
+              }">{{ 'label 4' }}</p>
+            </Transition>
+
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
@@ -204,7 +236,7 @@ $secondary: white;
   }
 }
 
-.prio-chart__percentage {
+.prio-chart__percentage, .prio-chart__label {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -215,5 +247,14 @@ $secondary: white;
   font-size: inherit;
   font-family: "Cirka";
   font-weight: 200;
+}
+
+.prio-chart__label {
+  top: 0;
+  left: 0;
+  right: unset;
+  bottom: unset;
+
+  padding: .5rem 0 0 1rem;
 }
 </style>

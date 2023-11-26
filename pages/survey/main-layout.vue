@@ -139,6 +139,9 @@ $right-bar-width: 12.5vw;
   h1 {
     font-family: Cirka;
     font-size: 4.4rem;
+    @media screen and (max-width: 1250px) {
+      font-size: 4vw;
+    }
     line-height: 115%;
   }
 
@@ -329,5 +332,15 @@ $right-bar-width: 12.5vw;
   }
 }
 
+@media screen and (max-width: 1250px) {
+  .layout__left {
+    width: 65vw !important;
+    background-color: red;
+  }
+
+  .layout__right {
+    width: 35vw;
+  }
+}
 
 </style>
