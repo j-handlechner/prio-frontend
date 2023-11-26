@@ -4,11 +4,13 @@
   <div>
     <NuxtLayout name="survey"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
       <template #centersquare>
+        <Transition mode="out-in">
             <WelcomeCenterSquare v-if="currentViewName === 'welcome'" key="0"/>
             <PersonalCenterSquare v-else-if="currentViewName === 'personal'" key="1"/>
             <SleepCenterSquare v-else-if="currentViewName === 'sleep'" key="2"/>
             <SlidersCenterSquare v-else-if="currentViewName === 'sliders'" key="3"/>
             <div v-else>nothing to show</div>
+        </Transition>
       </template>
 
       <template #buttons>

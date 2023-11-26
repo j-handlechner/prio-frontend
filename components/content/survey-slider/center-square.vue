@@ -55,12 +55,13 @@
         <div class="prio-chart__corner top-right"></div>
         <div class="prio-chart__corner top-left"></div>
       </div>
+      <div>
+        <HoursPerWeekAlarm />
+      </div>
     </div>
     <div v-else>
       <div class="loadingrectangle"></div>
     </div>
-
-    <HoursPerWeekAlarm />
   </template>
   
   
