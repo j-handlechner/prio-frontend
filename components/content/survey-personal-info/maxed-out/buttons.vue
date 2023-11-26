@@ -1,10 +1,10 @@
 <template>
   <div class="selectbuttonwrapper">
-    <Button @buttonclicked="currentPersonalInfoStep > 0 && currentPersonalInfoStep--">
+    <Button @buttonclicked="currentViewName='welcome'">
       <p>zurück</p>
     </Button>
 
-    <Button @buttonclicked="currentPersonalInfoStep < 3 ? currentPersonalInfoStep++ : currentViewName = 'sleep'">
+    <Button @buttonclicked="currentPersonalInfoStep < 3 ? currentPersonalInfoStep++ : currentViewName = 'sleep'" :disabled="currentPersonalInfoStep === 3 && (!birthdate || !occupation || !gender || !nationality)">
       <p>weiter</p>
     </Button>
   </div>
@@ -16,7 +16,12 @@ import {usePersonalInfoSteps, useCurrentViewName} from "/composables/state";
 
 const currentPersonalInfoStep = usePersonalInfoSteps()
 const currentViewName = useCurrentViewName()
+import {useBirthdate, useOccupation, useGender, useNationality} from "/composables/state";
 
+const birthdate = useBirthdate()
+const occupation = useOccupation()
+const gender = useGender()
+const nationality = useNationality()
 </script>
 
 <style lang="scss" scoped>

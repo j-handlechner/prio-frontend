@@ -137,7 +137,7 @@
       // padding: 2rem 4rem;
       border-bottom: black 1px solid;
       height: var(--heightInputgroup);
-      transition: height 2s cubic-bezier(0.65, 0, 0.35, 1);
+      transition: height .7s cubic-bezier(0.65, 0, 0.35, 1);
       width: 100%;
   
       display: flex;

@@ -6,6 +6,13 @@
 </template>
 
 <style lang="scss" scoped>
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
   h1 {
     font-family: Cirka;
     font-size: 4.4rem;

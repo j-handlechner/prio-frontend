@@ -23,6 +23,10 @@ export const usePriochartTopRight = () => useState("priochartTopRight", () => 0)
 export const usePriochartBottomRight = () => useState("priochartBottomRight", () => 0)
 
 export const useBirthdate = () => useState("birthdate", () => null)
+export const useGender = () => useState("gender", () => null)
+export const useOccupation = () => useState("occupation", () => null)
+export const useNationality = () => useState("nationality", () => null)
+
 export const useWeeklySleepHours = () => useState("weeklysleephours", () => 0)
 
 export const usePersonalInfoSteps = () => useState("personalinfostep", () => 0)

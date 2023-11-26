@@ -4,13 +4,11 @@
   <div>
     <NuxtLayout name="survey"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
       <template #centersquare>
-          <Transition mode="out-in">
-            <WelcomeCenterSquare v-if="currentViewName == 'welcome'"/>
-            <PersonalCenterSquare v-else-if="currentViewName == 'personal'" />
-            <SleepCenterSquare v-else-if="currentViewName == 'sleep'" />
-            <SlidersCenterSquare v-else-if="currentViewName == 'sliders'" />
+            <WelcomeCenterSquare v-if="currentViewName === 'welcome'" key="0"/>
+            <PersonalCenterSquare v-else-if="currentViewName === 'personal'" key="1"/>
+            <SleepCenterSquare v-else-if="currentViewName === 'sleep'" key="2"/>
+            <SlidersCenterSquare v-else-if="currentViewName === 'sliders'" key="3"/>
             <div v-else>nothing to show</div>
-          </Transition>
       </template>
 
       <template #buttons>
@@ -24,7 +22,7 @@
       </template>
 
       <template #contact>
-        <DefaultRightSquareContent />
+        <DefaultContact />
       </template>
 
       <template #right-bar>
@@ -32,8 +30,8 @@
       </template>
 
       <template #right-square>
-        <DefaultContact />
         {{ 7 * 24 - weeklySleepHours}}
+        <DefaultRightSquareContent />
       </template>
 
       <template #layoutright>
@@ -105,7 +103,7 @@ const handleButtonClick = () => {
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 1s ease-in-out;
+  transition: opacity .35s ease-in-out;
 }
 
 .v-enter-from,

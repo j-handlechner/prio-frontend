@@ -24,7 +24,9 @@
         fontSize: '1rem'
       }
     }
-  }"/>
+  }"
+                  @update:modelValue="newValue => updateModelValue(newValue)"
+    />
   </div>
 
 </template>
@@ -33,6 +35,12 @@
 import SelectButton from 'primevue/selectbutton';
 const value = ref('Off');
 const options = ref(['Studierender', 'Erwerbstätig']);
+
+const emit = defineEmits(["updateModelValue"])
+
+function updateModelValue(newValue) {
+  emit("updateModelValue", newValue)
+}
 </script>
 
 <style lang="scss" scoped>

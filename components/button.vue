@@ -1,11 +1,14 @@
 <template>
   <div>
-      <button @click="() => buttonClicked()"><slot></slot></button>
+      <button @click="() => buttonClicked()" :disabled="isDisabled ? true : null" :class="`${isDisabled ? 'disabled' : ''}`"><slot></slot></button>
   </div>
 </template>
 
 <script setup>
 const emit = defineEmits(["buttonclicked"])
+const props = defineProps(["disabled"])
+
+const isDisabled = computed(() => props.disabled)
 
 function buttonClicked() {
   console.log('button (not component) clicked')
@@ -30,6 +33,11 @@ button {
   @include cirkaLight();
   font-family: "Cirka";
   font-weight: 200;
+
+  &.disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
 
   &:hover {
     background-color: black;

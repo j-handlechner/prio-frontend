@@ -118,9 +118,13 @@ $right-bar-width: 12.5vw;
     min-width: $right-bar-width;
     text-align: center;
     text-transform: uppercase;
-    font-size: 3rem;
+    font-size: 2.25rem;
     border-left: 1px solid black;
     border-right: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

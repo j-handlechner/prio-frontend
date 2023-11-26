@@ -1,17 +1,6 @@
 <template>
   <div>
     <label :for="props.name"><slot name="label"></slot></label>
-<!--    <TreeSelect :id="props.name" v-model="selectedValue" :options="nodes" placeholder="Select Item" class="select" :pt="{-->
-<!--      root: {-->
-<!--        style: {-->
-<!--          borderRadius: 0,-->
-<!--          borderColor: 'black',-->
-<!--          fontFamily: 'Cirka',-->
-<!--          fontWeight: 200,-->
-<!--          fontSize: '1.25rem'-->
-<!--        }-->
-<!--      }-->
-<!--    }" />-->
       <Dropdown v-model="selectedValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
         root: {
           style: {
@@ -23,6 +12,7 @@
           }
         }
       }"
+                @update:modelValue="newValue => updateModelValue(newValue)"
       />
   </div>
 </template>
@@ -67,18 +57,10 @@ watchEffect(() => {
   }
 });
 
-const nodes = ref([
-  {
-    key: "opt1",
-    label: "hello1",
-    data: "hello1value"
-  },
-  {
-    key: "opt2",
-    label: "hello2",
-    data: "hello2value"
-  }
-])
+const emit = defineEmits(["updateModelValue"])
+function updateModelValue(newValue) {
+  emit("updateModelValue", newValue)
+}
 </script>
 
 <style scoped lang="scss">

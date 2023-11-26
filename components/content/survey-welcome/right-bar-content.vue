@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p class="identificationnum">01 *</p>
-    <p class="text-bottom">identifikationsnummer</p>
+    <p class="identificationnum">01*</p>
+    <p class="text-bottom">identifikations&shy;nummer</p>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ div {
   p {
     &.identificationnum {
       font-family: Cirka;
-      font-size: 5rem;
+      font-size: 3.5rem;
       text-align: center;
       padding: 1rem;
     }

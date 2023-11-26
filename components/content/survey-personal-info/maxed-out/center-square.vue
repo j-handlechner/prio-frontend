@@ -14,7 +14,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <Select name="gender">
+      <Select name="gender" @updateModelValue="newValue => gender = newValue">
         <template #label>
           Geschlecht
         </template>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <Select name="nationality">
+      <Select name="nationality" @updateModelValue="newValue => nationality = newValue">
         <template #label>
           Nationalität
         </template>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <SelectButton>
+      <SelectButton @updateModelValue="newValue => occupation = newValue">
         <template #label>
           Tätigkeit
         </template>
@@ -56,14 +56,17 @@
 
 <script setup>
 
-import {useBirthdate} from "/composables/state";
+import {useBirthdate, useOccupation, useGender, useNationality} from "/composables/state";
 import {usePersonalInfoSteps} from "/composables/state";
 
 import SelectButton from "/components/selectbutton";
 
 const birthdate = useBirthdate()
+const occupation = useOccupation()
+const gender = useGender()
+const nationality = useNationality()
+
 const currentPersonalInfoStep = usePersonalInfoSteps()
-const test = 2
 </script>
 
 <style lang="scss" scoped>
@@ -88,7 +91,7 @@ const test = 2
     padding: 2rem;
     border-bottom: black 1px solid;
     height: var(--heightInputgroup);
-    transition: height 2s cubic-bezier(0.65, 0, 0.35, 1);
+    transition: height .7s cubic-bezier(0.65, 0, 0.35, 1);
     width: 100%;
 
     display: flex;
