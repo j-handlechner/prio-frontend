@@ -1,7 +1,7 @@
 <template>
   <div class="outerwrapper">
     <div class="inputgroup has-corners">
-      <Datepicker @updateModelValue="newValue => birthdate = newValue">
+      <Datepicker :model-value="birthdate" @updateModelValue="newValue => birthdate = newValue">
         <template #label>
           Geburtsdatum
         </template>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <Select name="gender" @updateModelValue="newValue => gender = newValue">
+      <Select name="gender" :modelValue="gender" @updateModelValue="newValue => gender = newValue">
         <template #label>
           Geschlecht
         </template>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <Select name="nationality" @updateModelValue="newValue => nationality = newValue">
+      <Select name="nationality" :modelValue="nationality" @updateModelValue="newValue => nationality = newValue">
         <template #label>
           Nationalität
         </template>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="inputgroup has-corners">
-      <SelectButton @updateModelValue="newValue => occupation = newValue">
+      <SelectButton :modelValue="occupation" @updateModelValue="newValue => occupation = newValue">
         <template #label>
           Tätigkeit
         </template>

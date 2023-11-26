@@ -4,7 +4,7 @@
       <slot name="label"></slot>
     </label>
 
-    <SelectButton id="selectbtn" v-model="value" :options="options" :pt="{
+    <SelectButton id="selectbtn" v-model="props.modelValue" :options="options" :pt="{
     root: {
       style: {
         borderRadius: 0,
@@ -36,6 +36,7 @@ import SelectButton from 'primevue/selectbutton';
 const value = ref('Off');
 const options = ref(['Studierender', 'Erwerbstätig']);
 
+const props = defineProps(['modelValue'])
 const emit = defineEmits(["updateModelValue"])
 
 function updateModelValue(newValue) {

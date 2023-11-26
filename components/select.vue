@@ -1,7 +1,7 @@
 <template>
   <div>
     <label :for="props.name"><slot name="label"></slot></label>
-      <Dropdown v-model="selectedValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
+      <Dropdown v-model="props.modelValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
         root: {
           style: {
             borderRadius: 0,
@@ -23,10 +23,10 @@ import Dropdown from 'primevue/dropdown';
 import { countries, countriesGerman } from './countries.js';
 
 const props = defineProps({
-  name: String
+  name: String,
+  modelValue: String
 })
 
-const selectedValue = ref(null)
 let selectOptions = ref([]);
 
 const genderOptions = [
