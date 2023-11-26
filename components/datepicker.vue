@@ -45,4 +45,21 @@ span.p-calendar {
     border: 1px solid black;
   }
 }
+
+.p-calendar .p-inputtext {
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: .875rem;
+}
+
+.p-datepicker table th,
+.p-datepicker table td {
+  font-size: .75rem;
+  padding: 0.2rem;
+}
+
+.p-datepicker table td > span {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 </style>

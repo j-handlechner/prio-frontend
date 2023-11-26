@@ -1,6 +1,12 @@
 <template>
   <div>
-      <button @click="() => buttonClicked()" :disabled="isDisabled ? true : null" :class="`${isDisabled ? 'disabled' : ''}`"><slot></slot></button>
+      <button @click="() => buttonClicked()" :disabled="isDisabled ? true : null" :class="`${isDisabled ? 'disabled' : ''}`">
+        <slot></slot>
+        <div class="prio-chart__corner top-right"></div>
+        <div class="prio-chart__corner top-left"></div>
+        <div class="prio-chart__corner bottom-right"></div>
+        <div class="prio-chart__corner bottom-left"></div>
+      </button>
   </div>
 </template>
 
@@ -33,6 +39,11 @@ button {
   @include cirkaLight();
   font-family: "Cirka";
   font-weight: 200;
+
+  position: relative;
+
+  border-left: .5px solid black;
+  border-right: .5px solid black;
 
   &.disabled {
     opacity: .5;

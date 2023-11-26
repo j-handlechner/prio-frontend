@@ -1,6 +1,6 @@
 <template>
   <div class="outerwrapper">
-    <div class="inputgroup has-corners">
+    <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 0 && 'has-visible-border'">
       <Datepicker :model-value="birthdate" @updateModelValue="newValue => birthdate = newValue">
         <template #label>
           Geburtsdatum
@@ -13,7 +13,7 @@
       <div class="prio-chart__corner top-left"></div>
     </div>
 
-    <div class="inputgroup has-corners">
+    <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 1 && 'has-visible-border'">
       <Select name="gender" :modelValue="gender" @updateModelValue="newValue => gender = newValue">
         <template #label>
           Geschlecht
@@ -26,7 +26,7 @@
       <div class="prio-chart__corner top-left"></div>
     </div>
 
-    <div class="inputgroup has-corners">
+    <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 2 && 'has-visible-border'">
       <Select name="nationality" :modelValue="nationality" @updateModelValue="newValue => nationality = newValue">
         <template #label>
           Nationalität
@@ -39,7 +39,7 @@
       <div class="prio-chart__corner top-left"></div>
     </div>
 
-    <div class="inputgroup has-corners">
+    <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 3 && 'has-visible-border'">
       <SelectButton :modelValue="occupation" @updateModelValue="newValue => occupation = newValue">
         <template #label>
           Tätigkeit
@@ -89,9 +89,14 @@ const currentPersonalInfoStep = usePersonalInfoSteps()
     --heightInputgroup: calc(100% / (1 + v-bind('currentPersonalInfoStep')));
 
     padding: 2rem;
-    border-bottom: black 1px solid;
+    border-bottom: transparent 1px solid;
+
+    &.has-visible-border {
+      border-bottom-color: black;
+    }
+    transition: height .7s cubic-bezier(0.65, 0, 0.35, 1), border-bottom-color .2s ease-in-out;
+
     height: var(--heightInputgroup);
-    transition: height .7s cubic-bezier(0.65, 0, 0.35, 1);
     width: 100%;
 
     display: flex;

@@ -6,9 +6,9 @@
           style: {
             borderRadius: 0,
             borderColor: 'black',
-            fontFamily: 'Cirka',
-            fontWeight: 200,
-            fontSize: '1rem'
+            fontFamily: 'Helvetica',
+            fontWeight: 300,
+            fontSize: '.875rem'
           }
         }
       }"
@@ -96,6 +96,11 @@ label {
   font-family: Cirka;
   font-size: 1rem;
   min-width: 13ch;
+}
+
+.p-dropdown .p-dropdown-label {
+  font-size: .875rem;
+  font-family: Helvetica;
 }
 
 </style>

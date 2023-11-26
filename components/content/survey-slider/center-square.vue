@@ -1,6 +1,6 @@
 <template>
     <div v-if="dataFetched" class="outerwrapper">
-      <div class="inputgroup has-corners">
+      <div class="inputgroup has-corners" :class="currentSlidersStep > 0 && 'has-visible-border'">
           <Slider :modelValue="priochartDataTopLeft"
                   @updateModelValue="newValue => priochartDataTopLeft = newValue" initialValue="0">
           <template #label>
@@ -14,7 +14,7 @@
         <div class="prio-chart__corner top-left"></div>
       </div>
   
-      <div class="inputgroup has-corners">
+      <div class="inputgroup has-corners" :class="currentSlidersStep > 1 && 'has-visible-border'">
         <Slider :modelValue="priochartDataBottomLeft"
                 @updateModelValue="newValue => priochartDataBottomLeft = newValue" initialValue="0">
           <template #label>
@@ -28,7 +28,7 @@
         <div class="prio-chart__corner top-left"></div>
       </div>
   
-      <div class="inputgroup has-corners">
+      <div class="inputgroup has-corners" :class="currentSlidersStep > 2 && 'has-visible-border'">
         <Slider :modelValue="priochartDataTopRight"
                 @updateModelValue="newValue => priochartDataTopRight = newValue" initialValue="0" >
           <template #label>
@@ -42,7 +42,7 @@
         <div class="prio-chart__corner top-left"></div>
       </div>
   
-      <div class="inputgroup has-corners">
+      <div class="inputgroup has-corners" :class="currentSlidersStep > 3 && 'has-visible-border'">
         <Slider :modelValue="priochartDataBottomRight"
                 @updateModelValue="newValue => priochartDataBottomRight = newValue" initialValue="0">
           <template #label>
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div v-else>
-      loading...
+      <div class="loadingrectangle"></div>
     </div>
 
     <HoursPerWeekAlarm />
@@ -135,9 +135,13 @@
       --heightInputgroup: calc(100% / (1 + v-bind('currentSlidersStep')));
   
       // padding: 2rem 4rem;
-      border-bottom: black 1px solid;
+      border-bottom: transparent 1px solid;
+
+      &.has-visible-border {
+        border-bottom-color: black;
+      }
       height: var(--heightInputgroup);
-      transition: height .7s cubic-bezier(0.65, 0, 0.35, 1);
+      transition: height .7s cubic-bezier(0.65, 0, 0.35, 1), border-bottom-color .2s ease-in-out;
       width: 100%;
   
       display: flex;
@@ -147,6 +151,37 @@
       &:last-child {
         border: none;
       }
+    }
+  }
+
+  .loadingrectangle {
+    width: 1rem;
+    height: 1rem;
+    background-color: black;
+    animation-name: loadingspinner;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    margin: auto;
+    transition: 0.25s opacity ease-in-out;
+  }
+
+  @keyframes loadingspinner {
+    0% {
+      rotate: 45deg;
+      opacity: 1;
+    }
+
+    50% {
+      rotate: 135deg;
+      opacity: 1;
+    }
+
+    100% {
+      rotate: 135.000001deg;
+      opacity: 1;
     }
   }
   </style>

@@ -19,9 +19,9 @@
     }),
     label: {
       style: {
-        fontFamily: 'Cirka',
-        fontWeight: 200,
-        fontSize: '1rem'
+        fontFamily: 'Helvetica',
+        fontWeight: 300,
+        fontSize: '.875rem'
       }
     }
   }"

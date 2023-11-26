@@ -4,7 +4,7 @@
       <slot name="label"></slot>
     </label>
     <Slider :disabled="isDisabled" :max="100"
-            :modelValue="value"
+            :modelValue="props.modelValue"
             @update:modelValue="newValue => updateModelValue(newValue)"
             :pt="{
       range: {
@@ -23,7 +23,7 @@
          }
       }
     }"/>
-    <p>current value: {{ value }}</p>
+    <p>current value: {{ props.modelValue }}</p>
   </div>
 </template>
 

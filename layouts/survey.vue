@@ -42,11 +42,6 @@
         <div class="left">
           <div class="buttons-wrapper has-corners">
             <slot name="buttons" />
-
-            <div class="prio-chart__corner top-right"></div>
-            <div class="prio-chart__corner top-left"></div>
-            <div class="prio-chart__corner bottom-right"></div>
-            <div class="prio-chart__corner bottom-left"></div>
           </div>
 
           <div class="contactinfo has-corners">
@@ -202,6 +197,8 @@ $right-bar-width: 12.5vw;
       border: 1px solid black;
       border-top: none;
       border-right: none;
+      border-left-width: .5px;
+      border-right-width: .5px;
 
       button {
         font-size: 2rem;
@@ -245,6 +242,7 @@ $right-bar-width: 12.5vw;
       height: 100%;
       padding: 1rem;
       font-size: 0.75rem;
+      border-right: .5px solid black;
 
       a {
         color: black;
@@ -261,6 +259,7 @@ $right-bar-width: 12.5vw;
     border: 1px solid black;
     border-top: none;
     border-bottom: none;
+    border-left-width: .5px;
 
     display: flex;
     flex-direction: column;
