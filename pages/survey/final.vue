@@ -9,7 +9,7 @@
             <PersonalCenterSquare v-else-if="currentViewName === 'personal'" key="1"/>
             <SleepCenterSquare v-else-if="currentViewName === 'sleep'" key="2"/>
             <SlidersCenterSquare v-else-if="currentViewName === 'sliders'" key="3"/>
-            <ConfirmCenterSquare v-else-if="currentViewName === 'confirm'" key="4" />
+            <ConfirmCenterSquare v-else-if="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'" key="4" />
             <div v-else>nothing to show</div>
         </Transition>
       </template>
@@ -23,6 +23,8 @@
             <SleepButtons v-else-if="currentViewName == 'sleep'" />
             <SlidersButtons v-else-if="currentViewName == 'sliders'" />
             <ConfirmButtons v-else-if="currentViewName == 'confirm'" />
+            <EndYesButtons v-else-if="currentViewName == 'end-yes'" />
+            <EndNoButtons v-else-if="currentViewName == 'end-no'" />
       </template>
 
       <template #contact>
@@ -103,6 +105,9 @@ const handleButtonClick = () => {
 
   }
 }
+
+import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";
+import EndNoButtons from "/components/content/survey-end/buttons-no.vue";
 
 </script>
 

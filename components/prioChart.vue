@@ -7,15 +7,17 @@
           <div class="prio-chart__block" ref="blockLeftUp"
                :style="{
                 height: `${percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageLeftTop) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageLeftTop) / 100}rem`,
+                backgroundColor: `${currentViewName == 'end-yes' ? successColors.topLeft : 'black'}`,
+                color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
 
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageLeftTop).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'">{{ (percentageLeftTop).toFixed(0) }}%</p>
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                 fontSize: `${1 + 2 * (percentageLeftTop) / 100}rem`
               }"
@@ -31,15 +33,17 @@
           <div class="prio-chart__block" ref="blockLeftDown"
                :style="{
                 height: `${100 - percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`,
+                backgroundColor: `${currentViewName == 'end-yes' ? successColors.bottomLeft : 'black'}`,
+                color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
 
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{(percentageLeftBottom).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'">{{(percentageLeftBottom).toFixed(0) }}%</p>
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                 fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
               }"
@@ -60,14 +64,16 @@
           <div class="prio-chart__block" ref="blockRightUp"
                :style="{
                 height: `${percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`,
+                backgroundColor: `${currentViewName == 'end-yes' ? successColors.topRight : 'black'}`,
+                color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageRightTop).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'">{{ (percentageRightTop).toFixed(0) }}%</p>
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label" v-if="currentViewName == 'confirm'"
+              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                 fontSize: `${1 + 2 * (percentageRightTop) / 100}rem`
               }"
@@ -82,14 +88,16 @@
           <div class="prio-chart__block" ref="blockRightDown"
                :style="{
                 height: `${100 - percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`
+                fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`,
+                backgroundColor: `${currentViewName == 'end-yes' ? successColors.bottomRight : 'black'}`,
+                color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
               }">
             <Transition>
-              <p class="prio-chart__percentage" v-if="currentViewName == 'confirm'">{{ (percentageRightBottom).toFixed(0) }}%</p>
+              <p class="prio-chart__percentage"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'">{{ (percentageRightBottom).toFixed(0) }}%</p>
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label" v-if="currentViewName == 'confirm'" :style="{
+              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'" :style="{
                 fontSize: `${1 + 2 * (percentageRightBottom) / 100}rem`
               }">{{ 'label 4' }}</p>
             </Transition>
@@ -161,6 +169,14 @@ const currentViewName = useCurrentViewName()
   // get the special visualization percentages
   const percentageLeftTopVisualization = computed(() => valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100)
   const percentageRightTopVisualization = computed(() => valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100)
+
+
+  const successColors = {
+    topLeft: '#FF5527',
+    bottomLeft: '#08AA47',
+    topRight: '#7D28F9',
+    bottomRight: '#FFA633'
+  }
 </script>
 
 <style scoped lang="scss">
