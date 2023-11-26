@@ -43,3 +43,8 @@ export const useCurrentMobileView = () => useState("currentMobileView", () => "D
 // can either be Dateninput or Visualisierung
 
 export const useEndSliderValue = () => useState("endSliderValue", () => 0);
+
+export const visualizationPercentLeftTop = () => useState("visualizationPercentLeftTop", () => 25)
+export const visualizationPercentLeftBottom = () => useState("visualizationPercentLeftBottom", () => 25)
+export const visualizationPercentRightTop = () => useState("visualizationPercentRightTop", () => 25)
+export const visualizationPercentRightBottom = () => useState("visualizationPercentRightBottom", () => 25)

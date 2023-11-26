@@ -73,6 +73,34 @@
           />
         </div>
       </template>
+
+      <template #rightbottombar>
+        <div class="rightbottombar">
+          <h2>Ergebnis</h2>
+          <div class="resultbar-content">
+            <div class="d-flex justify-content-between flex-column">
+              <div>
+                <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
+                <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+              </div>
+              <div>
+                <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
+                <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+              </div>
+            </div>
+            <div class="transparent">
+              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
+              <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
+              <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
+              <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
+            </div>
+            <button class="result-button">Ergebnis Download</button>
+          </div>
+
+        </div>
+
+      </template>
     </NuxtLayout>
   </div>
 </template>
@@ -86,7 +114,12 @@ import {
   usePriochartBottomLeft,
   usePriochartTopLeft,
   usePriochartTopRight,
-  usePriochartBottomRight
+  usePriochartBottomRight,
+  useBirthdate,
+  visualizationPercentLeftTop,
+  visualizationPercentLeftBottom,
+  visualizationPercentRightTop,
+  visualizationPercentRightBottom
 } from "/composables/state";
 import { useCurrentViewName, usePersonalInfoSteps, useWeeklySleepHours } from "/composables/state"
 
@@ -130,10 +163,6 @@ const handleButtonClick = () => {
   if(currentViewName.value == 'welcome') {
     currentViewName.value = 'personal'
   }
-  // sleep view gets set in the buttons of personal info view
-  else if(currentViewName.value == 'sleep') {
-
-  }
 }
 
 import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";
@@ -143,6 +172,118 @@ import Slider from "primevue/slider";
 import { useEndSliderValue } from "/composables/state.js";
 
 const endslidervalue = useEndSliderValue()
+
+function calculateHoursAndWeeks(fromDate) {
+  console.log("got date: ", fromDate)
+  // Check if fromDate is a valid Date object
+  if (!(fromDate instanceof Date) || isNaN(fromDate)) {
+    return "Invalid date";
+  }
+
+  // Get the current date and time
+  const currentDate = new Date();
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = currentDate - fromDate;
+
+  // Calculate the hours and weeks
+  const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+  const weeksDifference = Math.floor(hoursDifference / (24 * 7));
+
+  return {
+    hours: hoursDifference,
+    weeks: weeksDifference
+  };
+}
+
+ const birthdate = useBirthdate()
+ const sleepHours = useWeeklySleepHours()
+ const timeForSelf = usePriochartBottomRight()
+
+
+const plannedTimeForOthers = computed(() => {
+  if(birthdate) {
+    const fromDate = new Date(birthdate.value)
+    const result = calculateHoursAndWeeks(fromDate)
+
+    // anteil der gesamten zeit * (1 - schlaf - zeit für dich)
+    const factorForOthers = 1 - ((24 * 7 - (sleepHours.value + timeForSelf.value)) / (24 * 7 * 100))
+    return {
+      hours: Math.floor(result.hours * factorForOthers),
+      weeks: Math.floor(result.weeks * factorForOthers)
+    }
+  }
+})
+
+const plannedTimeForYourself = computed(() => {
+  if(birthdate) {
+    const fromDate = new Date(birthdate.value)
+    const result = calculateHoursAndWeeks(fromDate)
+    console.log("result: ", result)
+    const factorForMe = ((24 * 7 - (sleepHours.value + timeForSelf.value)) / (24 * 7 * 100))
+    console.log("factorForMe", factorForMe)
+    return {
+      hours: Math.floor(result.hours * factorForMe),
+      weeks: Math.floor(result.weeks * factorForMe)
+    }
+  }
+})
+
+function calculateHoursAndWeeksUntilRetirement(birthdate) {
+  // Check if birthdate is a valid Date object
+  if (!(birthdate instanceof Date) || isNaN(birthdate)) {
+    return "Invalid date";
+  }
+
+  // Get the current date and time
+  const currentDate = new Date();
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = new Date(currentDate - birthdate);
+
+  // Calculate the age in years
+  const age = timeDifference.getUTCFullYear() - 1970;
+
+  // Check if the person is already 65 or older
+  if (age >= 65) {
+    return "You are already 65 or older!";
+  }
+
+  // Calculate the remaining time until 65 in milliseconds
+  const remainingTime = new Date(birthdate.getFullYear() + 65, birthdate.getMonth(), birthdate.getDate()) - currentDate;
+
+  // Calculate the remaining hours and weeks
+  const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+  const remainingWeeks = Math.floor(remainingHours / (24 * 7));
+
+  return {
+    hours: remainingHours,
+    weeks: remainingWeeks
+  };
+}
+
+  const timesUntilRetirement = computed(() => {
+    if(birthdate) {
+      const total = calculateHoursAndWeeksUntilRetirement(birthdate.value)
+
+      const factorTopLeft = visualizationPercentLeftTop().value / 100
+      const factorBottomLeft = visualizationPercentLeftBottom().value / 100
+      const factorTopRight = visualizationPercentRightTop().value / 100
+      const factorBottomRight = visualizationPercentRightBottom().value / 100
+
+      return {
+        topLeftWeeks: total.weeks * factorTopLeft,
+        bottomLeftWeeks: total.weeks * factorBottomLeft,
+        topRightWeeks: total.weeks * factorTopRight,
+        bottomRightWeeks: total.weeks * factorBottomRight,
+        topLeftHours: (Math.floor(total.hours * factorTopLeft / 100) * 100).toLocaleString('de-DE'),
+        bottomLeftHours: (Math.floor(total.hours * factorBottomLeft / 100) * 100).toLocaleString('de-DE'),
+        topRightHours: (Math.floor(total.hours * factorTopRight / 100) * 100).toLocaleString('de-DE'),
+        bottomRightHours: (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
+      }
+    }
+})
+
 </script>
 
 <style scoped>
@@ -168,5 +309,59 @@ const endslidervalue = useEndSliderValue()
 
   justify-self: center;
   align-self: end;
+}
+
+.rightbottombar {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.rightbottombar {
+  padding: .75rem;
+
+  h2 {
+    font-family: Cirka;
+    font-size: 1.85rem;
+    padding-bottom: .5rem;
+  }
+
+  .transparent {
+    h3, p {
+      opacity: 0.35;
+    }
+  }
+
+  h3, p {
+    font-family: Helvetica;
+    color: black;
+    font-weight: 300;
+    font-size: .75rem;
+    line-height: 135%;
+  }
+}
+
+.resultbar-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.result-button {
+  border: 1px solid black;
+  font-family: Cirka;
+  height: 100%;
+
 }
 </style>

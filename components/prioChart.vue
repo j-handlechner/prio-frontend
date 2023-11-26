@@ -112,7 +112,13 @@
 </template>
 
 <script setup>
-import {useCurrentViewName} from "/composables/state";
+import {
+  useCurrentViewName,
+  visualizationPercentLeftTop,
+  visualizationPercentLeftBottom,
+  visualizationPercentRightBottom,
+  visualizationPercentRightTop
+} from "/composables/state";
 const currentViewName = useCurrentViewName()
 
   const props = defineProps({
@@ -157,6 +163,9 @@ const currentViewName = useCurrentViewName()
   const valueRightUp = computed(() => expectedPerField.value + deviationRightUp.value - deviationLeftUp.value / 4 - deviationLeftBottom.value / 4 - deviationRightBottom.value / 4 - deviationRightUp.value / 4)
   const valueRightBottom = computed(() => expectedPerField.value + deviationRightBottom.value - deviationLeftUp.value / 4 - deviationLeftBottom.value / 4 - deviationRightUp.value / 4 - deviationRightBottom.value / 4)
 
+  // const priochartBottomRight = usePriochartBottomRight()
+  // priochartBottomRight.value = valueRightBottom;
+
   // get the total percentages
   const percentageLeft = computed(() => (valueLeftUp.value + valueLeftBottom.value) / (props.totalvalue) * 100)
   const percentageLeftTop = computed(() => valueLeftUp.value / props.totalvalue * 100)
@@ -170,6 +179,11 @@ const currentViewName = useCurrentViewName()
   const percentageLeftTopVisualization = computed(() => valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100)
   const percentageRightTopVisualization = computed(() => valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100)
 
+
+  visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
+  visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
+  visualizationPercentRightTop().value = percentageRightTopVisualization.value;
+  visualizationPercentRightBottom().value = 100 - percentageRightTopVisualization.value;
 
   const successColors = {
     topLeft: '#FF5527',

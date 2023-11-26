@@ -77,6 +77,7 @@
       </div>
 
       <slot name="layoutright" />
+      <slot name="rightbottombar" />
     </div >
   </div>
 </template>
