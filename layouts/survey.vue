@@ -116,26 +116,27 @@ $right-bar-width: 12.5vw;
 .layout__left {
   display: grid;
   flex-direction: column;
-  max-height: 100vh;
+  min-height: 100vh;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 10vh 60vh 30vh;
+  grid-template-rows: 10% 60% 30%;
   @media screen and (max-width: 950px) {
-    grid-template-rows: 10vh 65vh 25vh;
+    grid-template-rows: 10% 65% 25%;
   }
 }
 
 .layout__right {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10vh 1fr calc(v-bind('endslidervalue') * 0.01 * 20vh);
+  grid-template-rows: 10% 1fr calc(v-bind('endslidervalue') * 0.01 * 20%);
 
   @media screen and (max-width: 950px) {
-    grid-template-rows: 10dvh 1fr calc(v-bind('endslidervalue') * 0.01 * 30dvh);
+    grid-template-rows: 10% 1fr calc(v-bind('endslidervalue') * 0.01 * 30%);
   }
 
   transition: grid-template-rows 0s ease-in-out;
 
+  overflow: hidden;
   &.has-bottom-bar {
     grid-template-rows: 10vh 1fr 20vh;
   }
