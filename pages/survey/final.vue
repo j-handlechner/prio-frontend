@@ -48,7 +48,7 @@
             :totalvalue="7 * 24 - weeklySleepHours">
         </Chart>
 
-        <div class="draggable">
+        <div class="draggable" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
           <Slider
             :max="100"
             v-model="endslidervalue"
@@ -75,7 +75,7 @@
       </template>
 
       <template #rightbottombar>
-        <div class="rightbottombar">
+        <div class="rightbottombar" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
           <h2>Ergebnis</h2>
           <div class="resultbar-content">
             <div class="d-flex justify-content-between flex-column">
