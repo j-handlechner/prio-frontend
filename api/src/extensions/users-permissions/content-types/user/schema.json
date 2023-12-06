@@ -83,6 +83,9 @@
     "nationality": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "weeklySleepHours": {
+      "type": "integer"
     }
   }
 }

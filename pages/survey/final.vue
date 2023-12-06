@@ -284,6 +284,142 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
     }
 })
 
+const occupation = useOccupation()
+const gender = useGender()
+const nationality = useNationality()
+const { create, update } = useStrapi()
+const createRespondentRequestSent = ref(false)
+const respondentId = ref(null)
+const sliderAnswersRequestSent = ref(false)
+
+watchEffect(async () => {
+  if((currentViewName.value === 'end-yes' || currentViewName.value === 'end-no') && !createRespondentRequestSent.value) {
+    // create user including weekly sleep hours
+    try {
+      const createdUser = await create('respondents', {
+        birthdate: birthdate.value,
+        gender: gender.value.value,
+        occupancy: occupation.value,
+        nationality: nationality.value.name,
+        weeklySleepHours: weeklySleepHours.value
+    });
+    console.log('User created:', createdUser)
+    createRespondentRequestSent.value = true
+    respondentId.value = createdUser.data.id
+    console.log("Respondent Id: " + respondentId.value)
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+
+    if(createRespondentRequestSent.value && !sliderAnswersRequestSent.value) {
+      // create database entries for slider answers, connect to user
+      try {
+          const sliderAnswersWorkHours = await create('slider-user-answers', { 
+            answer: priochartDataTopLeft.value
+          })
+          const sliderAnswerWorkHoursId = sliderAnswersWorkHours.data.id
+          console.log(sliderAnswersWorkHours.data.id)
+          const connectWorkHoursAnswer = await update('slider-user-answers', sliderAnswersWorkHours.data.id, {
+            "respondent": {
+              "connect": [
+                {"id": respondentId.value}
+              ]
+            },
+            "slider_question": {
+              "connect": [
+                {"id": 1}
+              ]
+           }
+          })
+
+          const sliderAnswerFamilyTime = await create('slider-user-answers', {
+            respondent: respondentId.value,
+            slider_question: "2",
+            answer: priochartDataBottomLeft.value
+          })
+          const sliderAnswerFamilyTimeId = sliderAnswerFamilyTime.data.id
+          const connectFamilyTimeAnswer = await update('slider-user-answers', sliderAnswerFamilyTimeId, {
+            "respondent": {
+              "connect": [
+                {"id": respondentId.value}
+              ]
+            },
+            "slider_question": {
+              "connect": [
+                {"id": 2}
+              ]
+           }
+          })
+
+          const sliderAnswerChores = await create('slider-user-answers', {
+            respondent: respondentId.value,
+            slider_question: "3",
+            answer: priochartDataTopRight.value
+          })
+          const sliderAnswerChoresId = sliderAnswerChores.data.id
+          const connectChoresAnswer = await update('slider-user-answers', sliderAnswerChoresId, {
+            "respondent": {
+              "connect": [
+                {"id": respondentId.value}
+              ]
+            },
+            "slider_question": {
+              "connect": [
+                {"id": 3}
+              ]
+           }
+          })
+
+          const sliderAnswerTimeForSelf = await create('slider-user-answers', {
+            respondent: respondentId.value,
+            slider_question: "4",
+            answer: priochartDataBottomRight.value
+          })
+          const sliderAnswerTimeForSelfId = sliderAnswerTimeForSelf.data.id
+          const connectTimeForSelfAnswer = await update('slider-user-answers', sliderAnswerTimeForSelfId, {
+            "respondent": {
+              "connect": [
+                {"id": respondentId.value}
+              ]
+            },
+            "slider_question": {
+              "connect": [
+                {"id": 4}
+              ]
+           }
+          })
+
+          sliderAnswersRequestSent.value = true
+        }
+      catch (error) {
+        console.error('Error creating database entry for slider answers:', error);
+      }
+
+      if(createRespondentRequestSent.value && sliderAnswersRequestSent.value){
+        // create database entries for survey result, connect to user
+        try{
+          const surveyResultPostRequest = await create('survey-results', { 
+            Work: priochartDataTopLeft.value,
+            Various: priochartDataTopRight.value,
+            Others: priochartDataBottomLeft.value,
+            Self: priochartDataBottomRight.value
+          })
+
+          const connectWorkHoursAnswer = await update('survey-results', surveyResultPostRequest.data.id, {
+            "respondent": {
+              "connect": [
+                {"id": respondentId.value}
+              ]
+            }
+          })
+        } catch (error) {
+          console.error('Error creating database entry for survey result:', error);
+        }
+      }
+    }
+  }
+})
+
 </script>
 
 <style scoped>

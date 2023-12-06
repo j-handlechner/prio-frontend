@@ -12,22 +12,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
     "Work": {
-      "type": "decimal"
+      "type": "integer"
     },
     "Various": {
-      "type": "decimal"
+      "type": "integer"
     },
     "Others": {
-      "type": "decimal"
+      "type": "integer"
     },
     "Self": {
-      "type": "decimal"
+      "type": "integer"
+    },
+    "respondent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::respondent.respondent"
     }
   }
 }
