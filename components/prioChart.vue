@@ -1,5 +1,5 @@
 <template>
-  <div class="prio-chart__wrapper">
+  <div class="prio-chart__wrapper" id="">
         <div class="prio-chart__column" ref="columnLeft"
              :style="{
                 width: `${percentageLeft}%`

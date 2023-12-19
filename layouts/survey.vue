@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="layout__right" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
+    <div class="layout__right" id="" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
           <MobileViewSwitcher />

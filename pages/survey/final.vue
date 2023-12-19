@@ -1,7 +1,7 @@
 <!-- maxed out survey layout usage -->
 
 <template>
-  <div>
+  <div id="">
     <NuxtLayout name="survey"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
       <template #centersquare>
         <Transition mode="out-in">
@@ -40,15 +40,16 @@
       </template>
 
       <template #layoutright>
-        <Chart
-            :topleft="priochartDataTopLeft"
-            :topright="priochartDataBottomLeft"
-            :bottomleft="priochartDataTopRight"
-            :bottomright="priochartDataBottomRight"
-            :totalvalue="7 * 24 - weeklySleepHours">
-        </Chart>
 
-        <div class="draggable" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
+          <Chart
+              :topleft="priochartDataTopLeft"
+              :topright="priochartDataBottomLeft"
+              :bottomleft="priochartDataTopRight"
+              :bottomright="priochartDataBottomRight"
+              :totalvalue="7 * 24 - weeklySleepHours">
+          </Chart>
+
+          <div class="draggable" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
           <Slider
             :max="100"
             v-model="endslidervalue"
@@ -72,6 +73,7 @@
             }"
           />
         </div>
+
       </template>
 
       <template #rightbottombar>
@@ -95,13 +97,46 @@
               <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
               <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
             </div>
-            <button class="result-button">Ergebnis Download</button>
+            <button class="result-button" @click="handleDownloadClick()">Ergebnis Download</button>
           </div>
 
         </div>
-
       </template>
     </NuxtLayout>
+
+    <div class="printcontainer" id="element-to-print">
+      <Chart
+          :topleft="priochartDataTopLeft"
+          :topright="priochartDataBottomLeft"
+          :bottomleft="priochartDataTopRight"
+          :bottomright="priochartDataBottomRight"
+          :totalvalue="7 * 24 - weeklySleepHours">
+      </Chart>
+      <div class="rightbottombar" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
+        <h2>Ergebnis</h2>
+        <div class="resultbar-content">
+          <div class="d-flex justify-content-between flex-column">
+            <div>
+              <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
+              <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+            </div>
+            <div>
+              <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
+              <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+            </div>
+          </div>
+          <div class="transparent">
+            <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
+            <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
+            <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
+            <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
+            <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
+          </div>
+          <p>01</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -284,6 +319,12 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
     }
 })
 
+import html2pdf from 'html2pdf.js'
+
+const handleDownloadClick = async () => {
+  const element = document.getElementById('element-to-print');
+  html2pdf(element)
+}
 </script>
 
 <style scoped>
