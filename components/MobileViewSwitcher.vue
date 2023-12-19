@@ -1,5 +1,5 @@
 <template>
-  <div class="inputgroup has-corners" :class="currentPersonalInfoStep > 3 && 'has-visible-border'">
+  <div :class="`inputgroup has-corners mobileviewswitcher has-visible-border ${isVisualizationHighlightedCurrently ? 'visualizationHighlighted' : ''}`">
     <div class="selectbutton-wrapper">
       <SelectButton id="selectbtn" v-model="currentMobileView" :options="mobileViewSwitcherOptions" :pt="{
     root: {
@@ -33,6 +33,17 @@ import { useCurrentMobileView } from "/composables/state.js";
 const currentMobileView = useCurrentMobileView();
 const mobileViewSwitcherOptions = ref(['Dateneingabe', 'Visualisierung']);
 
+const props = defineProps(['isVisualisationHighlighted'])
+
+const isVisualizationHighlightedCurrently = computed(() => {
+  if(currentMobileView.value !== 'Visualisierung')  {
+    return props.isVisualisationHighlighted
+  } else {
+    return false
+  }
+})
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -56,5 +67,29 @@ const mobileViewSwitcherOptions = ref(['Dateneingabe', 'Visualisierung']);
 <style lang="scss">
 .p-selectbutton {
   height: 100%;
+}
+</style>
+
+<style lang="scss">
+.mobileviewswitcher.visualizationHighlighted {
+  .p-selectbutton .p-button:last-child {
+    animation-name: buttonHighlighted;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-direction: alternate;
+  }
+}
+
+@keyframes buttonHighlighted {
+  from {
+    background-color: white;
+    color: black;
+  }
+
+  to {
+    background-color: black;
+    color: white;
+  }
 }
 </style>

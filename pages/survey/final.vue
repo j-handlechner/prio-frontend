@@ -57,17 +57,16 @@
             :pt="{
               range: {
                 style: {
-                  backgroundColor: 'red'
+                  backgroundColor: 'transparent'
                 }
               },
               handle: {
                 style: {
-                  backgroundColor: 'white',
+                  backgroundColor: 'transparent',
                   borderRadius: 0,
                   borderWidth: 1,
-                  rotate: '45deg',
-                  borderColor: 'white',
-                  scale: 2
+                  borderColor: 'transparent',
+                  transform: 'scale(30, 5) rotate(45deg)'
                  }
               }
             }"
@@ -76,7 +75,7 @@
       </template>
 
       <template #rightbottombar>
-        <div class="rightbottombar" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
+        <div :class="`rightbottombar`" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
           <h2>Ergebnis</h2>
           <div class="resultbar-content">
             <div class="d-flex justify-content-between flex-column">
@@ -104,37 +103,38 @@
       </template>
     </NuxtLayout>
 
-    <div class="printcontainer" id="element-to-print">
-      <Chart
-          :topleft="priochartDataTopLeft"
-          :topright="priochartDataBottomLeft"
-          :bottomleft="priochartDataTopRight"
-          :bottomright="priochartDataBottomRight"
-          :totalvalue="7 * 24 - weeklySleepHours">
-      </Chart>
-      <div class="rightbottombar" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
-        <h2>Ergebnis</h2>
-        <div class="resultbar-content">
-          <div class="d-flex justify-content-between flex-column">
-            <div>
-              <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
-              <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+    <div class="printcontainer-wrapper">
+      <div class="printcontainer" id="element-to-print">
+        <Chart
+            :topleft="priochartDataTopLeft"
+            :topright="priochartDataBottomLeft"
+            :bottomleft="priochartDataTopRight"
+            :bottomright="priochartDataBottomRight"
+            :totalvalue="7 * 24 - weeklySleepHours">
+        </Chart>
+        <div class="rightbottombar" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
+          <h2>Ergebnis</h2>
+          <div class="resultbar-content">
+            <div class="d-flex justify-content-between flex-column">
+              <div>
+                <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
+                <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+              </div>
+              <div>
+                <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
+                <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+              </div>
             </div>
-            <div>
-              <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
-              <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+            <div class="transparent">
+              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
+              <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
+              <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
+              <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
             </div>
+            <p class="print-identificationnnumber">01</p>
           </div>
-          <div class="transparent">
-            <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
-            <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
-            <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
-            <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
-            <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
-          </div>
-          <p>01</p>
         </div>
-
       </div>
     </div>
   </div>
@@ -487,6 +487,11 @@ watchEffect(async () => {
   grid-column: 1 / span 1;
   grid-row: 2 / span 2;
 
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+
   justify-self: center;
   align-self: end;
 }
@@ -543,6 +548,80 @@ watchEffect(async () => {
   border: 1px solid black;
   font-family: Cirka;
   height: 100%;
-
 }
+</style>
+
+<style lang="scss">
+.print-identificationnnumber {
+  font-size: 5rem !important;
+  font-family: 'Cirka' !important;
+  line-height: 4rem !important;
+  text-align: right;
+  transform: translateY(24px) translateX(10px) !important;
+  padding-bottom: 6.35mm;
+  margin-top: -21.166666667mm;
+}
+
+.printcontainer .prio-chart__block p {
+  color: black !important;
+}
+
+.printcontainer .prio-chart__block {
+  border-color: black !important;
+}
+
+.printcontainer-wrapper {
+  position: absolute;
+  top: -10000px;
+  left: -100000px;
+}
+.printcontainer {
+  .prio-chart__corner {
+    --dimension: 5px;
+    width: var(--dimension);
+    height: var(--dimension);
+    position: absolute;
+
+    &.top-left {
+      border-top: var(--dimension) solid black;
+      border-right: var(--dimension) solid transparent;
+      top: 0;
+      left: 0;
+    }
+
+    &.top-right {
+      border-top: var(--dimension) solid black;
+      border-left: var(--dimension) solid transparent;
+      top: 0;
+      right: 0;
+    }
+
+    &.bottom-left {
+      border-bottom: var(--dimension) solid black;
+      border-right: var(--dimension) solid transparent;
+      bottom: 0;
+      left: 0;
+    }
+
+    &.bottom-right {
+      border-bottom: var(--dimension) solid black;
+      border-left: var(--dimension) solid transparent;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.printcontainer {
+  padding-bottom: 20mm;
+  .prio-chart__percentage {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+.p-slider-handle:focus {
+  box-shadow: none!important;
+  border-color: transparent;
+}
+
 </style>

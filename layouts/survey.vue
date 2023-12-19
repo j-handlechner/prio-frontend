@@ -1,9 +1,9 @@
 <template>
   <div class="layout-wrapper">
-    <div class="layout__left" v-if="!isMobile() || currentMobileView == 'Dateneingabe'">
+    <div class="layout__left" v-if="!isCurrentlyMobile || currentMobileView == 'Dateneingabe'">
       <div class="left__top">
         <div class="logo-left-spacer has-corners">
-          <MobileViewSwitcher />
+          <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
           <div class="prio-chart__corner bottom-right"></div>
         </div>
         <div class="logo has-corners">
@@ -63,11 +63,10 @@
         </div>
       </div>
     </div>
-    <div class="layout__right" id="" v-if="!isMobile() || currentMobileView == 'Visualisierung'">
+    <div :class="`layout__right ${ currentViewName == 'end-yes' ||currentViewName=='end-no' ? ' animate-grid-bottombar' : '' }`" id="" v-if="!isCurrentlyMobile || currentMobileView == 'Visualisierung'" >
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
-          <MobileViewSwitcher />
-          <div class="prio-chart__corner bottom-right"></div>
+          <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
         </div>
         <div class="logo-right has-corners">
           prio
@@ -83,7 +82,7 @@
 </template>
 
 <script setup>
-import {useCurrentMobileView} from "/composables/state.js";
+import {useCurrentMobileView } from "/composables/state.js";
 const currentMobileView = useCurrentMobileView();
 
 watchEffect(() => {
@@ -94,7 +93,14 @@ const isMobile = () => {
   return window.matchMedia("(max-width: 950px)").matches
 }
 
-import { useEndSliderValue } from "/composables/state.js";
+const isCurrentlyMobile = ref(isMobile())
+window.addEventListener('resize', () => {
+  isCurrentlyMobile.value = isMobile()
+})
+
+import { useEndSliderValue, useCurrentViewName } from "/composables/state.js";
+
+const currentViewName = useCurrentViewName()
 const endslidervalue = useEndSliderValue()
 
 </script>
@@ -119,22 +125,28 @@ $right-bar-width: 12.5vw;
   min-height: 100vh;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 10% 60% 30%;
+  grid-template-rows: 10vh 60% 30%;
   @media screen and (max-width: 950px) {
-    grid-template-rows: 10% 65% 25%;
+    grid-template-rows: 10dvh 65% 25%;
   }
 }
 
 .layout__right {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10% 1fr calc(v-bind('endslidervalue') * 0.01 * 20%);
+  grid-template-rows: 10vh 1fr 0;
+  height: 100vh;
 
-  @media screen and (max-width: 950px) {
-    grid-template-rows: 10% 1fr calc(v-bind('endslidervalue') * 0.01 * 30%);
+  &.animate-grid-bottombar {
+    grid-template-rows: 10vh 1fr 22dvh;
   }
 
-  transition: grid-template-rows 0s ease-in-out;
+  @media screen and (max-width: 950px) {
+    grid-template-rows: 10dvh 1fr 0;
+
+  }
+
+  transition: grid-template-rows 1s ease-in-out;
 
   overflow: hidden;
   &.has-bottom-bar {
@@ -410,7 +422,7 @@ $right-bar-width: 12.5vw;
 }
 
 @media screen and (min-width: 950px) {
-  .logo-right {
+  .logo-right, .logo-right-spacer {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
