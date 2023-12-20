@@ -1,9 +1,10 @@
 <template>
   <div>
     <h1>Teil mal dein Leben durch vier!</h1>
-    <p>
+    <p v-if="dataFetched">
       {{ welcomeText.fetchedData.attributes.welcomeText }}
     </p>
+    <p v-else>Loading...</p>
   </div>
 </template>
 

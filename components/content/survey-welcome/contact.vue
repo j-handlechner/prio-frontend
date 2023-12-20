@@ -1,16 +1,18 @@
 <template>
   <div class="wrapper">
-    <p>
+    <p v-if="dataFetched">
       {{ contactInformation.fetchedData.attributes.contactInformationText }}
     </p>
-    <div>
-      <a>
+    <p v-else>Loading...</p>
+    <div v-if="dataFetched">
+      <a v-if="contactInformation.fetchedData.attributes.email" :href="'mailto:' + contactInformation.fetchedData.attributes.email">
         {{ contactInformation.fetchedData.attributes.email }}
       </a>
-      <a>
+      <a v-if="contactInformation.fetchedData.attributes.instagram" :href="'https://www.instagram.com/' + contactInformation.fetchedData.attributes.instagram" target="_blank">
         {{ contactInformation.fetchedData.attributes.instagram }}
       </a>
     </div>
+    <p v-else>Loading...</p>
   </div>
 </template>
 
