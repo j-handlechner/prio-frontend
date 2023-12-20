@@ -1,9 +1,15 @@
 <template>
   <div class="wrapper">
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+    <p>
+      {{ contactInformation.fetchedData.attributes.contactInformationText }}
+    </p>
     <div>
-      <a>@someone</a>
-      <a>@something</a>
+      <a>
+        {{ contactInformation.fetchedData.attributes.email }}
+      </a>
+      <a>
+        {{ contactInformation.fetchedData.attributes.instagram }}
+      </a>
     </div>
   </div>
 </template>
@@ -23,3 +29,21 @@
   }
 }
 </style>
+
+<script setup>
+import { onBeforeMount } from 'vue';
+const { find } = useStrapi()
+const contactInformation = reactive({fetchedData: null});
+const dataFetched = ref(false)
+
+onBeforeMount(async () => {
+  try {
+    const { data } = await find('custom-content')
+    contactInformation.fetchedData = data
+    dataFetched.value = true
+    console.log(contactInformation.fetchedData.attributes)
+  } catch (err) {
+    console.error('Error fetching contact information :', err)
+  }
+});
+</script>
