@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "custom_contents",
+  "info": {
+    "singularName": "custom-content",
+    "pluralName": "custom-contents",
+    "displayName": "CustomContent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "welcomeText": {
+      "type": "text"
+    },
+    "contactInformationText": {
+      "type": "text"
+    },
+    "email": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    }
+  }
+}

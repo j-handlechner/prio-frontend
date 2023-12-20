@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>Teil mal dein Leben durch vier!</h1>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
+    <p>
+      {{ welcomeText.fetchedData.attributes.welcomeText }}
+    </p>
   </div>
 </template>
 
@@ -34,3 +36,20 @@
     font-size: 0.75rem;
   }
 </style>
+
+<script setup>
+import { onBeforeMount } from 'vue';
+const { find } = useStrapi()
+const welcomeText = reactive({fetchedData: null});
+const dataFetched = ref(false)
+
+onBeforeMount(async () => {
+  try {
+    const { data } = await find('custom-content')
+    welcomeText.fetchedData = data
+    dataFetched.value = true
+  } catch (err) {
+    console.error('Error fetching questions:', err)
+  }
+});
+</script>
