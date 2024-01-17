@@ -9,7 +9,7 @@ const { createCoreRouter } = require('@strapi/strapi').factories;
 //module.exports = createCoreRouter('api::survey-result.survey-result');
 module.exports = createCoreRouter('api::survey-result.survey-result', {
     prefix: '',
-    only: ['find', 'findOne'],
+    only: ['find', 'findOne', 'create', 'update'],
     except: [],
     config: {
       find: {

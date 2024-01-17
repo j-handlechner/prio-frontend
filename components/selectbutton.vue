@@ -1,10 +1,10 @@
 <template>
   <div class="selectbutton-wrapper">
-    <label for="selectbtn">
+    <label for="selectbtn" v-if="showLabel">
       <slot name="label"></slot>
     </label>
 
-    <SelectButton id="selectbtn" v-model="value" :options="options" :pt="{
+    <SelectButton id="selectbtn" v-model="props.modelValue" :options="options" :pt="{
     root: {
       style: {
         borderRadius: 0,
@@ -19,20 +19,34 @@
     }),
     label: {
       style: {
-        fontFamily: 'Cirka',
-        fontWeight: 200,
-        fontSize: '1rem'
+        fontFamily: 'Helvetica',
+        fontWeight: 300,
+        fontSize: '.875rem'
       }
     }
-  }"/>
+  }"
+  @update:modelValue="newValue => updateModelValue(newValue)"
+    />
   </div>
 
 </template>
 
 <script setup>
 import SelectButton from 'primevue/selectbutton';
-const value = ref('Off');
-const options = ref(['Studierender', 'Erwerbstätig']);
+const value = ref(null);
+const defaultOptions = ref(['Studierender', 'Erwerbstätig']);
+const props = defineProps(['modelValue', 'showlabel', 'options'])
+
+const showLabel = computed(() => props.showlabel !== undefined ? props.showlabel : true);
+const options = computed(() => props.options !== undefined ? props.options : defaultOptions.value);
+
+
+const emit = defineEmits(["updateModelValue"])
+
+function updateModelValue(newValue) {
+  console.log("emitting event")
+  emit("updateModelValue", newValue)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -40,13 +54,17 @@ const options = ref(['Studierender', 'Erwerbstätig']);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
 }
 
 label {
   font-size: 1rem;
   font-family: Cirka;
   min-width: 13ch;
+  @media screen and (max-width: 1250px) {
+    min-width: 0;
+    min-width: 10ch;
+  }
+  padding-right: 2rem;
 }
 </style>
 

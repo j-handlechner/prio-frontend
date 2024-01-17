@@ -107,6 +107,10 @@ $right-bar-width: 12.5vw;
 
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 60vh 30vh;
+
+  @media screen and (max-width: 950px) {
+    grid-template-rows: 10dvh 65dvh 25dvh;
+  }
 }
 
 .left__top {
@@ -139,6 +143,12 @@ $right-bar-width: 12.5vw;
   h1 {
     font-family: Cirka;
     font-size: 4.4rem;
+    @media screen and (max-width: 1250px) {
+      font-size: 4vw;
+    }
+    @media screen and (max-width: 950px) {
+      font-size: min(14vw, 4rem);
+    }
     line-height: 115%;
   }
 
@@ -329,5 +339,15 @@ $right-bar-width: 12.5vw;
   }
 }
 
+@media screen and (max-width: 1250px) {
+  .layout__left {
+    width: 65vw !important;
+    background-color: red;
+  }
+
+  .layout__right {
+    width: 35vw;
+  }
+}
 
 </style>

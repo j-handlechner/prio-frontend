@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "respondents",
+  "info": {
+    "singularName": "respondent",
+    "pluralName": "respondents",
+    "displayName": "Respondent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "occupancy": {
+      "type": "string",
+      "required": true
+    },
+    "identificationNumber": {
+      "type": "uid"
+    },
+    "weeklySleepHours": {
+      "type": "integer",
+      "required": true
+    },
+    "birthdate": {
+      "type": "string",
+      "required": true
+    },
+    "nationality": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

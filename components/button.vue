@@ -1,16 +1,24 @@
 <template>
   <div>
-      <button @click="() => buttonClicked()"><slot></slot></button>
+      <button @click="() => buttonClicked()" :disabled="isDisabled ? true : null" :class="`${isDisabled ? 'disabled' : ''}`">
+        <slot></slot>
+        <div class="prio-chart__corner top-right"></div>
+        <div class="prio-chart__corner top-left"></div>
+        <div class="prio-chart__corner bottom-right"></div>
+        <div class="prio-chart__corner bottom-left"></div>
+      </button>
   </div>
 </template>
 
 <script setup>
-const emit = defineEmits(["buttonClicked"])
+const emit = defineEmits(["buttonclicked"])
+const props = defineProps(["disabled"])
+
+const isDisabled = computed(() => props.disabled)
 
 function buttonClicked() {
   console.log('button (not component) clicked')
-  console.log('event buttonClicked emitted')
-  emit("buttonClicked", null)
+  emit("buttonclicked", 1)
 }
 
 </script>
@@ -21,16 +29,34 @@ function buttonClicked() {
 button {
   padding: 1.5rem 2rem;
   font-size: 1.5rem;
+  @media screen and (max-width: 1250px) {
+    font-size: 3vw;
+  }
+  @media screen and (max-width: 950px) {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   flex-grow: 1;
   width: 100%;
   transition: 0.35s ease-in-out;
   display: flex;
-  gap: 2rem;
   justify-content: start;
 
   @include cirkaLight();
   font-family: "Cirka";
   font-weight: 200;
+
+  position: relative;
+
+  border-left: .5px solid black;
+  border-right: .5px solid black;
+
+  &.disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
 
   &:hover {
     background-color: black;

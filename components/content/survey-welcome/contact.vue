@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
     <div>
       <a>@someone</a>
@@ -9,7 +9,7 @@
 </template>
 
 <style scoped lang="scss">
-div {
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

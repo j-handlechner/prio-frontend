@@ -1,28 +1,18 @@
 <template>
-  <div>
+  <div class="wrapper">
     <label :for="props.name"><slot name="label"></slot></label>
-<!--    <TreeSelect :id="props.name" v-model="selectedValue" :options="nodes" placeholder="Select Item" class="select" :pt="{-->
-<!--      root: {-->
-<!--        style: {-->
-<!--          borderRadius: 0,-->
-<!--          borderColor: 'black',-->
-<!--          fontFamily: 'Cirka',-->
-<!--          fontWeight: 200,-->
-<!--          fontSize: '1.25rem'-->
-<!--        }-->
-<!--      }-->
-<!--    }" />-->
-      <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-14rem" :pt="{
+      <Dropdown v-model="props.modelValue" :options="selectOptions" optionLabel="name" placeholder="Select an option" class="w-full md:w-14rem" :pt="{
         root: {
           style: {
             borderRadius: 0,
             borderColor: 'black',
-            fontFamily: 'Cirka',
-            fontWeight: 200,
-            fontSize: '1rem'
+            fontFamily: 'Helvetica',
+            fontWeight: 300,
+            fontSize: '.875rem'
           }
         }
       }"
+                @update:modelValue="newValue => updateModelValue(newValue)"
       />
   </div>
 </template>
@@ -30,33 +20,60 @@
 <script setup>
 import TreeSelect from 'primevue/treeselect';
 import Dropdown from 'primevue/dropdown';
-
-const selectedCity = ref();
-const cities = ref([
-  { name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
-]);
+import { countries, countriesGerman } from './countries.js';
 
 const props = defineProps({
-  name: String
+  name: String,
+  modelValue: String
 })
-const selectedValue = ref(null)
 
-const nodes = ref([
-  {
-    key: "opt1",
-    label: "hello1",
-    data: "hello1value"
-  },
-  {
-    key: "opt2",
-    label: "hello2",
-    data: "hello2value"
+let selectOptions = ref([]);
+
+const genderOptions = [
+  { name: 'Weiblich', value: 'weiblich' },
+  { name: 'Männlich', value: 'männlich' },
+  { name: 'Nicht-binär/nicht-konform', value: 'nicht-binär' },
+  { name: 'Keine Angabe', value: 'keine' }
+]
+
+countriesGerman.sort((a, b) => {
+  let nameA = a.name.toLowerCase(),
+      nameB = b.name.toLowerCase();
+
+  if (nameA < nameB) {
+    return -1;
   }
-])
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+});
+
+// go through all elements again and add elements with order-property set
+let countriesToAddBack = []
+countriesGerman.forEach((element, index) => {
+  if(element.hasOwnProperty('prio')) {
+    countriesGerman.splice(index, 1);
+    countriesToAddBack.push(element)
+  }
+})
+
+countriesToAddBack.forEach((c) => {
+  countriesGerman.unshift(c)
+})
+
+watchEffect(() => {
+  if (props.name == 'gender') {
+    selectOptions.value = genderOptions;
+  } else if (props.name == 'nationality') {
+    selectOptions.value = countriesGerman;
+  }
+});
+
+const emit = defineEmits(["updateModelValue"])
+function updateModelValue(newValue) {
+  emit("updateModelValue", newValue)
+}
 </script>
 
 <style scoped lang="scss">
@@ -64,9 +81,8 @@ const nodes = ref([
     width: 100%;
   }
 
-  div {
+  .wrapper {
     display: flex;
-    gap: 2rem;
     align-items: center;
     justify-content: space-between;
   }
@@ -92,6 +108,15 @@ label {
   font-family: Cirka;
   font-size: 1rem;
   min-width: 13ch;
+  @media screen and (max-width: 1250px) {
+    min-width: 0;
+    min-width: 10ch;
+  }
+}
+
+.p-dropdown .p-dropdown-label {
+  font-size: .875rem;
+  font-family: Helvetica;
 }
 
 </style>

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "slider-user-answer",
     "pluralName": "slider-user-answers",
-    "displayName": "SliderUserAnswer"
+    "displayName": "SliderUserAnswer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,13 +17,13 @@
       "relation": "oneToOne",
       "target": "api::slider-question.slider-question"
     },
-    "users_permissions_user": {
+    "respondent": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::respondent.respondent"
     },
     "answer": {
-      "type": "biginteger"
+      "type": "integer"
     }
   }
 }

@@ -9,7 +9,7 @@ const { createCoreRouter } = require('@strapi/strapi').factories;
 // module.exports = createCoreRouter('api::slider-user-answer.slider-user-answer');
 module.exports = createCoreRouter('api::slider-user-answer.slider-user-answer', {
     prefix: '',
-    only: ['find', 'findOne'],
+    only: ['find', 'findOne', 'create', 'update'],
     except: [],
     config: {
       find: {

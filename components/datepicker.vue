@@ -2,7 +2,7 @@
   <div>
     <label for="calendar"><slot name="label"></slot></label>
     <Calendar id="calendar"
-              :modelValue="pickedDate"
+              :modelValue="props.modelValue"
               @update:modelValue="newValue => updateModelValue(newValue)"/>
   </div>
 </template>
@@ -10,13 +10,10 @@
 <script setup>
   import Calendar from 'primevue/calendar'
   const date = ref(null)
-
-  const pickedDate = ref(null)
   const props = defineProps(["modelValue"])
   const emit = defineEmits(["updateModelValue"])
 
   function updateModelValue(newValue) {
-    pickedDate.value = newValue
     emit("updateModelValue", newValue)
   }
 </script>
@@ -27,10 +24,10 @@ div {
   font-family: Cirka;
 
   align-items: center;
-  gap: 2rem;
   justify-content: space-between;
   label {
     font-size: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -47,5 +44,22 @@ span.p-calendar {
     border-radius: 0px;
     border: 1px solid black;
   }
+}
+
+.p-calendar .p-inputtext {
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: .875rem;
+}
+
+.p-datepicker table th,
+.p-datepicker table td {
+  font-size: .75rem;
+  padding: 0.2rem;
+}
+
+.p-datepicker table td > span {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 </style>
