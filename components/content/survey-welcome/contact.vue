@@ -37,7 +37,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  font-size: 0.75rem;
+  font-size: max(.75rem, .75vw);
 
   a {
     color: black;

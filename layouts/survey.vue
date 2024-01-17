@@ -139,6 +139,11 @@ $right-bar-width: 12.5vw;
 
   &.animate-grid-bottombar {
     grid-template-rows: 10vh 1fr 22dvh;
+
+    @media screen and (min-width: 2000px) {
+      grid-template-rows: 10vh 1fr min(22dvh, 9vmax);
+
+    }
   }
 
   @media screen and (max-width: 950px) {
@@ -167,7 +172,7 @@ $right-bar-width: 12.5vw;
     min-width: $right-bar-width;
     text-align: center;
     text-transform: uppercase;
-    font-size: 2.25rem;
+    font-size: max(2.25rem, 2vw);
     border-left: 1px solid black;
     border-right: 1px solid black;
 
@@ -187,8 +192,8 @@ $right-bar-width: 12.5vw;
 
   h1 {
     font-family: Cirka;
-    font-size: 4.4rem;
-    @media screen and (max-width: 1250px) {
+    font-size: max(4.4rem, 4vw);
+    @media screen and (max-width: 1300px) {
       font-size: 4vw;
     }
     @media screen and (max-width: 950px) {
@@ -202,7 +207,7 @@ $right-bar-width: 12.5vw;
   }
 
   p {
-    font-size: 0.75rem;
+    font-size: max(.75rem, .75vw);
   }
 
 }
@@ -226,7 +231,7 @@ $right-bar-width: 12.5vw;
     }
 
     &.text-bottom {
-      font-size: 0.75rem;
+      font-size: max(.75rem, .75vw);
       padding: 1rem;
     }
   }
@@ -240,7 +245,15 @@ $right-bar-width: 12.5vw;
 .left-spacing-bar {
   width: $side-spacing;
 
+  @media screen and (max-width: 1300px) {
+    width: 0;
+  }
+
   @media screen and (max-width: 1250px) {
+    width: 0;
+  }
+
+  @media screen and (max-aspect-ratio: 1404/1009) {
     width: 0;
   }
 }
@@ -282,7 +295,7 @@ $right-bar-width: 12.5vw;
       button {
         font-size: 2rem;
         font-family: Cirka;
-        font-size: 3.5rem;
+        font-size: max(3.5rem, 2.75vw);
         text-transform: capitalize;
         text-align: left;
         padding: 0.75rem 1rem 0.5rem;
@@ -295,7 +308,7 @@ $right-bar-width: 12.5vw;
         p {
           font-size: 2rem;
           font-family: Cirka;
-          font-size: 3.5rem;
+          font-size: max(3.5rem, 2.75vw);
           line-height: 125%;
         }
 
@@ -320,7 +333,7 @@ $right-bar-width: 12.5vw;
       border-left: 1px solid black;
       height: 100%;
       padding: 1rem;
-      font-size: 0.75rem;
+      font-size: max(.75rem, .75vw);
       border-right: .5px solid black;
 
       a {
@@ -357,7 +370,7 @@ $right-bar-width: 12.5vw;
       gap: 1rem;
 
       p {
-        font-size: 0.75rem;
+        font-size: max(.75rem, .75vw);
         &:last-of-type {
           font-size: 5rem;
           font-family: Cirka;
@@ -411,7 +424,7 @@ $right-bar-width: 12.5vw;
   }
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1300px) {
   .layout__left {
     width: 60vw;
   }

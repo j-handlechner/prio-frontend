@@ -14,8 +14,8 @@
 
   h1 {
     font-family: Cirka;
-    font-size: 4.4rem;
-    @media screen and (max-width: 1250px) {
+    font-size: max(4.4rem, 4vw);
+    @media screen and (max-width: 1300px) {
       font-size: 4vw;
     }
     @media screen and (max-width: 950px) {
@@ -29,6 +29,6 @@
   }
 
   p {
-    font-size: 0.75rem;
+    font-size: max(.75rem, .75vw);
   }
 </style>

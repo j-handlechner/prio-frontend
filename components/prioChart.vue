@@ -7,7 +7,7 @@
           <div class="prio-chart__block" ref="blockLeftUp"
                :style="{
                 height: `${percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageLeftTop) / 100}rem`,
+                fontSize: `${isForPrint ? 2.5 + 4.5 * (percentageLeftTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftTop) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftTop) / 100)) + 'vw)' }`,
                 backgroundColor: `${currentViewName == 'end-yes' ? successColors.topLeft : 'black'}`,
                 color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
 
@@ -19,7 +19,7 @@
             <Transition>
               <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
-                fontSize: `${1 + 2 * (percentageLeftTop) / 100}rem`
+                fontSize: `${isForPrint ? 1 + 2 * (percentageLeftTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftTop) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftTop) / 100)) + 'vw)' }`
               }"
 
               >{{ 'Arbeit' }}</p>
@@ -33,7 +33,7 @@
           <div class="prio-chart__block" ref="blockLeftDown"
                :style="{
                 height: `${100 - percentageLeftTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`,
+                fontSize: `${isForPrint ? 2.5 + 4.5 * (percentageLeftBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftBottom) / 100)) + 'vw)' }`,
                 backgroundColor: `${currentViewName == 'end-yes' ? successColors.bottomLeft : 'black'}`,
                 color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
               }">
@@ -44,7 +44,8 @@
             <Transition>
               <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
-                fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
+                fontSize: `${isForPrint ? 1 + 2 * (percentageLeftBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftBottom) / 100)) + 'vw)' }`
+
               }"
               >{{ 'Andere' }}</p>
             </Transition>
@@ -63,7 +64,7 @@
           <div class="prio-chart__block" ref="blockRightUp"
                :style="{
                 height: `${percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageRightTop) / 100}rem`,
+                fontSize: `${isForPrint ? 2.5 + 4.5 * (percentageRightTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightTop) / 100)) + 'rem, ' + (1 + (8 * (percentageRightTop) / 100)) + 'vw)' }`,
                 backgroundColor: `${currentViewName == 'end-yes' ? successColors.topRight : 'black'}`,
                 color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
               }">
@@ -74,7 +75,7 @@
             <Transition>
               <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
-                fontSize: `${1 + 2 * (percentageRightTop) / 100}rem`
+                    fontSize: `${isForPrint ? 1 + 2 * (percentageRightTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightTop) / 100)) + 'rem, ' + (1 + (8 * (percentageRightTop) / 100)) + 'vw)' }`
               }"
               >{{ 'Anderes' }}</p>
             </Transition>
@@ -87,7 +88,7 @@
           <div class="prio-chart__block" ref="blockRightDown"
                :style="{
                 height: `${100 - percentageRightTopVisualization}%`,
-                fontSize: `${2.5 + 4.5 * (percentageRightBottom) / 100}rem`,
+                fontSize: `${isForPrint ? 2.5 + 4.5 * (percentageRightBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageRightBottom) / 100)) + 'vw)' }`,
                 backgroundColor: `${currentViewName == 'end-yes' ? successColors.bottomRight : 'black'}`,
                 color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
               }">
@@ -97,7 +98,7 @@
 
             <Transition>
               <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'" :style="{
-                fontSize: `${1 + 2 * (percentageRightBottom) / 100}rem`
+                fontSize: `${isForPrint ? 1 + 2 * (percentageRightBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageRightBottom) / 100)) + 'vw)' }`
               }">{{ 'Ich' }}</p>
             </Transition>
 
@@ -126,7 +127,11 @@ const currentViewName = useCurrentViewName()
     topright: Number,
     bottomleft: Number,
     bottomright: Number,
-    totalvalue: Number
+    totalvalue: Number,
+    isForPrint: {
+      type: Boolean,
+      default: true
+    }
   })
 
   const blockLeftUp = ref(null)

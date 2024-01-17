@@ -2,7 +2,7 @@
   <Transition>
     <div v-if="identificationNumber !== 0">
       <p class="identificationnum">{{ identificationNumber }}*</p>
-      <p class="text-bottom">identifikations&shy;nummer</p>
+      <p class="text-bottom">Identifikations&shy;nummer</p>
     </div>
   </Transition>
 
@@ -31,7 +31,7 @@ div {
   p {
     &.identificationnum {
       font-family: Cirka;
-      font-size: 3.5rem;
+      font-size: max(3.5rem, 2.75vw);
       text-align: center;
       padding: 1rem;
 
@@ -42,7 +42,7 @@ div {
     }
 
     &.text-bottom {
-      font-size: 0.75rem;
+      font-size: max(.75rem, .75vw);
       padding: 1rem;
     }
   }

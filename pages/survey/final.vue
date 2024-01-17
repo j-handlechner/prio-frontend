@@ -562,7 +562,7 @@ watchEffect(async () => {
 
   h2 {
     font-family: Cirka;
-    font-size: 1.85rem;
+    font-size: max(1.85rem, 1.5vw);
     padding-bottom: .5rem;
   }
 
@@ -604,6 +604,7 @@ watchEffect(async () => {
   border: 1px solid black;
   font-family: Cirka;
   height: 100%;
+  font-size: max(1.25rem, .85vw);
 }
 </style>
 

@@ -32,8 +32,8 @@ const nationality = useNationality()
   p {
     font-size: 2rem;
     font-family: Cirka;
-    font-size: 2.5rem;
-    @media screen and (max-width: 1250px) {
+    font-size: max(2.5rem, 2vw);
+    @media screen and (max-width: 1300px) {
       font-size: 3vw;
     }
     @media screen and (max-width: 950px) {

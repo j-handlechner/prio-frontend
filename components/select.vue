@@ -8,7 +8,7 @@
             borderColor: 'black',
             fontFamily: 'Helvetica',
             fontWeight: 300,
-            fontSize: '.875rem'
+            fontSize: '0.875rem.875rem'
           }
         }
       }"
@@ -106,16 +106,16 @@ function updateModelValue(newValue) {
 
 label {
   font-family: Cirka;
-  font-size: 1rem;
+  font-size: max(1rem, .85vw);
   min-width: 13ch;
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1300px) {
     min-width: 0;
     min-width: 10ch;
   }
 }
 
 .p-dropdown .p-dropdown-label {
-  font-size: .875rem;
+  font-size: max(.875rem, .7vw);
   font-family: Helvetica;
 }
 

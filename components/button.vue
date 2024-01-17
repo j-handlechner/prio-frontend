@@ -29,7 +29,7 @@ function buttonClicked() {
 button {
   padding: 1.5rem 2rem;
   font-size: 1.5rem;
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1300px) {
     font-size: 3vw;
   }
   @media screen and (max-width: 950px) {

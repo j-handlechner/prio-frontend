@@ -21,7 +21,7 @@
       style: {
         fontFamily: 'Helvetica',
         fontWeight: 300,
-        fontSize: '.875rem'
+        fontSize: 'max(.875rem, .7vw)'
       }
     }
   }"
@@ -57,10 +57,10 @@ function updateModelValue(newValue) {
 }
 
 label {
-  font-size: 1rem;
+  font-size: max(1rem, .85vw);
   font-family: Cirka;
   min-width: 13ch;
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1300px) {
     min-width: 0;
     min-width: 10ch;
   }

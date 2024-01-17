@@ -51,17 +51,24 @@ const weeklySleepHours = useWeeklySleepHours()
 let previousValue = 0
 
 function updateModelValue(newValue) {
-  if(priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value < 24 * 7 - weeklySleepHours.value) {
-    value.value = newValue
+  console.log({
+    topleft: priochartDataTopLeft.value,
+    topright: priochartDataTopRight.value,
+    bottomleft: priochartDataBottomLeft.value,
+    bottomright: priochartDataBottomRight.value,
+  })
+  if(priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value - previousValue + newValue <= 24 * 7 - weeklySleepHours.value) {
+    value.value = newValue < 0 ? 0 : newValue
     previousValue = value.value
     emit("updateModelValue", value.value)
   } else if(newValue < previousValue) {
-    value.value = newValue
+    value.value = newValue < 0 ? 0 : newValue
     previousValue = value.value
     emit("updateModelValue", value.value)
   } else {
     let tooMuch = (priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value) - (24 * 7 - weeklySleepHours.value)
-    value.value = tooMuch > 0 ? value.value - tooMuch : value.value
+    // value.value = tooMuch > 0 ? value.value - tooMuch : value.value
+    value.value = previousValue
     // previousValue = value.value
     emit("updateModelValue", value.value)
   }
@@ -98,7 +105,7 @@ function updateValue(newValue) {
   grid-template-columns: 1fr auto;
 
   .current-value {
-    font-size: 1rem;
+    font-size: max(1rem, .75vw);
   }
 }
 

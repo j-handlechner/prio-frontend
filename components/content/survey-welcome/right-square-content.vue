@@ -14,7 +14,7 @@ div {
   gap: 1rem;
 
   p {
-    font-size: 0.75rem;
+    font-size: max(.75rem, .75vw);
     &:last-of-type {
       font-size: 5rem;
       font-family: Cirka;

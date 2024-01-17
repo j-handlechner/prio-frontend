@@ -47,7 +47,8 @@
               :topright="priochartDataBottomLeft"
               :bottomleft="priochartDataTopRight"
               :bottomright="priochartDataBottomRight"
-              :totalvalue="7 * 24 - weeklySleepHours">
+              :totalvalue="7 * 24 - weeklySleepHours"
+              :is-for-print="false">
           </Chart>
 
           <div class="draggable" v-if="currentViewName == 'end-yes' ||currentViewName=='end-no'">
@@ -562,7 +563,7 @@ watchEffect(async () => {
 
   h2 {
     font-family: Cirka;
-    font-size: 1.85rem;
+    font-size: max(1.85rem, 1.5vw);
     padding-bottom: .5rem;
   }
 
@@ -576,7 +577,8 @@ watchEffect(async () => {
     font-family: Helvetica;
     color: black;
     font-weight: 300;
-    font-size: .75rem;
+    font-size: max(0.65rem, 0.725vw);
+
     line-height: 135%;
   }
 }
@@ -584,7 +586,7 @@ watchEffect(async () => {
 .resultbar-content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 1rem;
+  column-gap: .65rem;
 }
 
 .d-flex {
@@ -604,6 +606,7 @@ watchEffect(async () => {
   border: 1px solid black;
   font-family: Cirka;
   height: 100%;
+  font-size: max(1.25rem, 1.25vw);
 }
 </style>
 
@@ -626,8 +629,27 @@ watchEffect(async () => {
 
 .printcontainer {
   padding-bottom: 28mm;
+
   .prio-chart__percentage {
     margin-bottom: 1.5rem !important;
+  }
+
+  .rightbottombar {
+    padding: .75rem;
+    h2 {
+      font-family: Cirka;
+      font-size: 1.85rem;
+      padding-bottom: .5rem;
+    }
+
+
+    h3, p {
+      font-family: Helvetica;
+      color: black;
+      font-weight: 300;
+      font-size: .75rem;
+      line-height: 135%;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <p>teilnehmen</p> <p >→</p>
+    <p>Teilnehmen</p> <p >→</p>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ div {
   p {
     font-size: 2rem;
     font-family: Cirka;
-    font-size: 3.5rem;
+    font-size: max(3.5rem, 2.75vw);
 
     @media screen and (max-width: 1250px) {
       font-size: 3vw;

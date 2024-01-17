@@ -26,7 +26,7 @@ div {
   align-items: center;
   justify-content: space-between;
   label {
-    font-size: 1rem;
+    font-size: max(1rem, .85vw);
     padding-right: 1rem;
   }
 }
@@ -54,7 +54,7 @@ span.p-calendar {
 
 .p-datepicker table th,
 .p-datepicker table td {
-  font-size: .75rem;
+  font-size: max(.75rem, .65vw);
   padding: 0.2rem;
 }
 
