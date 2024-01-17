@@ -1,22 +1,26 @@
 <template>
   <div class="wrapper">
-    <p v-if="dataFetched">
-      {{ contactInformation.fetchedData.attributes.contactInformationText }}
-    </p>
-    <p v-else>Loading...</p>
+    <Transition>
+      <p v-if="dataFetched">
+        {{ contactInformation.fetchedData.attributes.contactInformationText }}
+      </p>
+    </Transition>
 
     <div class="inner-wrapper">
-      <div v-if="dataFetched">
-        <a v-if="contactInformation.fetchedData.attributes.email" :href="'mailto:' + contactInformation.fetchedData.attributes.email">
-          {{ contactInformation.fetchedData.attributes.email }}
-        </a>
-        <a v-if="contactInformation.fetchedData.attributes.instagram" :href="'https://www.instagram.com/' + contactInformation.fetchedData.attributes.instagram" target="_blank">
-          {{ contactInformation.fetchedData.attributes.instagram }}
-        </a>
-      </div>
-      <p v-else>Loading...</p>
+      <Transition>
+        <div v-if="dataFetched">
+          <a v-if="contactInformation.fetchedData.attributes.email" :href="'mailto:' + contactInformation.fetchedData.attributes.email">
+            {{ contactInformation.fetchedData.attributes.email }}
+          </a>
+          <a v-if="contactInformation.fetchedData.attributes.instagram" :href="'https://www.instagram.com/' + contactInformation.fetchedData.attributes.instagram" target="_blank">
+            {{ contactInformation.fetchedData.attributes.instagram }}
+          </a>
+        </div>
+      </Transition>
 
-      <a href="/impressum">Impressum</a>
+      <Transition>
+        <a href="/impressum" v-if="dataFetched">Impressum</a>
+      </Transition>
     </div>
   </div>
 </template>

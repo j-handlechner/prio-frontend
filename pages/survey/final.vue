@@ -623,42 +623,6 @@ watchEffect(async () => {
   top: -10000px;
   left: -100000px;
 }
-.printcontainer {
-  .prio-chart__corner {
-    --dimension: 5px;
-    width: var(--dimension);
-    height: var(--dimension);
-    position: absolute;
-
-    &.top-left {
-      border-top: var(--dimension) solid black;
-      border-right: var(--dimension) solid transparent;
-      top: 0;
-      left: 0;
-    }
-
-    &.top-right {
-      border-top: var(--dimension) solid black;
-      border-left: var(--dimension) solid transparent;
-      top: 0;
-      right: 0;
-    }
-
-    &.bottom-left {
-      border-bottom: var(--dimension) solid black;
-      border-right: var(--dimension) solid transparent;
-      bottom: 0;
-      left: 0;
-    }
-
-    &.bottom-right {
-      border-bottom: var(--dimension) solid black;
-      border-left: var(--dimension) solid transparent;
-      bottom: 0;
-      right: 0;
-    }
-  }
-}
 
 .printcontainer {
   padding-bottom: 28mm;

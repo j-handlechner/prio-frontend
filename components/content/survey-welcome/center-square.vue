@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1>Teil mal dein Leben durch vier!</h1>
-    <p v-if="dataFetched">
-      {{ welcomeText.fetchedData.attributes.welcomeText }}
-    </p>
-    <p v-else>Loading...</p>
+    <Transition>
+      <p v-if="dataFetched">
+        {{ welcomeText.fetchedData.attributes.welcomeText }}
+      </p>
+    </Transition>
   </div>
 </template>
 
