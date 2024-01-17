@@ -29,6 +29,7 @@
 .inner-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
 
 .wrapper {
