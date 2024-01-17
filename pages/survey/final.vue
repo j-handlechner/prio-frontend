@@ -15,7 +15,7 @@
       </template>
 
       <template #buttons>
-            <ButtonWrapper @buttonclicked="() => handleButtonClick()" v-if="currentViewName == 'welcome'">
+            <ButtonWrapper @buttonclicked="() => handleWelcomeButtonClick()" v-if="currentViewName == 'welcome'">
               <WelcomeButtons />
             </ButtonWrapper>
 
@@ -32,7 +32,9 @@
       </template>
 
       <template #right-bar>
-        <DefaultRightBarContent />
+        <Transition>
+          <DefaultRightBarContent v-if="currentViewName !== 'welcome'" :identificationNumber="identificationnumberValue"/>
+        </Transition>
       </template>
 
       <template #right-square>
@@ -40,7 +42,6 @@
       </template>
 
       <template #layoutright>
-
           <Chart
               :topleft="priochartDataTopLeft"
               :topright="priochartDataBottomLeft"
@@ -132,7 +133,7 @@
               <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
               <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
             </div>
-            <p class="print-identificationnnumber">01</p>
+            <p class="print-identificationnnumber">{{ identificationnumberValue }}</p>
           </div>
         </div>
       </div>
@@ -194,10 +195,29 @@ import SlidersButtons from "/components/content/survey-slider/buttons.vue";
 import ConfirmButtons from "/components/content/survey-confirm/buttons.vue";
 import ConfirmCenterSquare from "/components/content/survey-confirm/center-square.vue";
 
-const handleButtonClick = () => {
+
+const identificationnumberValue = ref(0);
+
+const handleWelcomeButtonClick = () => {
   if(currentViewName.value == 'welcome') {
     currentViewName.value = 'personal'
+
+    // read value of id number here and write to state
+    readFromDb()
+    // increaseDbValue()
   }
+}
+
+function readFromDb() {
+  // temporary solution, add db-read here :)
+  setTimeout(() => {
+    identificationnumberValue.value = 1;
+
+    // pad with zero if number is one digit long
+    if(identificationnumberValue.value.toFixed().length == 1) {
+      identificationnumberValue.value = "0" + identificationnumberValue.value.toFixed()
+    }
+  }, 500)
 }
 
 import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";

@@ -1,9 +1,17 @@
 <template>
-  <div>
-    <p class="identificationnum">01*</p>
-    <p class="text-bottom">identifikations&shy;nummer</p>
-  </div>
+  <Transition>
+    <div v-if="identificationNumber !== 0">
+      <p class="identificationnum">{{ identificationNumber }}*</p>
+      <p class="text-bottom">identifikations&shy;nummer</p>
+    </div>
+  </Transition>
+
 </template>
+
+<script setup>
+const props = defineProps(["identificationNumber"])
+
+</script>
 
 <style scoped lang="scss">
 div {
