@@ -70,7 +70,6 @@
   import { useSlidersSteps } from "/composables/state";
 
   import { usePriochartTopLeft, usePriochartBottomLeft, usePriochartTopRight, usePriochartBottomRight } from "/composables/state";
-  import HoursPerWeekAlarm from "/components/hoursPerWeekAlarm.vue";
 
   const priochartTopLeft = usePriochartTopLeft()
   const priochartTopRight = usePriochartTopRight()
