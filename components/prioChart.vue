@@ -22,7 +22,7 @@
                 fontSize: `${1 + 2 * (percentageLeftTop) / 100}rem`
               }"
 
-              >{{ 'label 1' }}</p>
+              >{{ 'Arbeit' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -36,7 +36,6 @@
                 fontSize: `${2.5 + 4.5 * (percentageLeftBottom) / 100}rem`,
                 backgroundColor: `${currentViewName == 'end-yes' ? successColors.bottomLeft : 'black'}`,
                 color: `${currentViewName == 'end-yes' ? 'black' : 'white'}`
-
               }">
             <Transition>
               <p class="prio-chart__percentage" v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'">{{(percentageLeftBottom).toFixed(0) }}%</p>
@@ -47,7 +46,7 @@
                  :style="{
                 fontSize: `${1 + 2 * (percentageLeftBottom) / 100}rem`
               }"
-              >{{ 'label 2' }}</p>
+              >{{ 'Andere' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -77,7 +76,7 @@
                  :style="{
                 fontSize: `${1 + 2 * (percentageRightTop) / 100}rem`
               }"
-              >{{ 'label 3' }}</p>
+              >{{ 'Anderes' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -99,7 +98,7 @@
             <Transition>
               <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'" :style="{
                 fontSize: `${1 + 2 * (percentageRightBottom) / 100}rem`
-              }">{{ 'label 4' }}</p>
+              }">{{ 'Ich' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -179,11 +178,12 @@ const currentViewName = useCurrentViewName()
   const percentageLeftTopVisualization = computed(() => valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100)
   const percentageRightTopVisualization = computed(() => valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100)
 
-
-  visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
-  visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
-  visualizationPercentRightTop().value = percentageRightTopVisualization.value;
-  visualizationPercentRightBottom().value = 100 - percentageRightTopVisualization.value;
+  watch(() => {
+    visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
+    visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
+    visualizationPercentRightTop().value = percentageRightTopVisualization.value;
+    visualizationPercentRightBottom().value = 100 - percentageRightTopVisualization.value;
+  })
 
   const successColors = {
     topLeft: '#FF5527',

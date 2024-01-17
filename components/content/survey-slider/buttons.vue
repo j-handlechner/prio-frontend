@@ -7,19 +7,37 @@
       <Button v-if="currentSlidersStep < 3" @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
         <p>Weiter</p>
       </Button>
-      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
+      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'" :class="allHoursPlanned ? '' : 'disabled'">
         <p>Ergebnis</p>
       </Button>
     </div>
-  
   </template>
   
   <script setup>
   // import {usePersonalInfoSteps} from "/composables/state";
-  import {useCurrentViewName, useSlidersSteps} from "/composables/state"; // -> because using another state variable in this step (see centersquarefile)
+  import {
+    useCurrentViewName,
+    usePriochartBottomLeft, usePriochartBottomRight,
+    usePriochartTopLeft, usePriochartTopRight,
+    useSlidersSteps,
+    useWeeklySleepHours
+  } from "/composables/state"; // -> because using another state variable in this step (see centersquarefile)
 
   const currentSlidersStep = useSlidersSteps()
   const currentViewName = useCurrentViewName()
+
+
+  const weeklySleepHours = useWeeklySleepHours()
+
+  const priochartDataTopLeft = usePriochartTopLeft()
+  const priochartDataBottomLeft = usePriochartBottomLeft()
+  const priochartDataTopRight = usePriochartTopRight()
+  const priochartDataBottomRight = usePriochartBottomRight()
+
+  const allHoursPlanned = computed(() => {
+    return priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value + weeklySleepHours.value == 24 * 7
+  })
+
   </script>
   
   <style lang="scss" scoped>
@@ -64,3 +82,10 @@
     }
   }
   </style>
+
+<style lang="scss">
+.disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div class="selectbuttonwrapper">
     <Button @buttonclicked="currentViewName='welcome'">
-      <p>zurück</p>
+      <p>Zurück</p>
     </Button>
 
     <Button @buttonclicked="currentPersonalInfoStep < 3 ? currentPersonalInfoStep++ : currentViewName = 'sleep'" :disabled="currentPersonalInfoStep === 3 && (!birthdate || !occupation || !gender || !nationality)">
-      <p>weiter</p>
+      <p>Weiter</p>
     </Button>
   </div>
 

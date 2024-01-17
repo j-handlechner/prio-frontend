@@ -1,11 +1,11 @@
 <template>
   <div class="selectbuttonwrapper">
     <Button @buttonclicked="currentViewName = 'personal'">
-      <p>zurück</p>
+      <p>Zurück</p>
     </Button>
 
     <Button @buttonclicked="currentViewName = 'sliders'">
-      <p>weiter</p>
+      <p>Weiter</p>
     </Button>
   </div>
 

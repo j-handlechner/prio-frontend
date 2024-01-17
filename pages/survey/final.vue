@@ -91,10 +91,10 @@
             </div>
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
-              <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
-              <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
-              <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
+              <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
+              <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
             </div>
             <button class="result-button" @click="handleDownloadClick()">Ergebnis Download</button>
           </div>
@@ -104,7 +104,7 @@
       </template>
     </NuxtLayout>
 
-    <div class="printcontainer-wrapper">
+    <div class="printcontainer-wrapper" :class="currentViewName == 'end-yes' ? '': 'printcontainer--end-no'">
       <div class="printcontainer" id="element-to-print">
         <Chart
             :topleft="priochartDataTopLeft"
@@ -128,10 +128,10 @@
             </div>
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
-              <p class="resultbar-value">{{ timesUntilRetirement.topLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{timesUntilRetirement.bottomLeftHours}}h für Andere</p>
-              <p class="resultbar-value">{{timesUntilRetirement.topRightHours}}h für Anderes</p>
-              <p class="resultbar-value">{{timesUntilRetirement.bottomRightHours}}h für Dich</p>
+              <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
+              <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
             </div>
             <p class="print-identificationnnumber">{{ identificationnumberValue }}</p>
           </div>
@@ -229,7 +229,6 @@ import { useEndSliderValue } from "/composables/state.js";
 const endslidervalue = useEndSliderValue()
 
 function calculateHoursAndWeeks(fromDate) {
-  console.log("got date: ", fromDate)
   // Check if fromDate is a valid Date object
   if (!(fromDate instanceof Date) || isNaN(fromDate)) {
     return "Invalid date";
@@ -317,14 +316,51 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
   };
 }
 
-  const timesUntilRetirement = computed(() => {
-    if(birthdate) {
+  const vizPercentLeftTop = visualizationPercentLeftTop()
+
+const resultTopLeftHours = ref(0)
+const resultBottomLeftHours = ref(0)
+const resultTopRightHours = ref(0)
+const resultBottomRightHours = ref(0)
+
+watch(() => {
+  if(currentViewName.value === 'end-yes' || currentViewName.value === 'end-no') {
+      console.log(visualizationPercentLeftTop().value)
+      calculateTimesToRetirement()
+  }
+})
+
+  function calculateTimesToRetirement() {
+    if(birthdate.value) {
       const total = calculateHoursAndWeeksUntilRetirement(birthdate.value)
 
-      const factorTopLeft = visualizationPercentLeftTop().value / 100
-      const factorBottomLeft = visualizationPercentLeftBottom().value / 100
-      const factorTopRight = visualizationPercentRightTop().value / 100
-      const factorBottomRight = visualizationPercentRightBottom().value / 100
+      const factorTopLeft = vizPercentLeftTop.value / 200;
+      const factorBottomLeft = visualizationPercentLeftBottom().value / 200
+      const factorTopRight = visualizationPercentRightTop().value / 200
+      const factorBottomRight = visualizationPercentRightBottom().value / 200
+
+      console.log({
+        factorTopLeft,
+        factorBottomLeft,
+        factorTopRight,
+        factorBottomRight
+      })
+
+      console.log({
+        topLeftWeeks: total.weeks * factorTopLeft,
+        bottomLeftWeeks: total.weeks * factorBottomLeft,
+        topRightWeeks: total.weeks * factorTopRight,
+        bottomRightWeeks: total.weeks * factorBottomRight,
+        topLeftHours: (Math.floor(total.hours * factorTopLeft / 100) * 100).toLocaleString('de-DE'),
+        bottomLeftHours: (Math.floor(total.hours * factorBottomLeft / 100) * 100).toLocaleString('de-DE'),
+        topRightHours: (Math.floor(total.hours * factorTopRight / 100) * 100).toLocaleString('de-DE'),
+        bottomRightHours: (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
+      })
+
+      resultTopLeftHours.value = (Math.floor(total.hours * factorTopLeft / 100) * 100).toLocaleString('de-DE')
+      resultBottomLeftHours.value = (Math.floor(total.hours * factorBottomLeft / 100) * 100).toLocaleString('de-DE')
+      resultTopRightHours.value = (Math.floor(total.hours * factorTopRight / 100) * 100).toLocaleString('de-DE')
+      resultBottomRightHours.value = (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
 
       return {
         topLeftWeeks: total.weeks * factorTopLeft,
@@ -337,7 +373,7 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
         bottomRightHours: (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
       }
     }
-})
+}
 
 import html2pdf from 'html2pdf.js'
 
@@ -345,7 +381,7 @@ const handleDownloadClick = async () => {
   const element = document.getElementById('element-to-print');
   html2pdf(element)
 }
-const occupation = useOccupation()
+const occupation = useOccupation();
 const gender = useGender()
 const nationality = useNationality()
 const { create, update } = useStrapi()
@@ -578,16 +614,8 @@ watchEffect(async () => {
   line-height: 4rem !important;
   text-align: right;
   transform: translateY(24px) translateX(10px) !important;
-  padding-bottom: 6.35mm;
+  padding-bottom: 6.20mm;
   margin-top: -21.166666667mm;
-}
-
-.printcontainer .prio-chart__block p {
-  color: black !important;
-}
-
-.printcontainer .prio-chart__block {
-  border-color: black !important;
 }
 
 .printcontainer-wrapper {
@@ -633,7 +661,7 @@ watchEffect(async () => {
 }
 
 .printcontainer {
-  padding-bottom: 20mm;
+  padding-bottom: 28mm;
   .prio-chart__percentage {
     margin-bottom: 1.5rem !important;
   }
