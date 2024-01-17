@@ -24,7 +24,6 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in"},
   },
   routeRules: {
-    '/library/**': {ssr: false},
     '/**': {ssr: false} // just for development
   },
     build: {
