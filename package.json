@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "html2pdf.js": "^0.9.3",
-    "primevue": "^3.33.0"
+    "primevue": "^3.33.0",
+    "@strapi/strapi": "4.13.6"
   }
 }
