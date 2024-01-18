@@ -198,27 +198,36 @@ import ConfirmCenterSquare from "/components/content/survey-confirm/center-squar
 
 
 const identificationnumberValue = ref(0);
+const updatedValue = ref(0)
+const { find } = useStrapi()
 
-const handleWelcomeButtonClick = () => {
+const handleWelcomeButtonClick = async () => {
   if(currentViewName.value == 'welcome') {
     currentViewName.value = 'personal'
-
     // read value of id number here and write to state
-    readFromDb()
-    // increaseDbValue()
+    await readFromDb()
+    await increaseDbValue()
   }
 }
 
-function readFromDb() {
-  // temporary solution, add db-read here :)
-  setTimeout(() => {
-    identificationnumberValue.value = 1;
+async function readFromDb() {
+  const {data} = await find('identification-number-counter')
+  identificationnumberValue.value = data.attributes.identificationNumber 
+  updatedValue.value = +identificationnumberValue.value + 1
+  // console.log("Identification Number: " , identificationnumberValue.value)
+  // console.log("Updated Number: ", updatedValue.value)
 
-    // pad with zero if number is one digit long
-    if(identificationnumberValue.value.toFixed().length == 1) {
-      identificationnumberValue.value = "0" + identificationnumberValue.value.toFixed()
-    }
-  }, 500)
+  // pad with zero if number is one digit long
+  if(identificationnumberValue.value.length == 1) {
+    identificationnumberValue.value = "0" + identificationnumberValue.value
+  }
+}
+
+async function increaseDbValue() {
+  // console.log("Updated Value: " , updatedValue.value)
+  const increasedIdentificationNumber = await update('identification-number-counter', {
+        "identificationNumber": updatedValue.value
+  })
 }
 
 import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";
