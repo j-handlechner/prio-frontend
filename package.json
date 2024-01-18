@@ -6,7 +6,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deployall": "git push deploy-frontend-johannes main && git push deploy-tanja main"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
