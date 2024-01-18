@@ -63,12 +63,7 @@ const isVisualizationHighlightedCurrently = computed(() => {
   }
 }
 
-@media screen and (min-aspect-ratio: 1550/1539) {
-  .inputgroup {
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
+
 </style>
 
 <style lang="scss">

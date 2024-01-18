@@ -270,8 +270,13 @@ const plannedTimeForOthers = computed(() => {
     const fromDate = new Date(birthdate.value)
     const result = calculateHoursAndWeeks(fromDate)
 
+    const activePerWeek = 24 * 7 - sleepHours.value
+    const activeTimeForMe = timeForSelf.value
+    const factorForMe = activeTimeForMe / activePerWeek
+
     // anteil der gesamten zeit * (1 - schlaf - zeit für dich)
-    const factorForOthers = 1 - ((24 * 7 - (sleepHours.value + timeForSelf.value)) / (24 * 7 * 100))
+    const factorForOthers = 1 - factorForMe
+
     return {
       hours: Math.floor(result.hours * factorForOthers),
       weeks: Math.floor(result.weeks * factorForOthers)
@@ -283,9 +288,11 @@ const plannedTimeForYourself = computed(() => {
   if(birthdate) {
     const fromDate = new Date(birthdate.value)
     const result = calculateHoursAndWeeks(fromDate)
-    console.log("result: ", result)
-    const factorForMe = ((24 * 7 - (sleepHours.value + timeForSelf.value)) / (24 * 7 * 100))
-    console.log("factorForMe", factorForMe)
+
+    const activePerWeek = 24 * 7 - sleepHours.value
+    const activeTimeForMe = timeForSelf.value
+    const factorForMe = activeTimeForMe / activePerWeek
+
     return {
       hours: Math.floor(result.hours * factorForMe),
       weeks: Math.floor(result.weeks * factorForMe)
