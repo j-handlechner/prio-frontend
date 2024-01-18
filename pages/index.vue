@@ -42,7 +42,12 @@ const possibleSources = [
 
 useHead({
   title: 'PRIO',
-  description: 'With the help of the project "PRIO", we want to highlight the negative effects of everyday stress in order to point out that reality is not the same as normality.',
+  meta: [
+    {
+      name: 'description',
+      content: 'With the help of the project "PRIO", we want to highlight the negative effects of everyday stress in order to point out that reality is not the same as normality.'
+    },
+  ],
   link: [
     {
       rel: 'preload',
