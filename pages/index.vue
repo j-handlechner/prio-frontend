@@ -125,7 +125,7 @@ setInterval(() => {
   img, video {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
-    width: 40vw;
+    width: max(40vw, 12rem);
     margin: 0 auto;
     align-self: end;
     box-sizing: border-box;
