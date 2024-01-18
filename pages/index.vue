@@ -1,7 +1,7 @@
 <template>
   <div class="placeholder-grid">
     <Transition mode="out-in">
-      <img :src="currentSource" v-if="currentType == 'img'"/>
+      <img :src="currentSource" v-if="currentType == 'img'" :key="currentSource"/>
       <video :src="currentSource" v-else autoplay muted></video>
     </Transition>
 
@@ -23,16 +23,20 @@ const possibleSources = [
       type: 'img'
     },
     {
-      src: '/Prio_AnimatedPosters_Screen1.mp4',
-      type: 'video'
+      src: '/prio-pic2.jpeg',
+      type: 'img'
     },
     {
       src: '/Prio_Poster_4Sujets.jpg',
       type: 'img'
     },
     {
-      src: '/Prio_AnimatedPosters_Screen3.mp4',
-      type: 'video'
+      src: '/prio-pic3.jpeg',
+      type: 'img'
+    },
+    {
+      src: '/prio-pic4.jpeg',
+      type: 'img'
     }
 ]
 
@@ -47,18 +51,23 @@ useHead({
     },
     {
       rel: 'preload',
-      href: '/Prio_AnimatedPosters_Screen1.mp4',
-      as: 'video'
-    },
-    {
-      rel: 'preload',
       href: '/Prio_Poster_4Sujets.jpg',
       as: 'image'
     },
     {
       rel: 'preload',
-      href: '/Prio_AnimatedPosters_Screen3.mp4',
-      as: 'video'
+      href: '/prio-pic2.jpeg',
+      as: 'image'
+    },
+    {
+      rel: 'preload',
+      href: '/prio-pic3.jpeg',
+      as: 'image'
+    },
+    {
+      rel: 'preload',
+      href: '/prio-pic4.jpeg',
+      as: 'image'
     }
   ]
 })
@@ -111,7 +120,7 @@ setInterval(() => {
   img, video {
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
-    width: 35vw;
+    width: 40vw;
     margin: 0 auto;
     align-self: end;
     box-sizing: border-box;
