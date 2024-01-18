@@ -115,6 +115,11 @@ setInterval(() => {
     max-width: 40ch;
     font-size: .85vw;
     grid-column: 2 / span 1;
+
+    @media screen and (max-width: 768px) {
+      font-size: max(2vw, .6rem);
+      max-width: 35ch;
+    }
   }
 
   img, video {
@@ -137,6 +142,10 @@ setInterval(() => {
     grid-column: 1 / span 1;
     margin: 0;
     letter-spacing: -0.25vw;
+
+    @media screen and (max-width: 768px) {
+      font-size: max(20vw, 5rem);
+    }
   }
 
   .textwrapper {
@@ -146,6 +155,11 @@ setInterval(() => {
     justify-content: center;
     gap: 2rem;
     width: 100%;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
   }
 
   .v-enter-active,
