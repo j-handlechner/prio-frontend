@@ -144,7 +144,9 @@ setInterval(() => {
     letter-spacing: -0.25vw;
 
     @media screen and (max-width: 768px) {
-      font-size: max(20vw, 5rem);
+      font-size: max(17vw, 5rem);
+      line-height: 100%;
+      margin-top: 2rem;
     }
   }
 
