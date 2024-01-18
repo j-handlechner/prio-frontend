@@ -41,11 +41,15 @@ const possibleSources = [
 ]
 
 useHead({
-  title: 'PRIO',
+  title: 'PRIO — Kollektiv Schlaflos',
   meta: [
     {
       name: 'description',
-      content: 'With the help of the project "PRIO", we want to highlight the negative effects of everyday stress in order to point out that reality is not the same as normality.'
+      content: 'Realität ≠ Normalität. Wem gehörst du wirklich? Teil dein leben durch vier! Nimm jetzt an dem Datenexperiment teil!',
+    },
+    {
+      name: 'keywords',
+      content: 'Datenvisualisierung; Zeitverteilung; Zeitmanagement; Prioritätsblöcke; Priorität; Bedrängnis Lebensbereiche; Lebenszeit; Realität; Normalität; Lebensbereiche; Fremdbestimmung; Vier Blöcke; Leben; Schlaflos: Kollektiv Schlaflos; Arbeit; Ich; Andere; Anderes; Anspannung; Stress; FOMO;',
     },
   ],
   link: [
