@@ -41,7 +41,7 @@ const possibleSources = [
 ]
 
 useHead({
-  title: 'PRIO — Kollektiv Schlaflos',
+  title: 'PRIO - Wem gehörst du? - Kollektiv Schlaflos',
   meta: [
     {
       name: 'description',
