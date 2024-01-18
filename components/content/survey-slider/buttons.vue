@@ -7,7 +7,7 @@
       <Button v-if="currentSlidersStep < 3" @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
         <p>Weiter</p>
       </Button>
-      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'" :class="allHoursPlanned ? '' : 'disabled'">
+      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'" :class="allHoursPlanned && allSlidersFilled ? '' : 'disabled'">
         <p>Ergebnis</p>
       </Button>
     </div>
@@ -33,6 +33,11 @@
   const priochartDataBottomLeft = usePriochartBottomLeft()
   const priochartDataTopRight = usePriochartTopRight()
   const priochartDataBottomRight = usePriochartBottomRight()
+
+  const allSlidersFilled = computed(() => {
+    console.log("test", priochartDataTopLeft.value === 0 || priochartDataBottomLeft.value === 0 || priochartDataTopRight.value === 0 || priochartDataBottomRight.value === 0)
+    return priochartDataTopLeft.value !== 0 && priochartDataBottomLeft.value !== 0 && priochartDataTopRight.value !== 0 && priochartDataBottomRight.value !== 0
+  })
 
   const allHoursPlanned = computed(() => {
     return priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value + weeklySleepHours.value == 24 * 7
