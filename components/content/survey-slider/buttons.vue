@@ -35,7 +35,6 @@
   const priochartDataBottomRight = usePriochartBottomRight()
 
   const allSlidersFilled = computed(() => {
-    console.log("test", priochartDataTopLeft.value === 0 || priochartDataBottomLeft.value === 0 || priochartDataTopRight.value === 0 || priochartDataBottomRight.value === 0)
     return priochartDataTopLeft.value !== 0 && priochartDataBottomLeft.value !== 0 && priochartDataTopRight.value !== 0 && priochartDataBottomRight.value !== 0
   })
 
