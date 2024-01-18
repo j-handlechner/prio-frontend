@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     "@/assets/fonts.css",
     "@/styles/main.scss",
     "@/styles/mixins.scss",
-    "primevue/resources/themes/lara-light-blue/theme.css"
+    "primevue/resources/themes/lara-light-blue/theme.css",
+    "/assets/global.css"
   ],
   app: {
     pageTransition: { name: "page", mode: "out-in"},
