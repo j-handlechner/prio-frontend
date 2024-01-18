@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "identification_number_counters",
+  "info": {
+    "singularName": "identification-number-counter",
+    "pluralName": "identification-number-counters",
+    "displayName": "identification-number-counter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "identificationNumber": {
+      "type": "biginteger"
+    }
+  }
+}
