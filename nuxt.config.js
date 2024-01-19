@@ -6,7 +6,7 @@ import surveyResult from "./api/src/api/survey-result/controllers/survey-result"
 export default defineNuxtConfig({
   modules: ['@nuxtjs/strapi', '@nuxtjs/tailwindcss'],
   strapi: {
-    url: 'http://5.75.198.6/',
+    url: 'https://prio-api.gasser-bastian.at/',
     prefix: '/api',
     version: 'v4',
     cookie: {},
