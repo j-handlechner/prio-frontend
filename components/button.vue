@@ -17,7 +17,6 @@ const props = defineProps(["disabled"])
 const isDisabled = computed(() => props.disabled)
 
 function buttonClicked() {
-  console.log('button (not component) clicked')
   emit("buttonclicked", 1)
 }
 
@@ -55,7 +54,15 @@ button {
 
   &.disabled {
     opacity: .5;
-    pointer-events: none;
+    // pointer-events: none;
+
+    cursor: auto;
+
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
   }
 
   &:hover {

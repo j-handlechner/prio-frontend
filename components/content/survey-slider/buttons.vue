@@ -7,7 +7,7 @@
       <Button v-if="currentSlidersStep < 3" @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
         <p>Weiter</p>
       </Button>
-      <Button v-else @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'" :class="allHoursPlanned && allSlidersFilled ? '' : 'disabled'">
+      <Button v-else :disabled="!allHoursPlanned || !allSlidersFilled" v-tooltip.top="!allHoursPlanned || !allSlidersFilled ? 'Es sind noch nicht eingeplante Stunden vorhanden. Bitte alle Stunden mit den Reglern einteilen.' : null" @buttonclicked="allHoursPlanned && allSlidersFilled && (currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm')" :class="allHoursPlanned && allSlidersFilled ? '' : 'disabled'">
         <p>Ergebnis</p>
       </Button>
     </div>
@@ -90,6 +90,23 @@
 <style lang="scss">
 .disabled {
   opacity: .5;
-  pointer-events: none;
+  // pointer-events: none;
+  cursor: auto;
+  cursor: default !important;
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+}
+
+.p-tooltip-arrow {
+  border-top-color: black !important;
+}
+
+.p-tooltip-text {
+  font-size: .75rem;
+  color: white;
+  background-color: black !important;
 }
 </style>

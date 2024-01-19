@@ -5,7 +5,7 @@
     </Button>
 
     <Button @buttonclicked="currentPersonalInfoStep < 3 ? currentPersonalInfoStep++ : currentViewName = 'sleep'" :disabled="currentPersonalInfoStep === 3 && (!birthdate || !occupation || !gender || !nationality)">
-      <p>Weiter</p>
+      <p v-tooltip.top="!birthdate || !occupation || !gender || !nationality ? 'Bitte alle Felder befüllen' : null">Weiter</p>
     </Button>
   </div>
 
