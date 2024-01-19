@@ -4,7 +4,7 @@
       <Slider :modelValue="sleepHoursPerWeek"
               @updateModelValue="newValue => sleepHoursPerWeek = newValue" initialValue="0">
         <template #label>
-          {{ 'Wieviele Stunden schläfst du pro Woche?' }}
+          {{ 'Wieviele Stunden schläfst du ⌀ pro Woche?' }}
         </template>
       </Slider>
 
