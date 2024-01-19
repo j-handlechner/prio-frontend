@@ -147,6 +147,21 @@ definePageMeta({
   layout: false
 })
 
+useHead({
+  title: 'PRIO - Wem gehörst du? - Kollektiv Schlaflos',
+  meta: [
+    {
+      name: 'description',
+      content: 'Realität ≠ Normalität. Wem gehörst du wirklich? Teil dein leben durch vier! Nimm jetzt an dem Datenexperiment teil!',
+    },
+    {
+      name: 'keywords',
+      content: 'Datenvisualisierung; Zeitverteilung; Zeitmanagement; Prioritätsblöcke; Priorität; Bedrängnis Lebensbereiche; Lebenszeit; Realität; Normalität; Lebensbereiche; Fremdbestimmung; Vier Blöcke; Leben; Schlaflos: Kollektiv Schlaflos; Arbeit; Ich; Andere; Anderes; Anspannung; Stress; FOMO;',
+    },
+  ]
+})
+
+
 import {
   usePriochartBottomLeft,
   usePriochartTopLeft,
