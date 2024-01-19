@@ -2,7 +2,7 @@
   <Transition>
     <div v-if="identificationNumber !== 0">
       <p class="identificationnum">{{ identificationNumber }}*</p>
-      <p class="text-bottom">Identifikations&shy;nummer</p>
+      <p class="text-bottom">* Identifikations&shy;nummer</p>
     </div>
   </Transition>
 
