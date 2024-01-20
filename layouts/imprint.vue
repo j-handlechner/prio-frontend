@@ -3,81 +3,30 @@
     <div class="layout__left" v-if="!isCurrentlyMobile || currentMobileView == 'Dateneingabe'">
       <div class="left__top">
         <div class="logo-left-spacer has-corners">
-          <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
           <div class="prio-chart__corner bottom-right"></div>
         </div>
+
         <div class="logo has-corners">
-           <nuxt-link to="/" class="logolink">PRIO</nuxt-link>
+          <nuxt-link class="logolink" to="/">PRIO</nuxt-link>
           <div class="prio-chart__corner bottom-right"></div>
           <div class="prio-chart__corner bottom-left"></div>
-        </div>
-      </div>
-
-      <div class="left__middle">
-        <div class="left-spacing-bar has-corners">
-          <div class="prio-chart__corner top-right"></div>
-          <div class="prio-chart__corner bottom-right"></div>
-        </div>
-        <div class="center-square has-corners">
-            <slot name="centersquare" />
-
-          <div class="prio-chart__corner top-right"></div>
-          <div class="prio-chart__corner top-left"></div>
-          <div class="prio-chart__corner bottom-right"></div>
-          <div class="prio-chart__corner bottom-left"></div>
-        </div>
-        <div class="center-right-bar has-corners">
-          <slot name="right-bar" />
-
-          <div class="prio-chart__corner top-right"></div>
-          <div class="prio-chart__corner top-left"></div>
-          <div class="prio-chart__corner bottom-right"></div>
-          <div class="prio-chart__corner bottom-left"></div>
-        </div>
-      </div>
-
-      <div class="left__bottom">
-        <div class="left-spacing-bar has-corners">
-          <div class="prio-chart__corner top-right"></div>
-        </div>
-        <div class="left">
-          <div class="buttons-wrapper has-corners">
-            <slot name="buttons" />
-          </div>
-
-          <div class="contactinfo has-corners">
-            <slot name="contact" />
-
-            <div class="prio-chart__corner top-right"></div>
-            <div class="prio-chart__corner top-left"></div>
-          </div>
-        </div>
-        <div class="right has-corners">
-          <div class="right-square-content">
-            <slot name="right-square" />
-
-          </div>
-
-          <div class="prio-chart__corner top-right"></div>
-          <div class="prio-chart__corner top-left"></div>
         </div>
       </div>
     </div>
+
     <div :class="`layout__right ${ currentViewName == 'end-yes' ||currentViewName=='end-no' ? ' animate-grid-bottombar' : '' }`" id="" v-if="!isCurrentlyMobile || currentMobileView == 'Visualisierung'" >
       <div class="right__top">
-        <div class="logo-right-spacer has-corners">
-          <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
-        </div>
         <div class="logo-right has-corners">
           prio
           <div class="prio-chart__corner bottom-right"></div>
           <div class="prio-chart__corner bottom-left"></div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <slot name="layoutright" />
-      <slot name="rightbottombar" />
-    </div >
+  <div class="content">
+    <slot></slot>
   </div>
 </template>
 
@@ -111,10 +60,20 @@ const endslidervalue = useEndSliderValue()
 }
 </style>
 
-
 <style lang="scss" scoped>
 $side-spacing: 4vw;
 $right-bar-width: 12.5vw;
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 7.5rem;
+  padding: 0 2rem;
+
+  :deep(p), :deep(h1), :deep(h2), :deep(h3), :deep(h4) {
+    margin-bottom: .75rem;
+  }
+}
 
 .layout-wrapper {
   display: flex;
@@ -123,13 +82,11 @@ $right-bar-width: 12.5vw;
 
 .layout__left, .layout__right {
   width: 50vw;
-  min-height: 100dvh;
 }
 
 .layout__left {
   display: grid;
   flex-direction: column;
-  min-height: 100vh;
 
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 60% 30%;
@@ -142,7 +99,6 @@ $right-bar-width: 12.5vw;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 10vh 1fr 0;
-  height: 100vh;
 
   &.animate-grid-bottombar {
     grid-template-rows: 10vh 1fr 22dvh;
@@ -469,3 +425,4 @@ $right-bar-width: 12.5vw;
   }
 }
 </style>
+
