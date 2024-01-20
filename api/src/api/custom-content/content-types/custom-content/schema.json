@@ -23,6 +23,9 @@
     },
     "instagram": {
       "type": "string"
+    },
+    "imprint-html": {
+      "type": "text"
     }
   }
 }
