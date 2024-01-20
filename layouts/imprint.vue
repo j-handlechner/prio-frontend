@@ -69,6 +69,7 @@ $right-bar-width: 12.5vw;
   margin: 0 auto;
   margin-top: 7.5rem;
   padding: 0 2rem;
+  padding-bottom: 7.5rem;
 
   :deep(p), :deep(h1), :deep(h2), :deep(h3), :deep(h4) {
     margin-bottom: .75rem;
