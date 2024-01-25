@@ -69,7 +69,7 @@
           <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
         </div>
         <div class="logo-right has-corners">
-          prio
+          <nuxt-link to="/" class="logolink">PRIO</nuxt-link>
           <div class="prio-chart__corner bottom-right"></div>
           <div class="prio-chart__corner bottom-left"></div>
         </div>
