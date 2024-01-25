@@ -117,7 +117,7 @@ import {
   visualizationPercentLeftTop,
   visualizationPercentLeftBottom,
   visualizationPercentRightBottom,
-  visualizationPercentRightTop
+  visualizationPercentRightTop, bottomBarRightBottomPercent, bottomBarRightTopPercent, bottomBarLeftBottomPercent, bottomBarLeftTopPercent
 } from "/composables/state";
 const currentViewName = useCurrentViewName()
 
@@ -183,7 +183,16 @@ const currentViewName = useCurrentViewName()
   const percentageLeftTopVisualization = computed(() => valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100)
   const percentageRightTopVisualization = computed(() => valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100)
 
-  watch(() => {
+  watchEffect(() => {
+    bottomBarRightBottomPercent().value = percentageRightBottom
+    bottomBarRightTopPercent().value = percentageRightTop
+    bottomBarLeftBottomPercent().value = percentageLeftBottom
+    bottomBarLeftTopPercent().value = percentageLeftTop
+
+    console.log('rb', bottomBarRightBottomPercent().value, 'rt', bottomBarRightTopPercent().value, 'lb', bottomBarLeftBottomPercent().value, 'lt', bottomBarLeftTopPercent().value)
+  })
+
+  watchEffect(() => {
     visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
     visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
     visualizationPercentRightTop().value = percentageRightTopVisualization.value;

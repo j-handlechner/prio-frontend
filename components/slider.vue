@@ -4,7 +4,7 @@
       <slot name="label"></slot>
     </label>
     <div class="slider-value-wrapper">
-      <Slider :disabled="isDisabled" :max="100"
+      <Slider :disabled="isDisabled" :max="props.max || 100"
               :modelValue="props.modelValue"
               @update:modelValue="newValue => updateModelValue(newValue)"
               :pt="{

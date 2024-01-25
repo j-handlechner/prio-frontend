@@ -48,3 +48,8 @@ export const visualizationPercentLeftTop = () => useState("visualizationPercentL
 export const visualizationPercentLeftBottom = () => useState("visualizationPercentLeftBottom", () => 25)
 export const visualizationPercentRightTop = () => useState("visualizationPercentRightTop", () => 25)
 export const visualizationPercentRightBottom = () => useState("visualizationPercentRightBottom", () => 25)
+
+export const bottomBarLeftTopPercent = () => useState("bottomBarLeftTopPercent", () => 0)
+export const bottomBarLeftBottomPercent = () => useState("bottomBarLeftBottomPercent", () => 0)
+export const bottomBarRightTopPercent = () => useState("bottomBarRightTopPercent", () => 0)
+export const bottomBarRightBottomPercent = () => useState("bottomBarRightBottomPercent", () => 0)

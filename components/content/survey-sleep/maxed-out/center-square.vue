@@ -1,10 +1,10 @@
 <template>
   <div class="outerwrapper">
     <div class="inputgroup has-corners">
-      <Slider :modelValue="sleepHoursPerWeek"
-              @updateModelValue="newValue => sleepHoursPerWeek = newValue" initialValue="0">
+      <Slider :modelValue="sleepHoursPerNight"
+              @updateModelValue="newValue => handleValueChange(newValue)" initialValue="0" :max="15">
         <template #label>
-          {{ 'Wieviele Stunden schläfst du ⌀ pro Woche?' }}
+          {{ 'Wieviele Stunden schläfst du ⌀ pro Nacht?' }}
         </template>
       </Slider>
 
@@ -24,7 +24,12 @@ import SelectButton from "/components/selectbutton";
 
 
 const sleepHoursPerWeek = useWeeklySleepHours()
-const test = 2
+const sleepHoursPerNight = ref(0)
+
+const handleValueChange = (newValue) => {
+  sleepHoursPerNight.value = newValue;
+  sleepHoursPerWeek.value = sleepHoursPerNight.value * 7
+}
 </script>
 
 <style lang="scss" scoped>

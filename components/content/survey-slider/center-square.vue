@@ -15,8 +15,8 @@
       </div>
   
       <div class="inputgroup has-corners" :class="currentSlidersStep > 1 && 'has-visible-border'">
-        <Slider :modelValue="priochartDataBottomLeft"
-                @updateModelValue="newValue => priochartDataBottomLeft = newValue" initialValue="0">
+        <Slider :modelValue="priochartDataTopRight"
+                @updateModelValue="newValue => priochartDataTopRight = newValue" initialValue="0">
           <template #label>
             {{ questions.fetchedData[1]?.attributes.QuestionText }}
           </template>
@@ -29,8 +29,8 @@
       </div>
   
       <div class="inputgroup has-corners" :class="currentSlidersStep > 2 && 'has-visible-border'">
-        <Slider :modelValue="priochartDataTopRight"
-                @updateModelValue="newValue => priochartDataTopRight = newValue" initialValue="0" >
+        <Slider :modelValue="priochartDataBottomLeft"
+                @updateModelValue="newValue => priochartDataBottomLeft = newValue" initialValue="0" >
           <template #label>
             {{ questions.fetchedData[2]?.attributes.QuestionText }}
           </template>

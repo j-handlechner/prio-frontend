@@ -249,7 +249,7 @@ import EndYesButtons from "/components/content/survey-end/buttons-yes.vue";
 import EndNoButtons from "/components/content/survey-end/buttons-no.vue";
 
 import Slider from "primevue/slider";
-import { useEndSliderValue } from "/composables/state.js";
+import { useEndSliderValue, bottomBarRightBottomPercent, bottomBarRightTopPercent, bottomBarLeftBottomPercent, bottomBarLeftTopPercent } from "/composables/state.js";
 
 const endslidervalue = useEndSliderValue()
 
@@ -321,16 +321,9 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
     return "Invalid date";
   }
 
-  // Get the current date and time
   const currentDate = new Date();
-
-  // Calculate the time difference in milliseconds
   const timeDifference = new Date(currentDate - birthdate);
-
-  // Calculate the age in years
   const age = timeDifference.getUTCFullYear() - 1970;
-
-  // Check if the person is already 65 or older
   if (age >= 65) {
     return "You are already 65 or older!";
   }
@@ -348,8 +341,6 @@ function calculateHoursAndWeeksUntilRetirement(birthdate) {
   };
 }
 
-  const vizPercentLeftTop = visualizationPercentLeftTop()
-
 const resultTopLeftHours = ref(0)
 const resultBottomLeftHours = ref(0)
 const resultTopRightHours = ref(0)
@@ -366,10 +357,12 @@ watch(() => {
     if(birthdate.value) {
       const total = calculateHoursAndWeeksUntilRetirement(birthdate.value)
 
-      const factorTopLeft = vizPercentLeftTop.value / 200;
-      const factorBottomLeft = visualizationPercentLeftBottom().value / 200
-      const factorTopRight = visualizationPercentRightTop().value / 200
-      const factorBottomRight = visualizationPercentRightBottom().value / 200
+      console.log("visualizationPercentLeftTop", visualizationPercentLeftTop().value)
+
+      const factorTopLeft = bottomBarLeftTopPercent().value.toFixed() / 100
+      const factorBottomLeft = bottomBarLeftBottomPercent().value.toFixed() / 100
+      const factorTopRight = bottomBarRightTopPercent().value.toFixed() / 100
+      const factorBottomRight = bottomBarRightBottomPercent().value.toFixed() / 100
 
       console.log({
         factorTopLeft,
