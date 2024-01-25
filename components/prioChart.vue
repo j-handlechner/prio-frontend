@@ -172,32 +172,52 @@ const currentViewName = useCurrentViewName()
 
   // get the total percentages
   const percentageLeft = computed(() => (valueLeftUp.value + valueLeftBottom.value) / (props.totalvalue) * 100)
-  const percentageLeftTop = computed(() => valueLeftUp.value / props.totalvalue * 100)
-  const percentageLeftBottom = computed(() => valueLeftBottom.value / props.totalvalue * 100)
-
-  const percentageRight = computed(() => 100 - percentageLeft.value)
-  const percentageRightTop = computed(() => valueRightUp.value / props.totalvalue * 100)
-  const percentageRightBottom = computed(() => valueRightBottom.value / props.totalvalue * 100)
-
-  // get the special visualization percentages
-  const percentageLeftTopVisualization = computed(() => valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100)
-  const percentageRightTopVisualization = computed(() => valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100)
-
-  watchEffect(() => {
-    bottomBarRightBottomPercent().value = percentageRightBottom
-    bottomBarRightTopPercent().value = percentageRightTop
-    bottomBarLeftBottomPercent().value = percentageLeftBottom
-    bottomBarLeftTopPercent().value = percentageLeftTop
-
-    console.log('rb', bottomBarRightBottomPercent().value, 'rt', bottomBarRightTopPercent().value, 'lb', bottomBarLeftBottomPercent().value, 'lt', bottomBarLeftTopPercent().value)
+  const percentageLeftTop = computed(() => {
+    const newval = valueLeftUp.value / props.totalvalue * 100
+    bottomBarLeftTopPercent().value = newval
+    return newval
+  })
+  const percentageLeftBottom = computed(() => {
+    const newval = valueLeftBottom.value / props.totalvalue * 100
+    bottomBarLeftBottomPercent().value = newval
+    return newval;
   })
 
+  const percentageRight = computed(() => 100 - percentageLeft.value)
+  const percentageRightTop = computed(() => {
+    const newval = valueRightUp.value / props.totalvalue * 100
+    bottomBarRightTopPercent().value = newval
+    return newval
+  })
+  const percentageRightBottom = computed(() => {
+    const newval = valueRightBottom.value / props.totalvalue * 100
+    bottomBarRightBottomPercent().value = newval
+    return newval
+  })
+
+  // get the special visualization percentages
+  const percentageLeftTopVisualization = computed(() => {
+    const newval = valueLeftUp.value / (valueLeftUp.value + valueLeftBottom.value) * 100
+    visualizationPercentLeftTop().value = newval
+    visualizationPercentLeftBottom().value = 100 - newval
+    return newval
+  })
+
+  const percentageRightTopVisualization = computed(() => {
+    const newval = valueRightUp.value / (valueRightUp.value + valueRightBottom.value) * 100
+    visualizationPercentRightTop().value = newval
+    visualizationPercentRightBottom().value = 100 - newval
+    return newval
+  })
+
+/*
   watchEffect(() => {
     visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
     visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
     visualizationPercentRightTop().value = percentageRightTopVisualization.value;
     visualizationPercentRightBottom().value = 100 - percentageRightTopVisualization.value;
   })
+  */
 
   const successColors = {
     topLeft: '#FF5527',
