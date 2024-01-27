@@ -82,16 +82,16 @@
           <div class="resultbar-content">
             <div class="d-flex justify-content-between flex-column">
               <div>
-                <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
+                <h3 class="resultbar-headline">Aktive Lebenszeit verplant: </h3>
                 <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
               </div>
               <div>
-                <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
+                <h3 class="resultbar-headline">Aktive Lebenszeit für dich: </h3>
                 <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
               </div>
             </div>
             <div class="transparent">
-              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
+              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
               <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
               <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
               <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>
@@ -119,16 +119,16 @@
           <div class="resultbar-content">
             <div class="d-flex justify-content-between flex-column">
               <div>
-                <h3 class="resultbar-headline">Aktive Lebenszeit verplant</h3>
+                <h3 class="resultbar-headline">Aktive Lebenszeit verplant: </h3>
                 <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
               </div>
               <div>
-                <h3 class="resultbar-headline">Aktive Lebenszeit für dich</h3>
+                <h3 class="resultbar-headline">Aktive Lebenszeit für dich: </h3>
                 <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
               </div>
             </div>
             <div class="transparent">
-              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension</h3>
+              <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
               <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
               <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
               <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>

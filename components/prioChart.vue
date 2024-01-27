@@ -210,15 +210,6 @@ const currentViewName = useCurrentViewName()
     return newval
   })
 
-/*
-  watchEffect(() => {
-    visualizationPercentLeftTop().value = percentageLeftTopVisualization.value
-    visualizationPercentLeftBottom().value = 100 - percentageLeftTopVisualization.value
-    visualizationPercentRightTop().value = percentageRightTopVisualization.value;
-    visualizationPercentRightBottom().value = 100 - percentageRightTopVisualization.value;
-  })
-  */
-
   const successColors = {
     topLeft: '#FF5527',
     bottomLeft: '#08AA47',
