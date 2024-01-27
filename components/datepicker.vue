@@ -3,7 +3,8 @@
     <label for="calendar"><slot name="label"></slot></label>
     <Calendar id="calendar"
               :modelValue="props.modelValue"
-              @update:modelValue="newValue => updateModelValue(newValue)"/>
+              @update:modelValue="newValue => updateModelValue(newValue)"
+              :maxDate="yesterdayFormatted"/>
   </div>
 </template>
 
@@ -16,6 +17,13 @@
   function updateModelValue(newValue) {
     emit("updateModelValue", newValue)
   }
+
+  const yesterdayFormatted = computed(() => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday;
+  })
+
 </script>
 
 <style lang="scss" scoped>
