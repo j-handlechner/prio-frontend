@@ -47,7 +47,7 @@
                 fontSize: `${isForPrint ? 1 + 2 * (percentageLeftBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftBottom) / 100)) + 'vw)' }`
 
               }"
-              >{{ 'Andere' }}</p>
+              >{{ 'Familie & Freunde' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
