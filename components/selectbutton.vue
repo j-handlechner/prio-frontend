@@ -34,7 +34,7 @@
 <script setup>
 import SelectButton from 'primevue/selectbutton';
 const value = ref(null);
-const defaultOptions = ref(['Studierender', 'Erwerbstätig']);
+const defaultOptions = ref(['Studierend', 'Erwerbstätig']);
 const props = defineProps(['modelValue', 'showlabel', 'options'])
 
 const showLabel = computed(() => props.showlabel !== undefined ? props.showlabel : true);
