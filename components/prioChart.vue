@@ -77,7 +77,7 @@
                  :style="{
                     fontSize: `${isForPrint ? 1 + 2 * (percentageRightTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightTop) / 100)) + 'rem, ' + (1 + (8 * (percentageRightTop) / 100)) + 'vw)' }`
               }"
-              >{{ 'Anderes' }}</p>
+              >Alltags&shy;pflichten</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -312,6 +312,7 @@ $secondary: white;
   right: unset;
   bottom: unset;
 
-  padding: .5rem 0 0 1rem;
+  padding: 1rem 0 0 1rem;
+  line-height: 120%;
 }
 </style>

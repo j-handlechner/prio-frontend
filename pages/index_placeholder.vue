@@ -143,7 +143,7 @@ setInterval(() => {
   }
 
   h1 {
-    font-family: "Helvetica Neue";
+    font-family: "PP Object Sans";
     font-size: 8vw;
     text-align: end;
     font-weight: 500;

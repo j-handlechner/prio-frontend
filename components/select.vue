@@ -6,7 +6,7 @@
           style: {
             borderRadius: 0,
             borderColor: 'black',
-            fontFamily: 'Helvetica',
+            fontFamily: 'PP Object Sans',
             fontWeight: 300,
             fontSize: '0.875rem.875rem'
           }
@@ -116,7 +116,7 @@ label {
 
 .p-dropdown .p-dropdown-label {
   font-size: max(.875rem, .7vw);
-  font-family: Helvetica;
+  font-family: 'PP Object Sans';
 }
 
 </style>

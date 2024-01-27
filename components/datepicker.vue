@@ -55,7 +55,7 @@ span.p-calendar {
 }
 
 .p-calendar .p-inputtext {
-  font-family: Helvetica;
+  font-family: 'PP Object Sans';
   font-weight: 300;
   font-size: .875rem;
 }

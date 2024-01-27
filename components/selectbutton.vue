@@ -19,7 +19,7 @@
     }),
     label: {
       style: {
-        fontFamily: 'Helvetica',
+        fontFamily: 'PP Object Sans',
         fontWeight: 300,
         fontSize: 'max(.875rem, .7vw)'
       }

@@ -7,7 +7,7 @@
       <Button v-if="currentSlidersStep < 3" @buttonclicked="currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm'">
         <p>Weiter</p>
       </Button>
-      <Button v-else :disabled="!allHoursPlanned || !allSlidersFilled" v-tooltip.top="!allHoursPlanned || !allSlidersFilled ? 'Es sind noch nicht eingeplante Stunden vorhanden. Bitte alle Stunden mit den Reglern einteilen.' : null" @buttonclicked="allHoursPlanned && allSlidersFilled && (currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm')" :class="allHoursPlanned && allSlidersFilled ? '' : 'disabled'">
+      <Button v-else :disabled="!allHoursPlanned || !allSlidersFilled" v-tooltip.top="!allHoursPlanned || !allSlidersFilled ? 'Es sind noch nicht eingeplante Stunden vorhanden (uneingeplante Stunden: ' + unplannedHoursAmount + 'h). Bitte alle Stunden mit den Reglern einteilen.' : null" @buttonclicked="allHoursPlanned && allSlidersFilled && (currentSlidersStep < 3 ? currentSlidersStep++ : currentViewName = 'confirm')" :class="allHoursPlanned && allSlidersFilled ? '' : 'disabled'">
         <p>Ergebnis</p>
       </Button>
     </div>
@@ -40,6 +40,10 @@
 
   const allHoursPlanned = computed(() => {
     return priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value + weeklySleepHours.value == 24 * 7
+  })
+
+  const unplannedHoursAmount = computed(() => {
+    return 24 * 7 - (priochartDataTopLeft.value + priochartDataBottomLeft.value + priochartDataTopRight.value + priochartDataBottomRight.value + weeklySleepHours.value)
   })
 
   </script>

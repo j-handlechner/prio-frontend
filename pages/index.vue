@@ -93,8 +93,8 @@
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
               <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
-              <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Familie & Freunde</p>
+              <p class="resultbar-value">{{resultTopRightHours}}h für Alltagspflichten</p>
               <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
             </div>
             <button class="result-button" @click="handleDownloadClick()">Ergebnis Download</button>
@@ -130,8 +130,8 @@
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
               <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Andere</p>
-              <p class="resultbar-value">{{resultTopRightHours}}h für Anderes</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Familie & Freunde</p>
+              <p class="resultbar-value">{{resultTopRightHours}}h für Alltagspflichten</p>
               <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
             </div>
             <p class="print-identificationnnumber">{{ identificationnumberValue }}</p>
@@ -598,7 +598,7 @@ watchEffect(async () => {
   }
 
   h3, p {
-    font-family: Helvetica;
+    font-family: 'PP Object Sans';
     color: black;
     font-weight: 300;
     font-size: max(0.65rem, 0.725vw);
@@ -668,7 +668,7 @@ watchEffect(async () => {
 
 
     h3, p {
-      font-family: Helvetica;
+      font-family: 'PP Object Sans';
       color: black;
       font-weight: 300;
       font-size: .75rem;

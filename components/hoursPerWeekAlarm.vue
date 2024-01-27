@@ -1,13 +1,13 @@
 <template>
   <div class="card flex justify-content-center">
     <Dialog v-model:visible="visible" modal header="Alle Stunden verplant!" :style="{ width: 'clamp(300px, 35vw, 35vw)' }">
-      <p v-if="!allHoursPlanned"><strong >Bitte verteile deine Prioritäten anders. Es müssen alle verfügbaren Stunden auf alle vier Teilbereiche verteilt werden.</strong><br/><br/></p>
+      <p v-if="!allHoursPlanned"><strong style="font-weight: 600">Bitte verteile deine Prioritäten anders. Es müssen alle verfügbaren Stunden auf alle vier Teilbereiche verteilt werden.</strong><br/><br/></p>
       <p>
         Du hast alle aktiven Stunden einer Woche verplant ({{ 24 * 7 - weeklySleep }}h)
       </p>
       <p><small>(Eine ganze Woche hat {{ 24 * 7 }}h, du schläfst davon {{ weeklySleep }}h)</small></p>
 
-      <p v-if="allHoursPlanned"><br/><strong >Jetzt kannst du zum nächsten Schritt gehen.</strong></p>
+      <p v-if="allHoursPlanned"><br/><strong style="font-weight: 600">Jetzt kannst du zum nächsten Schritt gehen.</strong></p>
     </Dialog>
   </div>
 </template>
