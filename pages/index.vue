@@ -83,19 +83,19 @@
             <div class="d-flex justify-content-between flex-column">
               <div>
                 <h3 class="resultbar-headline">Aktive Lebenszeit verplant: </h3>
-                <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+                <p class="resultbar-value">{{ (plannedTimeForOthers.hours / 24).toFixed() }} Tage / ~ {{ plannedTimeForOthers.weeks }} Wochen</p>
               </div>
               <div>
                 <h3 class="resultbar-headline">Aktive Lebenszeit für dich: </h3>
-                <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+                <p class="resultbar-value">{{ (plannedTimeForYourself.hours / 24).toFixed() }} Tage / ~ {{plannedTimeForYourself.weeks}} Wochen</p>
               </div>
             </div>
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
-              <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Familie & Freunde</p>
-              <p class="resultbar-value">{{resultTopRightHours}}h für Alltagspflichten</p>
-              <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
+              <p class="resultbar-value">{{ resultTopLeftHours }} Tage für Arbeit</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }} Tage für Familie & Freunde</p>
+              <p class="resultbar-value">{{ resultTopRightHours }} Tage für Alltagspflichten</p>
+              <p class="resultbar-value">{{ resultBottomRightHours }} Tage für Dich</p>
             </div>
             <button class="result-button" @click="handleDownloadClick()">Ergebnis Download</button>
           </div>
@@ -120,19 +120,19 @@
             <div class="d-flex justify-content-between flex-column">
               <div>
                 <h3 class="resultbar-headline">Aktive Lebenszeit verplant: </h3>
-                <p class="resultbar-value">{{ plannedTimeForOthers.hours }} Stunden / {{ plannedTimeForOthers.weeks }} Wochen</p>
+                <p class="resultbar-value">{{ (plannedTimeForOthers.hours / 24).toFixed() }} Tage / ~ {{ plannedTimeForOthers.weeks }} Wochen</p>
               </div>
               <div>
                 <h3 class="resultbar-headline">Aktive Lebenszeit für dich: </h3>
-                <p class="resultbar-value">{{ plannedTimeForYourself.hours }} Stunden / {{plannedTimeForYourself.weeks}} Wochen</p>
+                <p class="resultbar-value">{{ (plannedTimeForYourself.hours / 24).toFixed() }} Tage / ~ {{plannedTimeForYourself.weeks}} Wochen</p>
               </div>
             </div>
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
-              <p class="resultbar-value">{{ resultTopLeftHours }}h für Arbeit</p>
-              <p class="resultbar-value">{{ resultBottomLeftHours }}h für Familie & Freunde</p>
-              <p class="resultbar-value">{{resultTopRightHours}}h für Alltagspflichten</p>
-              <p class="resultbar-value">{{resultBottomRightHours}}h für Dich</p>
+              <p class="resultbar-value">{{ resultTopLeftHours }} Tage für Arbeit</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }} Tage für Familie & Freunde</p>
+              <p class="resultbar-value">{{ resultTopRightHours }} Tage für Alltagspflichten</p>
+              <p class="resultbar-value">{{ resultBottomRightHours }} Tage für Dich</p>
             </div>
             <p class="print-identificationnnumber">{{ identificationnumberValue }}</p>
           </div>
@@ -293,8 +293,8 @@ const plannedTimeForOthers = computed(() => {
     const factorForOthers = 1 - factorForMe
 
     return {
-      hours: Math.floor(result.hours * factorForOthers),
-      weeks: Math.floor(result.weeks * factorForOthers)
+      hours: Math.ceil(result.hours * factorForOthers),
+      weeks: Math.ceil(result.weeks * factorForOthers)
     }
   }
 })
@@ -309,8 +309,8 @@ const plannedTimeForYourself = computed(() => {
     const factorForMe = activeTimeForMe / activePerWeek
 
     return {
-      hours: Math.floor(result.hours * factorForMe),
-      weeks: Math.floor(result.weeks * factorForMe)
+      hours: Math.ceil(result.hours * factorForMe),
+      weeks: Math.ceil(result.weeks * factorForMe)
     }
   }
 })
@@ -382,10 +382,11 @@ watch(() => {
         bottomRightHours: (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
       })
 
-      resultTopLeftHours.value = (Math.floor(total.hours * factorTopLeft / 100) * 100).toLocaleString('de-DE')
-      resultBottomLeftHours.value = (Math.floor(total.hours * factorBottomLeft / 100) * 100).toLocaleString('de-DE')
-      resultTopRightHours.value = (Math.floor(total.hours * factorTopRight / 100) * 100).toLocaleString('de-DE')
-      resultBottomRightHours.value = (Math.floor(total.hours * factorBottomRight / 100) * 100).toLocaleString('de-DE')
+      // these are now actually days, not hours
+      resultTopLeftHours.value = ((Math.floor(total.hours * factorTopLeft / 100) * 100) / 24).toFixed().toLocaleString('de-DE')
+      resultBottomLeftHours.value = ((Math.floor(total.hours * factorBottomLeft / 100) * 100) / 24).toFixed().toLocaleString('de-DE')
+      resultTopRightHours.value = ((Math.floor(total.hours * factorTopRight / 100) * 100) / 24).toFixed().toLocaleString('de-DE')
+      resultBottomRightHours.value = ((Math.floor(total.hours * factorBottomRight / 100) * 100) / 24).toFixed().toLocaleString('de-DE')
 
       return {
         topLeftWeeks: total.weeks * factorTopLeft,

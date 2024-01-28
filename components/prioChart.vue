@@ -17,7 +17,7 @@
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
+              <p class="prio-chart__label" :class="isForPrint ? '' : 'label--not-print'"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                 fontSize: `${isForPrint ? 1 + 2 * (percentageLeftTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftTop) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftTop) / 100)) + 'vw)' }`
               }"
@@ -42,7 +42,7 @@
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
+              <p class="prio-chart__label"  :class="isForPrint ? '' : 'label--not-print'" v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                 fontSize: `${isForPrint ? 1 + 2 * (percentageLeftBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftBottom) / 100)) + 'vw)' }`
 
@@ -73,7 +73,7 @@
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
+              <p class="prio-chart__label" :class="isForPrint ? '' : 'label--not-print'" v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'"
                  :style="{
                     fontSize: `${isForPrint ? 1 + 2 * (percentageRightTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightTop) / 100)) + 'rem, ' + (1 + (8 * (percentageRightTop) / 100)) + 'vw)' }`
               }"
@@ -97,7 +97,7 @@
             </Transition>
 
             <Transition>
-              <p class="prio-chart__label"  v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'" :style="{
+              <p class="prio-chart__label" :class="isForPrint ? '' : 'label--not-print'" v-if="currentViewName == 'confirm' || currentViewName == 'end-yes' || currentViewName == 'end-no'" :style="{
                 fontSize: `${isForPrint ? 1 + 2 * (percentageRightBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageRightBottom) / 100)) + 'vw)' }`
               }">{{ 'Ich' }}</p>
             </Transition>
@@ -312,7 +312,11 @@ $secondary: white;
   right: unset;
   bottom: unset;
 
-  padding: 1rem 0 0 1rem;
+  padding: 0rem 0 0 1rem;
   line-height: 120%;
+
+  &.label--not-print {
+    padding: 1rem 0 0 1rem;
+  }
 }
 </style>
