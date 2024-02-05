@@ -3,6 +3,9 @@
 <template>
   <div id="">
     <NuxtLayout name="imprint"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
+      <h1>Technische Umsetzung</h1>
+      <p><u><nuxt-link external to="https://www.linkedin.com/in/johannes-handlechner/" target="_blank">Johannes Handlechner</nuxt-link></u> & <u><nuxt-link external target="_blank" to="https://www.linkedin.com/in/tanjanicole/">Tanja Gruber</nuxt-link></u></p>
+      <br />
       <Transition v-if="dataFetched">
         <div v-html="apiresponse.fetchedData"></div>
       </Transition>
