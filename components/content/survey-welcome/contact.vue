@@ -12,9 +12,14 @@
           <a v-if="contactInformation.fetchedData.attributes.email" :href="'mailto:' + contactInformation.fetchedData.attributes.email">
             {{ contactInformation.fetchedData.attributes.email }}
           </a>
-          <a v-if="contactInformation.fetchedData.attributes.instagram" :href="'https://www.instagram.com/' + contactInformation.fetchedData.attributes.instagram" target="_blank">
-            {{ contactInformation.fetchedData.attributes.instagram }}
-          </a>
+          <div class="flex gap-1 items-end">
+            ©<a v-if="contactInformation.fetchedData.attributes.instagram" :href="'https://www.instagram.com/' + contactInformation.fetchedData.attributes.instagram" target="_blank">
+              {{ contactInformation.fetchedData.attributes.instagram }}
+            </a>
+          </div>
+          <span class="flex gap-1 text-xs items-center">
+            © <small>(code)</small><u><nuxt-link external to="https://www.linkedin.com/in/johannes-handlechner/" target="_blank">jo handlechner</nuxt-link></u> & <u><nuxt-link external target="_blank" to="https://www.linkedin.com/in/tanjanicole/">tanja gruber</nuxt-link></u>
+          </span>
         </div>
       </Transition>
 
