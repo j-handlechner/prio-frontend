@@ -93,8 +93,8 @@
             <div class="transparent">
               <h3 class="resultbar-headline">Restliche Zeit bis zur Pension: </h3>
               <p class="resultbar-value">{{ resultTopLeftHours }} Tage für Arbeit</p>
-              <p class="resultbar-value">{{ resultBottomLeftHours }} Tage für Familie & Freunde</p>
-              <p class="resultbar-value">{{ resultTopRightHours }} Tage für Alltagspflichten</p>
+              <p class="resultbar-value">{{ resultBottomLeftHours }} Tage für Sozialleben</p>
+              <p class="resultbar-value">{{ resultTopRightHours }} Tage für Haushalt</p>
               <p class="resultbar-value">{{ resultBottomRightHours }} Tage für Dich</p>
             </div>
             <button class="result-button" @click="handleDownloadClick()">Ergebnis Download</button>
