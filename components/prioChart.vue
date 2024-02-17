@@ -46,7 +46,7 @@
                 fontSize: `${isForPrint ? 1 + 2 * (percentageLeftBottom) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageLeftBottom) / 100)) + 'rem, ' + (1 + (8 * (percentageLeftBottom) / 100)) + 'vw)' }`
 
               }"
-              >{{ 'Familie & Freunde' }}</p>
+              >{{ 'Sozialleben' }}</p>
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
@@ -75,7 +75,7 @@
                  :style="{
                     fontSize: `${isForPrint ? 1 + 2 * (percentageRightTop) / 100 + 'rem' : 'max(' + (1 + (2 * (percentageRightTop) / 100)) + 'rem, ' + (1 + (8 * (percentageRightTop) / 100)) + 'vw)' }`
               }"
-              >Alltags&shy;pflichten</p>
+              >Haushalt</p>
             </Transition>
 
             <div class="prio-chart__corner top-left"></div>
