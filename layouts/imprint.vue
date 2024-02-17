@@ -154,7 +154,7 @@ $right-bar-width: 12.5vw;
   justify-content: space-between;
   border-left: 1px solid black;
 
-  h1 {
+  h1, h2 {
     font-family: Cirka;
     font-size: max(4.4rem, 4vw);
     @media screen and (max-width: 1300px) {

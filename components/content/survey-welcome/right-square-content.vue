@@ -1,7 +1,10 @@
 <template>
   <div>
-    <p>Um mehr informationen zu erhalten, schiebe die Visualisierung nach oben</p>
-    <p>→</p>
+    <p class="flex flex-wrap flex-column">
+      (c) <u class="me-1 ms-1"><nuxt-link external to="https://prio.kollektivschlaflos.com" target="_blank">kollektiv schlaflos, </nuxt-link></u>
+      <u class="me-1"><nuxt-link external to="https://www.linkedin.com/in/johannes-handlechner/" target="_blank">jo handlechner</nuxt-link></u> <span class="me-1">&</span>
+      <u><nuxt-link external to="https://www.linkedin.com/in/tanjanicole/" target="_blank">tanja gruber</nuxt-link></u>
+    </p>
   </div>
 
 </template>
@@ -15,11 +18,6 @@ div {
 
   p {
     font-size: max(.75rem, .75vw);
-    &:last-of-type {
-      font-size: 5rem;
-      font-family: Cirka;
-      line-height: 50%;
-    }
   }
 }
 </style>

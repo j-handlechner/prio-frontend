@@ -38,7 +38,7 @@
       </template>
 
       <template #right-square>
-        <DefaultRightSquareContent v-if="currentViewName == 'end'"/>
+        <DefaultRightSquareContent />
       </template>
 
       <template #layoutright>

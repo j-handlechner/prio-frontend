@@ -3,14 +3,24 @@
 <template>
   <div id="">
     <NuxtLayout name="imprint"> <!-- for some reason, setting the layout with definepagemeta doesnt work with multiple named slots -->
-      <h1>Technische Umsetzung</h1>
+      <h2>Technische Umsetzung</h2>
       <p class="flex gap-2 items-center">
         <span class="flex gap-1 items-center">
-          <span class="text-sm">©</span>
-          <small class="text-xs">(code)</small>
+          <span class="">(c)</span>
         </span>
 
-        <span><u><nuxt-link external to="https://www.linkedin.com/in/johannes-handlechner/" target="_blank">Johannes Handlechner</nuxt-link></u> & <u><nuxt-link external target="_blank" to="https://www.linkedin.com/in/tanjanicole/">Tanja Gruber</nuxt-link></u></span></p>
+        <span><u><nuxt-link external to="https://www.linkedin.com/in/johannes-handlechner/" target="_blank">Johannes Handlechner</nuxt-link></u> & <u><nuxt-link external target="_blank" to="https://www.linkedin.com/in/tanjanicole/">Tanja Gruber</nuxt-link></u></span>
+      </p>
+
+      <h2 class="mt-12">Konzept & Design</h2>
+      <p class="flex gap-2 items-center">
+        <span class="flex gap-1 items-center">
+          <span class="">(c)</span>
+        </span>
+
+        <span><u><nuxt-link external to="https://www.gasser-bastian.at" target="_blank">Bastian Gasser</nuxt-link></u>, <u><nuxt-link external target="_blank" to="https://www.wegerflorian.com/">Florian Weger</nuxt-link></u>, & <u><nuxt-link external target="_blank" to="https://www.timoasch.com/">Timo Asch</nuxt-link></u></span>
+      </p>
+
       <br />
       <Transition v-if="dataFetched">
         <div v-html="apiresponse.fetchedData"></div>
