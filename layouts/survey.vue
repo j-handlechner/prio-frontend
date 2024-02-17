@@ -66,8 +66,10 @@
     <div :class="`layout__right ${ currentViewName == 'end-yes' ||currentViewName=='end-no' ? ' animate-grid-bottombar' : '' }`" id="" v-if="!isCurrentlyMobile || currentMobileView == 'Visualisierung'" >
       <div class="right__top">
         <div class="logo-right-spacer has-corners">
-          <MobileViewSwitcher :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
+          <MobileViewSwitcher class="logorightviewswitcher-wrapper" :isVisualisationHighlighted="currentViewName === 'confirm' || currentViewName === 'end-yes' || currentViewName === 'end-no'"/>
+          <div class="prio-chart__corner bottom-left"></div>
         </div>
+
         <div class="logo-right has-corners">
           <nuxt-link to="/" class="logolink">PRIO</nuxt-link>
           <div class="prio-chart__corner bottom-right"></div>
@@ -442,7 +444,7 @@ $right-bar-width: 12.5vw;
 }
 
 @media screen and (min-width: 950px) {
-  .logo-right, .logo-right-spacer {
+  .logo-right, .logorightviewswitcher-wrapper {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

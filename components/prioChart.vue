@@ -26,7 +26,6 @@
             </Transition>
 
             <div class="prio-chart__corner top-right"></div>
-            <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
             <div class="prio-chart__corner bottom-left"></div>
           </div>
@@ -53,7 +52,6 @@
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
-            <div class="prio-chart__corner bottom-left"></div>
           </div>
         </div>
 
@@ -80,7 +78,6 @@
               >Alltags&shy;pflichten</p>
             </Transition>
 
-            <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
             <div class="prio-chart__corner bottom-right"></div>
             <div class="prio-chart__corner bottom-left"></div>
@@ -104,7 +101,6 @@
 
             <div class="prio-chart__corner top-right"></div>
             <div class="prio-chart__corner top-left"></div>
-            <div class="prio-chart__corner bottom-right"></div>
             <div class="prio-chart__corner bottom-left"></div>
           </div>
         </div>
