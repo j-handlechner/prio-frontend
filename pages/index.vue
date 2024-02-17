@@ -38,7 +38,9 @@
       </template>
 
       <template #right-square>
-        <DefaultRightSquareContent />
+        <Transition name="rightsquare">
+          <DefaultRightSquareContent v-if="showrightsquarecontent"/>
+        </Transition>
       </template>
 
       <template #layoutright>
@@ -211,7 +213,7 @@ import SlidersButtons from "/components/content/survey-slider/buttons.vue";
 import ConfirmButtons from "/components/content/survey-confirm/buttons.vue";
 import ConfirmCenterSquare from "/components/content/survey-confirm/center-square.vue";
 
-
+const showrightsquarecontent = ref(false);
 const identificationnumberValue = ref(0);
 const updatedValue = ref(0)
 const { find } = useStrapi()
@@ -543,9 +545,14 @@ watchEffect(async () => {
   }
 })
 
+
+onMounted(() => {
+  showrightsquarecontent.value = true
+})
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .v-enter-active,
 .v-leave-active {
   transition: opacity .35s ease-in-out;
@@ -562,6 +569,18 @@ watchEffect(async () => {
     height: 30dvh;
   }
 }
+
+/* we will explain what these classes do next! */
+.rightsquare-enter-active,
+.rightsquare-leave-active {
+  transition: opacity 0.35s 0.75s ease-in-out;
+}
+
+.rightsquare-enter-from,
+.rightsquare-leave-to {
+  opacity: 0;
+}
+
 </style>
 
 <style scoped lang="scss">
@@ -682,5 +701,7 @@ watchEffect(async () => {
   box-shadow: none!important;
   border-color: transparent;
 }
+
+
 
 </style>
