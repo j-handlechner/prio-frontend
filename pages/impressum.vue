@@ -51,6 +51,9 @@ definePageMeta({
 })
 
 useHead({
+  htmlAttrs: {
+    lang: 'de',
+  },
   title: 'PRIO - Wem gehörst du? - Kollektiv Schlaflos',
   meta: [
     {
