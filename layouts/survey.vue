@@ -109,7 +109,10 @@ const endslidervalue = useEndSliderValue()
 
 <style lang="scss">
 .logolink {
+  font-family: "Cirka";
   font-weight: 400;
+  padding-top: 1vh;
+  font-size: 5vh;
 }
 </style>
 
